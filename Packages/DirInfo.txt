@@ -1,0 +1,6 @@
+Lib.BasicClasses package directory; version-specific packages are located in
+the respective subdirectories.
+
+Files located in Lib.BasicClasses/Packages:
+
+Lib_BasicClasses_Dxy.groupproj:  Project group file for Delphi version x.y packages
