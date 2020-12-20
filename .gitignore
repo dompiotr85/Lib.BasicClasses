@@ -183,3 +183,12 @@ Temporary Items
 ################################################################################
 
 *.log
+
+Lib/D27/Tests/Win64/Debug/*.xml
+Lib/D27/Tests/Win64/Release/*.xml
+Lib/D27/Tests/Win32/Debug/*.xml
+Lib/D27/Tests/Win32/Release/*.xml
+Lib/D27/Win64/Debug/*.xml
+Lib/D27/Win64/Release/*.xml
+Lib/D27/Win32/Debug/*.xml
+Lib/D27/Win32/Release/*.xml

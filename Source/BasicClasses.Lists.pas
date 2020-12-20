@@ -89,7 +89,8 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   If capacity is below <i>GrowLimit</i>, grow by <i>capacity * GrowFactor</i>.
+    ///   If capacity is below <i>GrowLimit</i>, grow by <i>capacity *
+    ///   GrowFactor</i>.
     /// </summary>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     gmFastAttenuated);
@@ -208,11 +209,10 @@ const
   ///   Default list grow/shrink settings.
   /// </summary>
   /// <remarks>
-  ///   <i>GrowMode</i> is set to <i>gmFast</i>, <i>GrowFactor</i> is set to
-  ///   <i>1.0</i>, <i>GrowLimit</i> is set to value equal
-  ///   <i>128 * 1024 * 1024</i>, <i>ShrinkMode</i> is set to <i>smNormal</i>,
-  ///   <i>ShrinkFactor</i> is set to <i>0.5</i> and <i>ShrinkLimit</i> is set
-  ///   to <i>256</i>.
+  ///   <i>GrowMode</i> is set to <i>gmFast</i>, <i>GrowFactor</i> is set to <i>
+  ///   1.0</i>, <i>GrowLimit</i> is set to value equal <i>128 * 1024 * 1024</i>
+  ///   , <i>ShrinkMode</i> is set to <i>smNormal</i>, <i>ShrinkFactor</i> is
+  ///   set to <i>0.5</i> and <i>ShrinkLimit</i> is set to <i>256</i>.
   /// </remarks>
   {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
   BC_LIST_GROW_SETTINGS_DEFAULT: TListGrowSettings = (
@@ -234,9 +234,9 @@ type
   ///   any list and a few more.
   /// </summary>
   /// <remarks>
-  ///   Expects derived class to properly implement <i>Capacity</i> and
-  ///   <i>Count</i> properties (both getters and setters) and <i>LowIndex</i>
-  ///   and <i>HighIndex</i> functions.
+  ///   Expects derived class to properly implement <i>Capacity</i> and <i>
+  ///   Count</i> properties (both getters and setters) and <i>LowIndex</i> and
+  ///   <i>HighIndex</i> functions.
   /// </remarks>
   {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
   TCustomList = class(TCustomObject)
@@ -515,7 +515,8 @@ type
     ///   Index value of stored list.
     /// </param>
     /// <returns>
-    ///   Returns <i>ListGrowSettings</i> for the list's specified <i>Index</i>.
+    ///   Returns <i>ListGrowSettings</i> for the list's specified <i>Index</i>
+    ///   .
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     function GetListGrowSettings(Index: SizeUInt): TListGrowSettings; virtual;
@@ -546,8 +547,8 @@ type
     ///   List's <i>Index</i>.
     /// </param>
     /// <returns>
-    ///   Returns pointer to ListGrowSettings of specified list by its
-    ///   <i>Index</i>.
+    ///   Returns pointer to ListGrowSettings of specified list by its <i>Index</i>
+    ///   .
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     function GetListGrowSettingsPtr(Index: SizeUInt): PListGrowSettings; virtual;
@@ -619,7 +620,8 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Grows specified list by its <i>Index</i> by specified <i>MinDelta</i>.
+    ///   Grows specified list by its <i>Index</i> by specified <i>MinDelta</i>
+    ///   .
     /// </summary>
     /// <param name="Index">
     ///   List's <i>Index</i>.
@@ -717,8 +719,8 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Retrieves high index of specified list by its <i>Index</i> and returns
-    ///   that value.
+    ///   Retrieves high index of specified list by its <i>Index</i> and
+    ///   returns that value.
     /// </summary>
     /// <param name="Index">
     ///   List's <i>Index</i>.
@@ -733,8 +735,8 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Checks that specified list's <i>Index</i> is valid and returns
-    ///   <i>True</i> or <i>False</i> as a validation result.
+    ///   Checks that specified list's <i>Index</i> is valid and returns <i>
+    ///   True</i> or <i>False</i> as a validation result.
     /// </summary>
     /// <param name="Index">
     ///   List's <i>Index</i>.
@@ -750,8 +752,8 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Checks that specified <i>ListIndex</i> is valid for specified list's
-    ///   <i>Index</i> and returns <i>True</i> or <i>False</i> as a validation
+    ///   Checks that specified <i>ListIndex</i> is valid for specified list's <i>
+    ///   Index</i> and returns <i>True</i> or <i>False</i> as a validation
     ///   result.
     /// </summary>
     /// <param name="Index">
@@ -774,8 +776,8 @@ type
     ///   Copies GrowSettings from <i>Source</i> multi-list.
     /// </summary>
     /// <param name="Source">
-    ///   Reference to other multi-list instance from which GrowSettings will be
-    ///   copied from.
+    ///   Reference to other multi-list instance from which GrowSettings will
+    ///   be copied from.
     /// </param>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     procedure CopyGrowSettings(Source: TCustomMultiList); virtual;
@@ -793,8 +795,8 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Returns <i>ListGrowSettings</i> for the list with specified
-    ///   <i>Index</i>.
+    ///   Returns <i>ListGrowSettings</i> for the list with specified <i>Index</i>
+    ///   .
     /// </summary>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     property ListGrowSettings[&Index: SizeUInt]: TListGrowSettings read GetListGrowSettings write SetListGrowSettings;
@@ -803,8 +805,8 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Returns pointer to <i>ListGrowSettings</i> for the list with specified
-    ///   <i>Index</i>.
+    ///   Returns pointer to <i>ListGrowSettings</i> for the list with
+    ///   specified <i>Index</i>.
     /// </summary>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     property ListGrowSettingsPtrs[&Index: SizeUInt]: PListGrowSettings read GetListGrowSettingsPtr;
@@ -1119,8 +1121,8 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Retrieves the pointer to a dynamic array which stores list's items and
-    ///   return it.
+    ///   Retrieves the pointer to a dynamic array which stores list's items
+    ///   and return it.
     /// </summary>
     /// <returns>
     ///   Returns the pointer to a dynamic array which stores list's items.
@@ -1274,11 +1276,11 @@ type
     /// <summary>
     ///   Performs extraction operation for specified <i>Item</i>. In other
     ///   words, removes a specified item from the list. Call Extract to remove
-    ///   an item from the list. After the item is removed, all the objects that
-    ///   follow it are moved up in index position and Count is decremented.
-    ///   To remove the reference to an item without deleting the entry from the
-    ///   Items array and changing the Count, set the Items property for Index
-    ///   to <i>nil</i>.
+    ///   an item from the list. After the item is removed, all the objects
+    ///   that follow it are moved up in index position and Count is
+    ///   decremented. To remove the reference to an item without deleting the
+    ///   entry from the Items array and changing the Count, set the Items
+    ///   property for Index to <i>nil</i>.
     /// </summary>
     /// <param name="Item">
     ///   Pointer to the item that need to be extracted.
@@ -1329,8 +1331,8 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Retrieves index position of the first item in the list and returns it.
-    ///   If the list is empty, -1 will be returned.
+    ///   Retrieves index position of the first item in the list and returns
+    ///   it. If the list is empty, -1 will be returned.
     /// </summary>
     /// <returns>
     ///   Returns index position of the first item in the list/ If the list is
@@ -1343,17 +1345,17 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Returns a TBCList enumerator.
-    ///   GetEnumerator returns a TBCList.TEnumerator reference, which
-    ///   enumerates all items in the list. To do so, call the
-    ///   TBCList.TEnumerator GetCurrent method within a while MoveNext do loop.
+    ///   Returns a TBCList enumerator. GetEnumerator returns a
+    ///   TBCList.TEnumerator reference, which enumerates all items in the
+    ///   list. To do so, call the TBCList.TEnumerator GetCurrent method within
+    ///   a while MoveNext do loop.
     /// </summary>
     /// <returns>
     ///   Reference to the list enumerator.
     /// </returns>
     /// <remarks>
-    ///   It is user's responsibility to release retrieved enumerator by calling
-    ///   Free() method.
+    ///   It is user's responsibility to release retrieved enumerator by
+    ///   calling Free() method.
     /// </remarks>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     function GetEnumerator: TBCList.TEnumerator; inline;
@@ -1362,18 +1364,17 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Returns a TBCList reverse enumerator.
-    ///   GetReverseEnumerator returns a TBCList.TReverseEnumerator reference,
-    ///   which enumerates all items in the list. To do so, call the
-    ///   TBCList.TReverseEnumerator GetCurrent method within a while MoveNext
-    ///   do loop.
+    ///   Returns a TBCList reverse enumerator. GetReverseEnumerator returns a
+    ///   TBCList.TReverseEnumerator reference, which enumerates all items in
+    ///   the list. To do so, call the TBCList.TReverseEnumerator GetCurrent
+    ///   method within a while MoveNext do loop.
     /// </summary>
     /// <returns>
     ///   Reference to the list reverse enumerator.
     /// </returns>
     /// <remarks>
-    ///   It is user's responsibility to release retrieved reverse enumerator by
-    ///   calling its Free() method.
+    ///   It is user's responsibility to release retrieved reverse enumerator
+    ///   by calling its Free() method.
     /// </remarks>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     function GetReverseEnumerator: TBCList.TReverseEnumerator; inline;
@@ -1382,21 +1383,20 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Returns the index of the first entry in the Items array with
-    ///   a specified value.
-    ///   Call IndexOf to get the index for a pointer in the Items array.
-    ///   Specify the pointer as the Item parameter.
-    ///   The first item in the array has index 0, the second item has index 1,
-    ///   and so on. If an item is not in the list, IndexOf returns -1.
-    ///   If a pointer appears more than once in the array, IndexOf returns the
-    ///   index of the first appearance.
+    ///   Returns the index of the first entry in the Items array with a
+    ///   specified value. Call IndexOf to get the index for a pointer in the
+    ///   Items array. Specify the pointer as the Item parameter. The first
+    ///   item in the array has index 0, the second item has index 1, and so
+    ///   on. If an item is not in the list, IndexOf returns -1. If a pointer
+    ///   appears more than once in the array, IndexOf returns the index of the
+    ///   first appearance.
     /// </summary>
     /// <param name="Item">
     ///   Pointer to the item that will be searched for.
     /// </param>
     /// <returns>
-    ///   Returns the index of the first entry in the Items array with
-    ///   a specified value or -1 if nothing was found.
+    ///   Returns the index of the first entry in the Items array with a
+    ///   specified value or -1 if nothing was found.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     function IndexOf(Item: Pointer): SizeInt;
@@ -1405,12 +1405,11 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Returns the item's index.
-    ///   Call IndexOfItem to determine the location of an item in the TList
-    ///   list, using a linear search. If the item is not found, -1 is returned.
-    ///   To increase the performance of this operation, if you know whether
-    ///   Item is towards the beginning or towards the end of the list you can
-    ///   use Direction parameter.
+    ///   Returns the item's index. Call IndexOfItem to determine the location
+    ///   of an item in the TList list, using a linear search. If the item is
+    ///   not found, -1 is returned. To increase the performance of this
+    ///   operation, if you know whether Item is towards the beginning or
+    ///   towards the end of the list you can use Direction parameter.
     /// </summary>
     /// <param name="Item">
     ///   Pointer to the Item that will be searched for.
@@ -1435,9 +1434,9 @@ type
     ///   has an index of 0. Insert adds the item at the indicated position,
     ///   shifting the item that previously occupied that position, and all
     ///   subsequent items, up. Insert increments Count and, if necessary,
-    ///   allocates memory by increasing the value of Capacity.
-    ///   To replace a nil pointer in the array with a new item, without growing
-    ///   the Items array, set the Items property.
+    ///   allocates memory by increasing the value of Capacity. To replace a
+    ///   nil pointer in the array with a new item, without growing the Items
+    ///   array, set the Items property.
     /// </summary>
     /// <param name="Index">
     ///   Index position where new item will be inserted into the list.
@@ -1452,9 +1451,9 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Retrieves pointer to the last item in the list and returns it.
-    ///   Call Last to retrieve the last pointer in the Items array.
-    ///   If the list is empty, nil will be returned.
+    ///   Retrieves pointer to the last item in the list and returns it. Call
+    ///   Last to retrieve the last pointer in the Items array. If the list is
+    ///   empty, nil will be returned.
     /// </summary>
     /// <returns>
     ///   Returns pointer to the last item in the list. If the list is empty,
@@ -1500,13 +1499,12 @@ type
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
     ///   Deletes the first reference to the Item parameter from the Items
-    ///   array. Call Remove to remove a specific item from the Items array when
-    ///   its index is unknown. The value returned is the index of the item in
-    ///   the Items array before it was removed. After an item is removed, all
-    ///   the items that follow it are moved up in index position and the Count
-    ///   is reduced by one.
-    ///   If the Items array contains more than one copy of the pointer, only
-    ///   the first copy is deleted.
+    ///   array. Call Remove to remove a specific item from the Items array
+    ///   when its index is unknown. The value returned is the index of the
+    ///   item in the Items array before it was removed. After an item is
+    ///   removed, all the items that follow it are moved up in index position
+    ///   and the Count is reduced by one. If the Items array contains more
+    ///   than one copy of the pointer, only the first copy is deleted.
     /// </summary>
     /// <param name="Item">
     ///   Pointer to the item that will be removed from the list.
@@ -1526,8 +1524,8 @@ type
     ///   in the specified direction. In other words, it removes the first or
     ///   last occurrence of Value depending on the specified Direction.
     ///   RemoveItem is identical to Remove, only that it allows you to specify
-    ///   in which Direction to search the list, so that you can remove the last
-    ///   occurrence instead of the first one.
+    ///   in which Direction to search the list, so that you can remove the
+    ///   last occurrence instead of the first one.
     /// </summary>
     /// <param name="Item">
     ///   Pointer to the item that will be searched for.
@@ -1561,8 +1559,8 @@ type
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
     ///   Performs a QuickSort on the list based on the comparison function
-    ///   Compare. Call Sort to sort the items in the Items array. Compare is
-    ///   a comparison function that indicates how the items are to be ordered.
+    ///   Compare. Call Sort to sort the items in the Items array. Compare is a
+    ///   comparison function that indicates how the items are to be ordered.
     /// </summary>
     /// <param name="Compare">
     ///   Reference to comparison function that will be used in this operation.
@@ -1574,8 +1572,8 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Performs a QuickSort on list of items. Call SortList to sort the Items
-    ///   in the TBCList list.
+    ///   Performs a QuickSort on list of items. Call SortList to sort the
+    ///   Items in the TBCList list.
     /// </summary>
     /// <param name="Compare">
     ///   TListSortCompareFunc as reference.
@@ -1590,12 +1588,12 @@ type
     ///   Copies elements of one list to another. Call Assign to assign the
     ///   elements of another list to this one. Assign combines the source list
     ///   with this one using the logical operator specified by the AOperator
-    ///   parameter.
-    ///   If the ListB parameter is specified, then Assign first replaces all
-    ///   the elements of this list with those in ListA, and then merges ListB
-    ///   into this list using the operator specified by AOperator.
-    ///   If the ListB parameter is not specified, then Assign merges ListA into
-    ///   this list using the operator specified by AOperator.
+    ///   parameter. If the ListB parameter is specified, then Assign first
+    ///   replaces all the elements of this list with those in ListA, and then
+    ///   merges ListB into this list using the operator specified by
+    ///   AOperator. If the ListB parameter is not specified, then Assign
+    ///   merges ListA into this list using the operator specified by
+    ///   AOperator.
     /// </summary>
     /// <param name="ListA">
     ///   Reference to ListA.
@@ -1774,9 +1772,9 @@ type
 
   {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
   /// <summary>
-  ///   Defines which type should be used in
-  ///   <see cref="BasicClasses|TIntegerList" />. Enable or disable feature
-  ///   <b>BC_IntegerListUsesStdInt</b> to set this up.
+  ///   Defines which type should be used in <see cref="BasicClasses|TIntegerList" />
+  ///   . Enable or disable feature <b>BC_IntegerListUsesStdInt</b> to set this
+  ///   up.
   /// </summary>
   {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
   TIntItem = {$IFDEF BC_IntegerListUsesStdInt}StdInt{$ELSE}Integer{$ENDIF};
@@ -2035,8 +2033,8 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Retrieves the pointer to a dynamic array which stores list's items and
-    ///   return it.
+    ///   Retrieves the pointer to a dynamic array which stores list's items
+    ///   and return it.
     /// </summary>
     /// <returns>
     ///   Returns the pointer to a dynamic array which stores list's items.
@@ -2190,11 +2188,11 @@ type
     /// <summary>
     ///   Performs extraction operation for specified <i>Item</i>. In other
     ///   words, removes a specified item from the list. Call Extract to remove
-    ///   an item from the list. After the item is removed, all the objects that
-    ///   follow it are moved up in index position and Count is decremented.
-    ///   To remove the reference to an item without deleting the entry from the
-    ///   Items array and changing the Count, set the Items property for Index
-    ///   to <i>nil</i>.
+    ///   an item from the list. After the item is removed, all the objects
+    ///   that follow it are moved up in index position and Count is
+    ///   decremented. To remove the reference to an item without deleting the
+    ///   entry from the Items array and changing the Count, set the Items
+    ///   property for Index to <i>nil</i>.
     /// </summary>
     /// <param name="Item">
     ///   The item that need to be extracted.
@@ -2245,8 +2243,8 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Retrieves index position to the first item in the list and returns it.
-    ///   If the list is empty, -1 will be returned.
+    ///   Retrieves index position to the first item in the list and returns
+    ///   it. If the list is empty, -1 will be returned.
     /// </summary>
     /// <returns>
     ///   Returns pointer to the last item in the list. If the list is empty,
@@ -2259,18 +2257,17 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Returns a TIntegerList enumerator.
-    ///   GetEnumerator returns a TIntegerList.TEnumerator reference, which
-    ///   enumerates all items in the list. To do so, call the
-    ///   TIntegerList.TEnumerator GetCurrent method within a while MoveNext do
-    ///   loop.
+    ///   Returns a TIntegerList enumerator. GetEnumerator returns a
+    ///   TIntegerList.TEnumerator reference, which enumerates all items in the
+    ///   list. To do so, call the TIntegerList.TEnumerator GetCurrent method
+    ///   within a while MoveNext do loop.
     /// </summary>
     /// <returns>
     ///   Reference to the list enumerator.
     /// </returns>
     /// <remarks>
-    ///   It is user's responsibility to release retrieved enumerator by calling
-    ///   Free() method.
+    ///   It is user's responsibility to release retrieved enumerator by
+    ///   calling Free() method.
     /// </remarks>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     function GetEnumerator: TIntegerList.TEnumerator; inline;
@@ -2279,9 +2276,9 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Returns a TIntegerList reverse enumerator.
-    ///   GetReverseEnumerator returns a TIntegerList.TReverseEnumerator
-    ///   reference, which enumerates all items in the list. To do so, call the
+    ///   Returns a TIntegerList reverse enumerator. GetReverseEnumerator
+    ///   returns a TIntegerList.TReverseEnumerator reference, which enumerates
+    ///   all items in the list. To do so, call the
     ///   TIntegerList.TReverseEnumerator GetCurrent method within a while
     ///   MoveNext do loop.
     /// </summary>
@@ -2289,8 +2286,8 @@ type
     ///   Reference to the list reverse enumerator.
     /// </returns>
     /// <remarks>
-    ///   It is user's responsibility to release retrieved reverse enumerator by
-    ///   calling its Free() method.
+    ///   It is user's responsibility to release retrieved reverse enumerator
+    ///   by calling its Free() method.
     /// </remarks>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     function GetReverseEnumerator: TIntegerList.TReverseEnumerator; inline;
@@ -2299,21 +2296,19 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Returns the index of the first entry in the Items array with
-    ///   a specified value.
-    ///   Call IndexOf to get the index for entry in the Items array.
-    ///   Specify the item as the Item parameter.
-    ///   The first item in the array has index 0, the second item has index 1,
-    ///   and so on. If an item is not in the list, IndexOf returns -1.
-    ///   If an entry appears more than once in the array, IndexOf returns the
-    ///   index of the first appearance.
+    ///   Returns the index of the first entry in the Items array with a
+    ///   specified value. Call IndexOf to get the index for entry in the Items
+    ///   array. Specify the item as the Item parameter. The first item in the
+    ///   array has index 0, the second item has index 1, and so on. If an item
+    ///   is not in the list, IndexOf returns -1. If an entry appears more than
+    ///   once in the array, IndexOf returns the index of the first appearance.
     /// </summary>
     /// <param name="Item">
     ///   The item that will be searched for.
     /// </param>
     /// <returns>
-    ///   Returns the index of the first entry in the Items array with
-    ///   a specified value or -1 if nothing was found.
+    ///   Returns the index of the first entry in the Items array with a
+    ///   specified value or -1 if nothing was found.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     function IndexOf(Item: TIntItem): SizeInt;
@@ -2322,12 +2317,11 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Returns the item's index.
-    ///   Call IndexOfItem to determine the location of an item in the
-    ///   TIntegerList list, using a linear search. If the item is not found, -1
-    ///   is returned. To increase the performance of this operation, if you
-    ///   know whether Item is towards the beginning or towards the end of the
-    ///   list you can use Direction parameter.
+    ///   Returns the item's index. Call IndexOfItem to determine the location
+    ///   of an item in the TIntegerList list, using a linear search. If the
+    ///   item is not found, -1 is returned. To increase the performance of
+    ///   this operation, if you know whether Item is towards the beginning or
+    ///   towards the end of the list you can use Direction parameter.
     /// </summary>
     /// <param name="Item">
     ///   The Item that will be searched for.
@@ -2352,9 +2346,9 @@ type
     ///   has an index of 0. Insert adds the item at the indicated position,
     ///   shifting the item that previously occupied that position, and all
     ///   subsequent items, up. Insert increments Count and, if necessary,
-    ///   allocates memory by increasing the value of Capacity.
-    ///   To replace an entry in the array with a new item, without growing the
-    ///   Items array, set the Items property.
+    ///   allocates memory by increasing the value of Capacity. To replace an
+    ///   entry in the array with a new item, without growing the Items array,
+    ///   set the Items property.
     /// </summary>
     /// <param name="Index">
     ///   Index position where new item will be inserted into the list.
@@ -2369,9 +2363,9 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Retrieves pointer to the last item in the list and returns it.
-    ///   Call Last to retrieve the last pointer in the Items array.
-    ///   If list is empty, nil will be returned.
+    ///   Retrieves pointer to the last item in the list and returns it. Call
+    ///   Last to retrieve the last pointer in the Items array. If list is
+    ///   empty, nil will be returned.
     /// </summary>
     /// <returns>
     ///   Returns pointer to the last item in the list. If the list is empty,
@@ -2388,8 +2382,8 @@ type
     ///   If list is empty, -1 will be returned.
     /// </summary>
     /// <returns>
-    ///   Returns index position of the last item in the list. If list is empty,
-    ///   -1 will be returned.
+    ///   Returns index position of the last item in the list. If list is
+    ///   empty, -1 will be returned.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     function HighIndex: SizeInt;
@@ -2411,13 +2405,12 @@ type
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
     ///   Deletes the first reference to the Item parameter from the Items
-    ///   array. Call Remove to remove a specific item from the Items array when
-    ///   its index is unknown. The value returned is the index of the item in
-    ///   the Items array before it was removed. After an item is removed, all
-    ///   the items that follow it are moved up in index position and the Count
-    ///   is reduced by one.
-    ///   If the Items array contains more than one copy of the entry, only
-    ///   the first copy is deleted.
+    ///   array. Call Remove to remove a specific item from the Items array
+    ///   when its index is unknown. The value returned is the index of the
+    ///   item in the Items array before it was removed. After an item is
+    ///   removed, all the items that follow it are moved up in index position
+    ///   and the Count is reduced by one. If the Items array contains more
+    ///   than one copy of the entry, only the first copy is deleted.
     /// </summary>
     /// <param name="Item">
     ///   The item that will be removed from the list.
@@ -2437,8 +2430,8 @@ type
     ///   in the specified direction. In other words, it removes the first or
     ///   last occurrence of Value depending on the specified Direction.
     ///   RemoveItem is identical to Remove, only that it allows you to specify
-    ///   in which Direction to search the list, so that you can remove the last
-    ///   occurrence instead of the first one.
+    ///   in which Direction to search the list, so that you can remove the
+    ///   last occurrence instead of the first one.
     /// </summary>
     /// <param name="Item">
     ///   The item that will be searched for.
@@ -2458,8 +2451,8 @@ type
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
     ///   Performs a QuickSort on the list based on the comparison function
-    ///   Compare. Call Sort to sort the items in the Items array. Compare is
-    ///   a comparison function that indicates how the items are to be ordered.
+    ///   Compare. Call Sort to sort the items in the Items array. Compare is a
+    ///   comparison function that indicates how the items are to be ordered.
     /// </summary>
     /// <param name="Compare">
     ///   Reference to comparison function that will be used in this operation.
@@ -2471,8 +2464,8 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Performs a QuickSort on list of items. Call SortList to sort the Items
-    ///   in the TBCList list.
+    ///   Performs a QuickSort on list of items. Call SortList to sort the
+    ///   Items in the TBCList list.
     /// </summary>
     /// <param name="Compare">
     ///   TListSortCompareFunc as reference.
@@ -2487,12 +2480,12 @@ type
     ///   Copies elements of one list to another. Call Assign to assign the
     ///   elements of another list to this one. Assign combines the source list
     ///   with this one using the logical operator specified by the AOperator
-    ///   parameter.
-    ///   If the ListB parameter is specified, then Assign first replaces all
-    ///   the elements of this list with those in ListA, and then merges ListB
-    ///   into this list using the operator specified by AOperator.
-    ///   If the ListB parameter is not specified, then Assign merges ListA into
-    ///   this list using the operator specified by AOperator.
+    ///   parameter. If the ListB parameter is specified, then Assign first
+    ///   replaces all the elements of this list with those in ListA, and then
+    ///   merges ListB into this list using the operator specified by
+    ///   AOperator. If the ListB parameter is not specified, then Assign
+    ///   merges ListA into this list using the operator specified by
+    ///   AOperator.
     /// </summary>
     /// <param name="ListA">
     ///   Reference to ListA.
@@ -2566,8 +2559,8 @@ type
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
     ///   <para>
-    ///     Specifies the allocated size of the array of entries maintained by
-    ///     the <i>TIntegerList</i> class.
+    ///     Specifies the allocated size of the array of entries maintained
+    ///     by the <i>TIntegerList</i> class.
     ///   </para>
     ///   <para>
     ///     Set <i>Capacity</i> to the number of entries the list will need
@@ -2657,10 +2650,10 @@ type
     ///   </para>
     ///   <para>
     ///     Use <i>Items</i> to obtain an entry to a specific object in the
-    ///     array. The Index parameter indicates the index of the entry, where 0
-    ///     is the index of the first entry, 1 is the index of the second entry,
-    ///     and so on. Set <i>Items</i> to change the reference at a specific
-    ///     location.
+    ///     array. The Index parameter indicates the index of the entry,
+    ///     where 0 is the index of the first entry, 1 is the index of the
+    ///     second entry, and so on. Set <i>Items</i> to change the reference
+    ///     at a specific location.
     ///   </para>
     ///   <para>
     ///     Use <i>Items</i> with the <see cref="BasicClasses.Lists|TBCList.Count">

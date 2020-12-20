@@ -642,11 +642,12 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Retrieves reference to it self and returns it. In addition, increments
-    ///   internal reference couting value.
+    ///   Retrieves reference to it self and returns it. In addition,
+    ///   increments internal reference couting value.
     /// </summary>
     /// <returns>
-    ///   Returns reference to it self with incremented reference couting value.
+    ///   Returns reference to it self with incremented reference couting
+    ///   value.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     function RetrieveRefCountedObjectCopy: TCustomRefCountedObject;
