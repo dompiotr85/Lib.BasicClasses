@@ -13,15 +13,49 @@
 {$INCLUDE jedi\jedi.inc}
 
 {$IFDEF SUPPORTS_LEGACYIFEND}{$LEGACYIFEND ON}{$ENDIF}
+{$UNDEF BC_PurePascal}
+{$UNDEF BC_IntegerListUsesStdInt}
+{$UNDEF BC_IntegerProbabilityListUsesStdInt}
 
-{ Enable the following option to make TIntegerList and TIntProbList use
-  StdInt instead of Integer data type. This can be useful, for instance, when
-  StdInt is used as 64-bit integer. }
-{$DEFINE BC_TIntegerList_StdInt}
+{-- Remove dot ('.') to enable specific feature in Lib.BasicClasses -----------}
+
+{ BC_PurePascal feature forces compiler to build this library in pure pascal,
+  any assembler code will not be compiled. Enabling this feature, entire library
+  and this unit will be compiled in PurePascal mode. }
+{.$DEFINE BC_PurePascal}
+
+{ BC_IntegerListUsesStdInt feature forces TIntegerList class to holds StdInt
+  type as an item. }
+{.$DEFINE BC_IntegerListUsesStdInt}
+
+{ BC_IntegerProbabilityListUsesStdInt feature forces TIntProbList class to holds
+  StdInt type as an item. }
+{.$DEFINE BC_IntegerProbabilityListUsesStdInt}
+
+{------------------------------------------------------------------------------}
+
+{$IFDEF BC_PurePascal}
+ {$DEFINE PurePascal}
+{$ENDIF ~BC_PurePascal}
+
+{$IF DEFINED(CPUX86_64) OR DEFINED(CPUX64)}
+ {$DEFINE x64}
+{$ELSEIF DEFINED(CPU386)}
+ {$DEFINE x86}
+{$ELSE}
+ {$DEFINE PurePascal}
+{$IFEND}
+
+{$IF DEFINED(WINDOWS) OR DEFINED(MSWINDOWS)}
+ {$DEFINE Windows}
+{$ELSE}
+ {$MESSAGE FATAL 'Unsupported operating system!'}
+{$IFEND}
 
 { Delphi compiler directives. }
 {$DEFINE DELPHI}
 {$ALIGN ON}
+{$H+}
 
-{$ENDIF !BC_CONFIG_INC}
+{$ENDIF ~BC_CONFIG_INC}
 

@@ -6,14 +6,24 @@
 
 ===============================================================================}
 
-{$INCLUDE BasicClasses.Config.inc}
-
 unit BasicClasses.Consts;
+
+{$INCLUDE BasicClasses.Config.inc}
 
 interface
 
 resourcestring
-  SAssetManagerNotSpecified = 'Asset Manager has not been specified.';
+  { TCustomMultiList }
+  SCustomMultiList_ListCountMismatch = '%s: List count mismatch (%d,%d)!';
+  SCustomMultiList_IndexOutOfBounds = '%s: List index %d out of bounds!';
+
+  { TBCList }
+  SBCList_ListIndexError = '%s: List index %d out of bounds!';
+  SBCList_ListCapacityError = '%s: List capacity %d out of bounds!';
+
+  { TIntegerList }
+  SIntegerList_ListIndexError = '%s: List index %d out of bounds!';
+  SIntegerList_ListCapacityError = '%s: List capacity %d out of bounds!';
 
 implementation
 

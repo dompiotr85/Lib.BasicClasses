@@ -6,6 +6,9 @@
         <Projects Include="D27\Lib_BasicClasses.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="D27\BasicClasses_Tests.dproj">
+            <Dependencies>D27\Lib_BasicClasses.dproj</Dependencies>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -23,14 +26,23 @@
     <Target Name="Lib_BasicClasses:Make">
         <MSBuild Projects="D27\Lib_BasicClasses.dproj" Targets="Make"/>
     </Target>
+    <Target Name="BasicClasses_Tests" DependsOnTargets="Lib_BasicClasses">
+        <MSBuild Projects="D27\BasicClasses_Tests.dproj"/>
+    </Target>
+    <Target Name="BasicClasses_Tests:Clean" DependsOnTargets="Lib_BasicClasses:Clean">
+        <MSBuild Projects="D27\BasicClasses_Tests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BasicClasses_Tests:Make" DependsOnTargets="Lib_BasicClasses:Make">
+        <MSBuild Projects="D27\BasicClasses_Tests.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="Lib_BasicClasses"/>
+        <CallTarget Targets="Lib_BasicClasses;BasicClasses_Tests"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Lib_BasicClasses:Clean"/>
+        <CallTarget Targets="Lib_BasicClasses:Clean;BasicClasses_Tests:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Lib_BasicClasses:Make"/>
+        <CallTarget Targets="Lib_BasicClasses:Make;BasicClasses_Tests:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

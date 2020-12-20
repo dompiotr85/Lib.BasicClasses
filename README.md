@@ -4,8 +4,8 @@
 
 ## What's Lib.BasicClasses
 
-A collection of basic classes such as lists, enumerators, containers, etc. that
-help you in creating software in Delphi.
+A collection of basic classes such as lists, enumerators and containers that help you with
+your software development.
 
 ## Clone with GIT
 
