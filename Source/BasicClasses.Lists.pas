@@ -15,7 +15,7 @@
  Copyright (c) 2018-2020, Piotr Domañski
 
  Last change:
-   18-12-2020
+   27-12-2020
 
  Changelog:
    For detailed changelog and history please refer to this git repository:
@@ -1611,6 +1611,69 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
+    ///   List's grow settings.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property ListGrowSettings;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's grow mode.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property GrowMode;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's grow factor value.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property GrowFactor;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's grow limit value.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property GrowLimit;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's shrink mode value.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property ShrinkMode;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's shrink factor value.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property ShrinkFactor;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's shrink limit value.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property ShrinkLimit;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
     ///   <para>
     ///     Specifies the allocated size of the array of pointers maintained
     ///     by the <i>TBCList</i> class.
@@ -1811,6 +1874,18 @@ type
 
       {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+      {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+      /// <summary>
+      ///   Retrieves value of the current item and returns it.
+      /// </summary>
+      /// <returns>
+      ///   Returns value of the current item.
+      /// </returns>
+      {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+      function GetCurrent: TIntItem; inline;
+
+      {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
     public
       {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
       /// <summary>
@@ -1822,18 +1897,6 @@ type
       /// </param>
       {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
       constructor Create(AList: TIntegerList);
-
-      {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
-
-      {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
-      /// <summary>
-      ///   Retrieves value of the current item and returns it.
-      /// </summary>
-      /// <returns>
-      ///   Returns value of the current item.
-      /// </returns>
-      {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-      function GetCurrent: TIntItem; inline;
 
       {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -1858,6 +1921,8 @@ type
       {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
       property Current: TIntItem read GetCurrent;
 
+      {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
       {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
       /// <summary>
       ///   Returns current index position of enumerator.
@@ -1880,6 +1945,18 @@ type
 
       {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+      {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+      /// <summary>
+      ///   Retrieves value of the current item and returns it.
+      /// </summary>
+      /// <returns>
+      ///   Returns value of the current item.
+      /// </returns>
+      {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+      function GetCurrent: TIntItem; inline;
+
+      {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
     public
       {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
       /// <summary>
@@ -1891,18 +1968,6 @@ type
       /// </param>
       {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
       constructor Create(AList: TIntegerList);
-
-      {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
-
-      {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
-      /// <summary>
-      ///   Retrieves value of the current item and returns it.
-      /// </summary>
-      /// <returns>
-      ///   Returns value of the current item.
-      /// </returns>
-      {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-      function GetCurrent: TIntItem; inline;
 
       {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -1927,6 +1992,8 @@ type
       {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
       property Current: TIntItem read GetCurrent;
 
+      {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
       {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
       /// <summary>
       ///   Returns current index position of enumerator.
@@ -1938,18 +2005,111 @@ type
       {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
   private type
-    TIntList = class(TBCList)
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Internal list class definition used by TIntegerList class.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    TInternalList = class(TBCList)
+    private
+      FNeedRelease: Boolean;
     protected
       procedure Notify(Ptr: Pointer; Action: TListNotification); override;
+    public
+      property NeedRelease: Boolean read FNeedRelease write FNeedRelease;
     end;
 
   private
-    FList: TIntList;
+    FList: TInternalList;
     FFirst: PIntItem;
     FLast: PIntItem;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+    function GetListGrowSettings: TListGrowSettings;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetGrowMode: TGrowMode;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetGrowFactor: Float64;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetGrowLimit: SizeUInt;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetShringMode: TShrinkMode;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetShrinkFactor: Float64;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetShrinkLimit: SizeUInt;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetShrinkMode: TShrinkMode;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetReleaseState: Boolean;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    procedure SetListGrowSettings(NewSettings: TListGrowSettings);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    procedure SetGrowMode(NewMode: TGrowMode);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    procedure SetGrowFactor(NewFactor: Float64);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    procedure SetGrowLimit(NewLimit: SizeUInt);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    procedure SetShrinkMode(NewMode: TShrinkMode);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    procedure SetShrinkFactor(NewFactor: Float64);
+
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    procedure SetShrinkLimit(NewLimit: SizeUInt);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    procedure SetReleaseState(Value: Boolean);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetValuesSum: TIntItem;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetValuesAvg: TIntItem;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetValuesMax: TIntItem;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetValuesMin: TIntItem;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
   protected
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
@@ -2229,6 +2389,22 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
+    ///   Searches for the first entry in the Items array with a specified value
+    ///   and returns True if entry was found, otherwise returns False.
+    /// </summary>
+    /// <param name="Item">
+    ///   The item that will be searched for.
+    /// </param>
+    /// <returns>
+    ///   Returns True if first entry was found, otherwise returns False.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function Exists(Item: TIntItem): Boolean; inline;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
     ///   Retrieves pointer to the first item in the list and returns it.
     ///   If the list is empty, nil will be returned. Call First to get the
     ///   first pointer in the Items array.
@@ -2236,6 +2412,7 @@ type
     /// <returns>
     ///   Returns pointer to the first item in the list. If the list is empty,
     ///   nil will be returned.
+    /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     function First: PIntItem; inline;
 
@@ -2247,7 +2424,7 @@ type
     ///   it. If the list is empty, -1 will be returned.
     /// </summary>
     /// <returns>
-    ///   Returns pointer to the last item in the list. If the list is empty,
+    ///   Returns pointer to the first item in the list. If the list is empty,
     ///   -1 will be returned.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
@@ -2450,6 +2627,20 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
+    ///   Deletes all nil items from the Items array. Call Pack to move all
+    ///   non-nil items to the front of the Items array and reduce the Count
+    ///   property to the number of items actually used. Pack does not free up
+    ///   the memory used to store the nil pointers. To free up the memory for
+    ///   the unused entries removed by Pack, set the Capacity property to the
+    ///   new value of Count.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure Pack;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
     ///   Performs a QuickSort on the list based on the comparison function
     ///   Compare. Call Sort to sort the items in the Items array. Compare is a
     ///   comparison function that indicates how the items are to be ordered.
@@ -2558,6 +2749,82 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
+    ///   Copies grow settings from specified <i>Source</i> parameter to this
+    ///   list.
+    /// </summary>
+    /// <param name="Source">
+    ///   Other list from which grow settings will be copied.
+    /// </param>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure CopyGrowSettings(Source: TIntegerList); virtual;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's grow settings.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property ListGrowSettings: TListGrowSettings read GetListGrowSettings write SetListGrowSettings;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's grow mode.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property GrowMode: TGrowMode read GetGrowMode write SetGrowMode;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's grow factor value.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property GrowFactor: Float64 read GetGrowFactor write SetGrowFactor;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's grow limit value.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property GrowLimit: SizeUInt read GetGrowLimit write SetGrowLimit;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's shrink mode value.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property ShrinkMode: TShrinkMode read GetShrinkMode write SetShrinkMode;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's shrink factor value.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property ShrinkFactor: Float64 read GetShrinkFactor write SetShrinkFactor;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's shrink limit value.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property ShrinkLimit: SizeUInt read GetShrinkLimit write SetShrinkLimit;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
     ///   <para>
     ///     Specifies the allocated size of the array of entries maintained
     ///     by the <i>TIntegerList</i> class.
@@ -2610,19 +2877,19 @@ type
     ///     Indicates the number of entries in the list that are in use.
     ///   </para>
     ///   <para>
-    ///     Read <i>Count</i> to determine the number of entries in the <see cref="BasicClasses.Lists|TBCList.Items[SizeUInt]">
+    ///     Read <i>Count</i> to determine the number of entries in the <see cref="BasicClasses.Lists|TIntegerList.Items[SizeUInt]">
     ///     Items</see> array.
     ///   </para>
     ///   <para>
     ///     Increasing the size of <i>Count</i> will add the necessary number
-    ///     of nil pointers to the end of the <see cref="BasicClasses.Lists|TBCList.Items[SizeUInt]">
+    ///     of nil pointers to the end of the <see cref="BasicClasses.Lists|TIntegerList.Items[SizeUInt]">
     ///     Items</see> array. Decreasing the size of <i>Count</i> will
-    ///     remove the necessary number of entries from the end of the <see cref="BasicClasses.Lists|TBCList.Items[SizeUInt]">
+    ///     remove the necessary number of entries from the end of the <see cref="BasicClasses.Lists|TIntegerList.Items[SizeUInt]">
     ///     Items</see> array.
     ///   </para>
     ///   <para>
     ///     <i>Count</i> is not always the same as the number of objects
-    ///     referenced in the list. Some of the entries in the <see cref="BasicClasses.Lists|TBCList.Items[SizeUInt]">
+    ///     referenced in the list. Some of the entries in the <see cref="BasicClasses.Lists|TIntegerList.Items[SizeUInt]">
     ///     Items</see> array may contain nil pointers. To remove the nil
     ///     pointers and set <i>Count</i> to the number of entries that
     ///     contain references to objects, call the <see cref="BasicClasses.Lists|TBCList.Pack">
@@ -2656,7 +2923,7 @@ type
     ///     at a specific location.
     ///   </para>
     ///   <para>
-    ///     Use <i>Items</i> with the <see cref="BasicClasses.Lists|TBCList.Count">
+    ///     Use <i>Items</i> with the <see cref="BasicClasses.Lists|TIntegerList.Count">
     ///     Count</see> property to iterate through all of the entries in the
     ///     list.
     ///   </para>
@@ -2682,9 +2949,1366 @@ type
     ///   </para>
     /// </summary>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    property List: TIntList read FList;
+    property List: TInternalList read FList;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Does items stored by the list should be disposed when deleted or
+    ///   released.
+    /// </summary>
+    /// <remarks>
+    ///   False by default.
+    /// </remarks>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property NeedRelease: Boolean read GetReleaseState write SetReleaseState;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Calculates sum of all entries currently stored in the list.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property ValuesSum: TIntItem read GetValuesSum;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Calculates average of all entries currently stored in the list.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property ValuesAvg: TIntItem read GetValuesAvg;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Returns the bigest value currently storred in the list.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property ValuesMax: TIntItem read GetValuesMax;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Returns the smallest value currently storred in the list.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property ValuesMin: TIntItem read GetValuesMin;
   end;
 
+
+{$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+
+{===============================================================================
+  TIntegerProbabilityList - class declaration
+===============================================================================}
+
+{$IFDEF SUPPORTS_REGION}{$REGION 'TIntegerProbabilityList'}{$ENDIF}
+
+type
+  {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+  /// <summary>
+  ///   TIntegerProbabilityList exception class.
+  /// </summary>
+  {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+  EIntegerProbabilityListError = class(Exception);
+
+  {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+  {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+  /// <summary>
+  ///   Pointer to <see cref="BasicClasses|TIntProbItem" />.
+  /// </summary>
+  {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+  PIntProbValue = ^TIntProbValue;
+
+  {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+  {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+  /// <summary>
+  ///   Defines which type should be used in <see cref="BasicClasses|TIntegerProbabilityList" />.
+  ///   Enable or disable feature <b>BC_IntegerProbabilityListUsesStdInt</b> to
+  ///   set this up.
+  /// </summary>
+  {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+  TIntProbValue = {$IFDEF BC_IntegerProbabilityListUsesStdInt}StdInt{$ELSE}Integer{$ENDIF};
+
+  {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+  {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+  /// <summary>
+  ///   Pointer to <see cref="BasicClasses|TIntegerProbabilityList" />.
+  /// </summary>
+  {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+  PIntegerProbabilityList = ^TIntegerProbabilityList;
+
+  {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+  {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+  /// <summary>
+  ///   Definition of Integer Probability list class. TIntegerProbabilityList
+  ///   class is simple Wrapper of TBCList.
+  /// </summary>
+  {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+  TIntegerProbabilityList = class(TCustomObject)
+  public type
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Pointer to <see cref="BasicClasses.Lists|TIntegerProbabilityList.TIntProbRec" />.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    PIntProbItem = ^TIntProbItem;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Single Integer Probability record.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    TIntProbItem = record
+      Value: TIntProbValue;
+      Probability: Float;
+    end;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Integer list enumerator definition.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    TEnumerator = class
+    private
+      {$IFDEF AUTOREFCOUNT}[weak]{$ENDIF} FList: TIntegerProbabilityList;
+      FIndex: SizeInt;
+
+      {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+      {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+      /// <summary>
+      ///   Retrieves value of the current entry and returns it.
+      /// </summary>
+      /// <returns>
+      ///   Returns value of the current entry.
+      /// </returns>
+      {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+      function GetCurrent: TIntProbItem;
+
+      {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    public
+      {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+      /// <summary>
+      ///   Default constructor. Do NOT use directly! Rather call GetEnumerator
+      ///   method of TIntegerProbabilityList class.
+      /// </summary>
+      /// <param name="AList">
+      ///   Reference to the source list instance.
+      /// </param>
+      {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+      constructor Create(const AList: TIntegerProbabilityList);
+
+      {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+      {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+      /// <summary>
+      ///   Moves to the next entry in the list and returns True if end of the
+      ///   list is NOT reached. Otherwise returns False.
+      /// </summary>
+      /// <returns>
+      ///   Returns True if end of the list is NOT reached, otherwise returns
+      ///   False.
+      /// </returns>
+      {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+      function MoveNext: Boolean;
+
+      {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+      {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+      /// <summary>
+      ///   Retrieves value of the current entry and returns it.
+      /// </summary>
+      {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+      property Current: TIntProbItem read GetCurrent;
+
+      {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+      {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+      /// <summary>
+      ///   Returns current index position of enumerator.
+      /// </summary>
+      {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+      property &Index: SizeInt read FIndex;
+    end;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Integer list reverse enumerator definition.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    TReverseEnumerator = class
+    private
+      {$IFDEF AUTOREFCOUNT}[weak]{$ENDIF} FList: TIntegerProbabilityList;
+      FIndex: SizeInt;
+
+      {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+      {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+      /// <summary>
+      ///   Retrieves value of the current entry and returns it.
+      /// </summary>
+      /// <returns>
+      ///   Returns value of the current entry.
+      /// </returns>
+      {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+      function GetCurrent: TIntProbItem;
+
+      {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    public
+      {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+      /// <summary>
+      ///   Default constructor. Do NOT use directly! Rather call
+      ///   GetReverseEnumerator method of TIntegerProbabilityList class.
+      /// </summary>
+      /// <param name="AList">
+      ///   Reference to the source list instance.
+      /// </param>
+      {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+      constructor Create(const AList: TIntegerProbabilityList);
+
+      {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+      {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+      /// <summary>
+      ///   Moves to the next entry in the list and returns True if end of the
+      ///   list is NOT reached. Otherwise returns False.
+      /// </summary>
+      /// <returns>
+      ///   Returns True if end of the list is NOT reached, otherwise returns
+      ///   False.
+      /// </returns>
+      {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+      function MoveNext: Boolean;
+
+      {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+      {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+      /// <summary>
+      ///   Retrieves value of the current entry and returns it.
+      /// </summary>
+      {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+      property Current: TIntProbItem read GetCurrent;
+
+      {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+      {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+      /// <summary>
+      ///   Returns current index position of enumerator.
+      /// </summary>
+      {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+      property &Index: SizeInt read FIndex;
+    end;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+  private type
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Internal list class definition used by TIntegerProbabilityList class.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    TInternalList = class(TBCList)
+    private
+      FNeedRelease: Boolean;
+    protected
+      procedure Notify(Ptr: Pointer; Action: TListNotification); override;
+    public
+      property NeedRelease: Boolean read FNeedRelease write FNeedRelease;
+    end;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+  private
+    FList: TInternalList;
+    FFirst: PIntProbItem;
+    FLast: PIntProbItem;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetListGrowSettings: TListGrowSettings;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetGrowMode: TGrowMode;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetGrowFactor: Float64;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetGrowLimit: SizeUInt;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetShringMode: TShrinkMode;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetShrinkFactor: Float64;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetShrinkLimit: SizeUInt;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetShrinkMode: TShrinkMode;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    function GetReleaseState: Boolean;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    procedure SetListGrowSettings(NewSettings: TListGrowSettings);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    procedure SetGrowMode(NewMode: TGrowMode);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    procedure SetGrowFactor(NewFactor: Float64);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    procedure SetGrowLimit(NewLimit: SizeUInt);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    procedure SetShrinkMode(NewMode: TShrinkMode);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    procedure SetShrinkFactor(NewFactor: Float64);
+
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    procedure SetShrinkLimit(NewLimit: SizeUInt);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    procedure SetReleaseState(Value: Boolean);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+  protected
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Retrieves list's entry with specified Index position and returns it.
+    /// </summary>
+    /// <param name="Index">
+    ///   Index position of entry that will be retrieved and returned.
+    /// </param>
+    /// <returns>
+    ///   Returns retrieved entry.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function GetItem(const Index: SizeUInt): TIntProbItem;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Sets new entry at specified Index position of the list.
+    /// </summary>
+    /// <param name="Index">
+    ///   Index position where specified entry should be stored at.
+    /// </param>
+    /// <param name="Item">
+    ///   The entry.
+    /// </param>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure SetItem(const Index: SizeUInt; Item: TIntProbItem);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Retrieves the current capacity of the list and returns it.
+    /// </summary>
+    /// <returns>
+    ///   Returns the current capacity of the list.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function GetCapacity: SizeUInt;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Sets new capacity of the list.
+    /// </summary>
+    /// <param name="NewCapacity">
+    ///   New capacity value.
+    /// </param>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure SetCapacity(NewCapacity: SizeUInt);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Retrieves the current amount of entries stored in the list and returns
+    ///   it.
+    /// </summary>
+    /// <returns>
+    ///   Returns the current amount of entries stored in the list.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function GetCount: SizeUInt;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Sets new amount of entries in the list.
+    /// </summary>
+    /// <param name="NewCount">
+    ///   New amount of entries in the list.
+    /// </param>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure SetCount(NewCount: SizeUInt);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Retrieves the pointer to a dynamic array which stores list's entries
+    ///   and return it.
+    /// </summary>
+    /// <returns>
+    ///   Returns the pointer to a dynamic array which stores list's entries.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function GetMemAddr: Pointer;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Retrieves the value of entry at specified Index position.
+    /// </summary>
+    /// <returns>
+    ///   Returns the value of entry at specified Index position.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function GetValue(const Index: SizeUInt): TIntProbValue;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Retrieves probability value for specified Value.
+    /// </summary>
+    /// <param name="Value">
+    ///   Value for which probability will be retrieved.
+    /// </param>
+    /// <returns>
+    ///   Returns probability value for specified Value.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function GetProbability(const Value: TIntProbValue): Float;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Sets new probability value for specified Value.
+    /// </summary>
+    /// <param name="Value">
+    ///   Value for which new probability will be set to.
+    /// </param>
+    /// <param name="NewProbability">
+    ///   New probability value.
+    /// </param>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure SetProbability(const Value: TIntProbValue; const NewProbability: Float);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+  public
+    type
+      TDirection = System.Types.TDirection;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Default constructor.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    constructor Create;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Default destructor.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    destructor Destroy; override;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Adds new entry to the end of the list and returns its new index
+    ///   position.
+    /// </summary>
+    /// <param name="NewValue">
+    ///   The new entry value that will be added to the list.
+    /// </param>
+    /// <param name="NewProbability">
+    ///   The new entry probability value that will be added to the list.
+    /// </param>
+    /// <returns>
+    ///   Returns index position of newly added entry.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function Add(NewValue: TIntProbValue; const NewProbability: Float = 1.0): SizeUInt;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Clears all entries stored in the list and sets its parameters to the
+    ///   default values.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure Clear; virtual;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Copies all entries from Source list to this list.
+    /// </summary>
+    /// <param name="Source">
+    ///   Reference to source list from which copy operation will be made.
+    /// </param>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure CopyFrom(const Source: TIntegerProbabilityList);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Deletes item from specified <i>Index</i> position of the list.
+    /// </summary>
+    /// <remarks>
+    ///   This method notifies about item deletion if <i>Notify</i> method
+    ///   implemented.
+    /// </remarks>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure Delete(Index: SizeUInt);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Raises EIntegerProbabilityListError exception with specified
+    ///   informations.
+    /// </summary>
+    /// <param name="Msg">
+    ///   Reference to exception message string.
+    /// </param>
+    /// <param name="Method">
+    ///   Reference to method name string where this exception need to be
+    ///   called.
+    /// </param>
+    /// <param name="Data">
+    ///   Reference to data.
+    /// </param>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    class procedure Error(const Msg, Method: String; Data: NativeInt); overload; virtual;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Raises EIntegerProbabilityListError exception with specified
+    ///   informations.
+    /// </summary>
+    /// <param name="Msg">
+    ///   Pointer to resource string record.
+    /// </param>
+    /// <param name="Method">
+    ///   Reference to method name string where this exception need to be
+    ///   called.
+    /// </param>
+    /// <param name="Data">
+    ///   Reference to data.
+    /// </param>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    class procedure Error(Msg: PResStringRec; const Method: String; Data: NativeInt); overload; virtual;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Performs exchange of two entries in the list.
+    /// </summary>
+    /// <param name="Index1">
+    ///   Index position of first entry that will be replaced.
+    /// </param>
+    /// <param name="Index2">
+    ///   Index position of second entry that will be replaced.
+    /// </param>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure Exchange(Index1, Index2: SizeUInt);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Expands the list by one entry and returns it self.
+    /// </summary>
+    /// <returns>
+    ///   Returns it self.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function Expand: TIntegerProbabilityList;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Performs extraction operation for specified <i>Item</i>. In other
+    ///   words, removes a specified item from the list. Call Extract to remove
+    ///   an item from the list. After the item is removed, all the objects
+    ///   that follow it are moved up in index position and Count is
+    ///   decremented. To remove the reference to an item without deleting the
+    ///   entry from the Items array and changing the Count, set the Items
+    ///   property for Index to <i>nil</i>.
+    /// </summary>
+    /// <param name="Item">
+    ///   The item that need to be extracted.
+    /// </param>
+    /// <returns>
+    ///   Returns pointer to the extracted item or nil if nothing was found.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function Extract(Item: TIntProbItem): PIntProbItem; inline;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Removes and returns a list entry, looping through the list items in
+    ///   the specified direction. This function is identical to Extract, only
+    ///   that it allows you to specify in which Direction to search the list,
+    ///   which allows you to increase the performance of this operation if you
+    ///   know whether Value is towards the beginning or towards the end of the
+    ///   list.
+    /// </summary>
+    /// <param name="Item">
+    ///   Pointer to the item that need to be extracted.
+    /// </param>
+    /// <param name="Direction">
+    ///   Direction of search loop.
+    /// </param>
+    /// <returns>
+    ///   Returns pointer to the extracted item or nil if nothing was found.
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function ExtractItem(Item: TIntProbItem; Direction: TDirection): PIntProbItem;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Searches for the first entry in the Items array with a specified value
+    ///   and returns True if entry was found, otherwise returns False.
+    /// </summary>
+    /// <param name="Item">
+    ///   The item that will be searched for.
+    /// </param>
+    /// <returns>
+    ///   Returns True if first entry was found, otherwise returns False.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function Exists(Item: TIntProbItem): Boolean; inline;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Retrieves pointer to the first entry in the list and returns it.
+    ///   If the list is empty, nil will be returned. Call First to get the
+    ///   first pointer in the Items array.
+    /// </summary>
+    /// <returns>
+    ///   Returns pointer to the first entry in the list. If the list is empty,
+    ///   nil will be returned.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function First: PIntProbItem; inline;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Retrieves index position to the first entry in the list and returns
+    ///   it. If the list is empty, -1 will be returned.
+    /// </summary>
+    /// <returns>
+    ///   Returns pointer to the first entry in the list. If the list is empty,
+    ///   -1 will be returned.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function LowIndex: SizeInt;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Includes NewProbability value for specified Value. If specified Value
+    ///   don't exists, new entry will be created.
+    /// </summary>
+    /// <param name="Value">
+    ///   Value.
+    /// </param>
+    /// <param name="NewProbability">
+    ///   New probability value.
+    /// </param>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure Include(Value: TIntProbValue; NewProbability: Float = 1.0);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Excludes entry with specified Value. If Entry with specified Value
+    ///   exists, it will be removed. Otherwise nothing will be done.
+    /// </summary>
+    /// <param name="Value">
+    ///   Value of the entry.
+    /// </param>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure Exclude(Value: TIntProbValue);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Searches for specified Value and scale its probability value by
+    ///   specified Scale factor.
+    /// </summary>
+    /// <param name="Value">
+    ///   Value of the entry.
+    /// </param>
+    /// <param name="Scale">
+    ///   Scale factor by which probability value of specified entry will be
+    ///   scaled by.
+    /// </param>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure ScaleProbability(Value: TIntProbValue; Scale: Float);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Scales probability value by specified Scale factor of all entries
+    ///   except of one with specified Value.
+    /// </summary>
+    /// <param name="Value">
+    ///   Value of the entry.
+    /// </param>
+    /// <param name="Scale">
+    ///   Scale factor by which probability value of specified entry will be
+    ///   scaled by.
+    /// </param>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure ScaleProbabilityExcept(Value: TIntProbValue; Scale: Float);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Extracts random value based on list's probability.
+    /// </summary>
+    /// <returns>
+    ///   Returns random value based on list's probability.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function ExtractRandomValue: TIntProbValue;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Normalizes list probability values.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure NormalizeProbabilities;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Retrieves random value based on list's probability.
+    /// </summary>
+    /// <returns>
+    ///   Returns random value based on list's probability.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function GetRandomValue: TIntProbValue;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Returns a TIntegerProbabilityList enumerator. GetEnumerator returns a
+    ///   TIntegerProbabilityList.TEnumerator reference, which enumerates all
+    ///   entries in the list. To do so, call the
+    ///   TIntegerProbabilityList.TEnumerator GetCurrent method within a while
+    ///   MoveNext do loop.
+    /// </summary>
+    /// <returns>
+    ///   Reference to the list enumerator.
+    /// </returns>
+    /// <remarks>
+    ///   It is user's responsibility to release retrieved enumerator by
+    ///   calling Free() method.
+    /// </remarks>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function GetEnumerator: TIntegerProbabilityList.TEnumerator; inline;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Returns a TIntegerProbabilityList reverse enumerator.
+    ///   GetReverseEnumerator returns a
+    ///   TIntegerProbabilityList.TReverseEnumerator reference, which enumerates
+    ///   all entries in the list. To do so, call the
+    ///   TIntegerProbabilityList.TReverseEnumerator GetCurrent method within
+    ///   a while MoveNext do loop.
+    /// </summary>
+    /// <returns>
+    ///   Reference to the list reverse enumerator.
+    /// </returns>
+    /// <remarks>
+    ///   It is user's responsibility to release retrieved reverse enumerator
+    ///   by calling its Free() method.
+    /// </remarks>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function GetReverseEnumerator: TIntegerProbabilityList.TReverseEnumerator; inline;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Returns the index of the first entry in the Items array with a
+    ///   specified value. Call IndexOf to get the index for entry in the Items
+    ///   array. Specify the item as the Item parameter. The first item in the
+    ///   array has index 0, the second item has index 1, and so on. If an item
+    ///   is not in the list, IndexOf returns -1. If an entry appears more than
+    ///   once in the array, IndexOf returns the index of the first appearance.
+    /// </summary>
+    /// <param name="Item">
+    ///   The item that will be searched for.
+    /// </param>
+    /// <returns>
+    ///   Returns the index of the first entry in the Items array with a
+    ///   specified value or -1 if nothing was found.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function IndexOf(Item: TIntProbItem): SizeInt;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Returns the item's index. Call IndexOfItem to determine the location
+    ///   of an item in the TIntegerProbabilityList list, using a linear search.
+    ///   If the item is not found, -1 is returned. To increase the performance
+    ///   of this operation, if you know whether Item is towards the beginning
+    ///   or towards the end of the list you can use Direction parameter.
+    /// </summary>
+    /// <param name="Item">
+    ///   The Item that will be searched for.
+    /// </param>
+    /// <param name="Direction">
+    ///   Direction of search loop.
+    /// </param>
+    /// <returns>
+    ///   Returns index position of the item that was found or -1 when nothing
+    ///   was found.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function IndexOfItem(Item: TIntProbItem; Direction: TDirection): SizeInt;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Adds an entry to the Items array at the position specified by Index.
+    ///   Call Insert to add Item to the middle of the Items array. The Index
+    ///   parameter is a zero-based index, so the first position in the array
+    ///   has an index of 0. Insert adds the item at the indicated position,
+    ///   shifting the item that previously occupied that position, and all
+    ///   subsequent items, up. Insert increments Count and, if necessary,
+    ///   allocates memory by increasing the value of Capacity. To replace an
+    ///   entry in the array with a new item, without growing the Items array,
+    ///   set the Items property.
+    /// </summary>
+    /// <param name="Index">
+    ///   Index position where new item will be inserted into the list.
+    /// </param>
+    /// <param name="Item">
+    ///   The new Item that will be inserted into the list.
+    /// </param>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure Insert(Index: SizeUInt; NewValue: TIntProbValue; const NewProbability: Float = 1.0);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Retrieves pointer to the last item in the list and returns it. Call
+    ///   Last to retrieve the last pointer in the Items array. If list is
+    ///   empty, nil will be returned.
+    /// </summary>
+    /// <returns>
+    ///   Returns pointer to the last item in the list. If the list is empty,
+    ///   nil will be returned.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function Last: PIntProbItem;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Retrieves index position of the last item in the list and returns it.
+    ///   If list is empty, -1 will be returned.
+    /// </summary>
+    /// <returns>
+    ///   Returns index position of the last item in the list. If list is
+    ///   empty, -1 will be returned.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function HighIndex: SizeInt;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Changes the position of an entry in the Items array. Call Move to move
+    ///   the entry at the position CurIndex so that it occupies the position
+    ///   NewIndex. CurIndex and NewIndex are zero-based indexes into the Items
+    ///   array.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure Move(CurIndex, NewIndex: SizeUInt);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Deletes the first reference to the Item parameter from the Items
+    ///   array. Call Remove to remove a specific item from the Items array
+    ///   when its index is unknown. The value returned is the index of the
+    ///   item in the Items array before it was removed. After an item is
+    ///   removed, all the items that follow it are moved up in index position
+    ///   and the Count is reduced by one. If the Items array contains more
+    ///   than one copy of the entry, only the first copy is deleted.
+    /// </summary>
+    /// <param name="Item">
+    ///   The item that will be removed from the list.
+    /// </param>
+    /// <returns>
+    ///   Returns index position of removed item from the list or -1 if nothing
+    ///   was found.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function Remove(Item: TIntProbItem): SizeInt; inline;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Removes the first occurrence of value, looping through the list items
+    ///   in the specified direction. In other words, it removes the first or
+    ///   last occurrence of Value depending on the specified Direction.
+    ///   RemoveItem is identical to Remove, only that it allows you to specify
+    ///   in which Direction to search the list, so that you can remove the
+    ///   last occurrence instead of the first one.
+    /// </summary>
+    /// <param name="Item">
+    ///   The item that will be searched for.
+    /// </param>
+    /// <param name="Direction">
+    ///   Direction of search loop.
+    /// </param>
+    /// <returns>
+    ///   Returns index position of removed item from the list or -1 if nothing
+    ///   was found.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function RemoveItem(Item: TIntProbItem; Direction: TDirection): SizeInt;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Deletes all nil items from the Items array. Call Pack to move all
+    ///   non-nil items to the front of the Items array and reduce the Count
+    ///   property to the number of items actually used. Pack does not free up
+    ///   the memory used to store the nil pointers. To free up the memory for
+    ///   the unused entries removed by Pack, set the Capacity property to the
+    ///   new value of Count.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure Pack;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Performs a QuickSort on the list based on the comparison function
+    ///   Compare. Call Sort to sort the items in the Items array. Compare is a
+    ///   comparison function that indicates how the items are to be ordered.
+    /// </summary>
+    /// <param name="Compare">
+    ///   Reference to comparison function that will be used in this operation.
+    /// </param>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure Sort(Compare: TListSortCompare);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Performs a QuickSort on list of items. Call SortList to sort the
+    ///   Items in the TBCList list.
+    /// </summary>
+    /// <param name="Compare">
+    ///   TListSortCompareFunc as reference.
+    /// </param>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure SortList(const Compare: TListSortCompareFunc);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Copies elements of one list to another. Call Assign to assign the
+    ///   elements of another list to this one. Assign combines the source list
+    ///   with this one using the logical operator specified by the AOperator
+    ///   parameter. If the ListB parameter is specified, then Assign first
+    ///   replaces all the elements of this list with those in ListA, and then
+    ///   merges ListB into this list using the operator specified by
+    ///   AOperator. If the ListB parameter is not specified, then Assign
+    ///   merges ListA into this list using the operator specified by
+    ///   AOperator.
+    /// </summary>
+    /// <param name="ListA">
+    ///   Reference to ListA.
+    /// </param>
+    /// <param name="AOperator">
+    ///   List assign operator type. Default is laCopy.
+    /// </param>
+    /// <param name="ListB">
+    ///   Reference to ListB. Default is nil.
+    /// </param>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure Assign(Other: TIntegerProbabilityList);
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Randomly shuffles list.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure Shuffle;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Randomly shuffles list.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure BestShuffle;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Loops throu all elements and remove duplicates.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure RemoveDuplicates;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Compares this list with other list specified in Other and returns
+    ///   True if both are the same or False otherwise.
+    /// </summary>
+    /// <param name="Other">
+    ///   Reference to other list of the same type that will be compared.
+    /// </param>
+    /// <returns>
+    ///   Returns True if both lists are the same, otherwise returns False.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function SameAs(const Other: TIntegerProbabilityList): Boolean;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Copies grow settings from specified <i>Source</i> parameter to this
+    ///   list.
+    /// </summary>
+    /// <param name="Source">
+    ///   Other list from which grow settings will be copied.
+    /// </param>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure CopyGrowSettings(Source: TIntegerProbabilityList); virtual;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's grow settings.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property ListGrowSettings: TListGrowSettings read GetListGrowSettings write SetListGrowSettings;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's grow mode.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property GrowMode: TGrowMode read GetGrowMode write SetGrowMode;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's grow factor value.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property GrowFactor: Float64 read GetGrowFactor write SetGrowFactor;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's grow limit value.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property GrowLimit: SizeUInt read GetGrowLimit write SetGrowLimit;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's shrink mode value.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property ShrinkMode: TShrinkMode read GetShrinkMode write SetShrinkMode;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's shrink factor value.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property ShrinkFactor: Float64 read GetShrinkFactor write SetShrinkFactor;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   List's shrink limit value.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property ShrinkLimit: SizeUInt read GetShrinkLimit write SetShrinkLimit;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   <para>
+    ///     Specifies the allocated size of the array of entries maintained
+    ///     by the <i>TIntegerList</i> class.
+    ///   </para>
+    ///   <para>
+    ///     Set <i>Capacity</i> to the number of entries the list will need
+    ///     to contain. When setting the <i>Capacity</i> property, an <i>
+    ///     EOutOfMemory</i> exception occurs if there is not enough memory
+    ///     to expand the list to its new size.
+    ///   </para>
+    ///   <para>
+    ///     Read <i>Capacity</i> to learn number of entries the list can hold
+    ///     without reallocating memory.
+    ///   </para>
+    ///   <para>
+    ///     Do not confuse <i>Capacity</i> with the <i>Count</i> property,
+    ///     which is the number of entries in the list that are in use. The
+    ///     value of <i>Capacity</i> is always greater than or equal to the
+    ///     value of <i>Count</i>. When <i>Capacity</i> is greater than <i>
+    ///     Count</i>, the unused memory can be reclaimed by setting <i>
+    ///     Capacity</i> to <i>Count</i>.
+    ///   </para>
+    ///   <para>
+    ///     When an entry is added to a list that is already filled to
+    ///     capacity, the <i>Capacity</i> property is automatically
+    ///     increased. Setting <i>Capacity</i> before adding objects can
+    ///     reduce the number of memory reallocations and thereby improve
+    ///     performance. For example:
+    ///   </para>
+    ///   <code lang="Delphi">List.Clear;
+    /// List.Capacity := Count;
+    /// for I := 1 to Count do
+    ///   List.Add(...);</code>
+    ///   <para>
+    ///     The assignment to <i>Capacity</i> before the for loop ensures
+    ///     that each of the following <i>Add</i> operations doesn't cause
+    ///     the list to be reallocated. Avoiding reallocations on the calls
+    ///     to <i>Add</i> improves performance and ensures that the Add
+    ///     operations never raise an exception.
+    ///   </para>
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property Capacity: SizeUInt read GetCapacity write SetCapacity;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   <para>
+    ///     Indicates the number of entries in the list that are in use.
+    ///   </para>
+    ///   <para>
+    ///     Read <i>Count</i> to determine the number of entries in the <see cref="BasicClasses.Lists|TIntegerProbabilityList.Items[SizeUInt]">
+    ///     Items</see> array.
+    ///   </para>
+    ///   <para>
+    ///     Increasing the size of <i>Count</i> will add the necessary number
+    ///     of nil pointers to the end of the <see cref="BasicClasses.Lists|TIntegerProbabilityList.Items[SizeUInt]">
+    ///     Items</see> array. Decreasing the size of <i>Count</i> will
+    ///     remove the necessary number of entries from the end of the <see cref="BasicClasses.Lists|TIntegerProbabilityList.Items[SizeUInt]">
+    ///     Items</see> array.
+    ///   </para>
+    ///   <para>
+    ///     <i>Count</i> is not always the same as the number of objects
+    ///     referenced in the list. Some of the entries in the <see cref="BasicClasses.Lists|TIntegerProbabilityList.Items[SizeUInt]">
+    ///     Items</see> array may contain nil pointers. To remove the nil
+    ///     pointers and set <i>Count</i> to the number of entries that
+    ///     contain references to objects, call the <see cref="BasicClasses.Lists|TBCList.Pack">
+    ///     Pack</see> method.
+    ///   </para>
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property Count: SizeUInt read GetCount write SetCount;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Returns pointer to the first element of dynamic array.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property MemAddr: Pointer read GetMemAddr;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   <para>
+    ///     Lists the entry references.
+    ///   </para>
+    ///   <para>
+    ///     Use <i>Items</i> to obtain an entry to a specific object in the
+    ///     array. The Index parameter indicates the index of the entry,
+    ///     where 0 is the index of the first entry, 1 is the index of the
+    ///     second entry, and so on. Set <i>Items</i> to change the reference
+    ///     at a specific location.
+    ///   </para>
+    ///   <para>
+    ///     Use <i>Items</i> with the <see cref="BasicClasses.Lists|TIntegerProbabilityList.Count">
+    ///     Count</see> property to iterate through all of the entries in the
+    ///     list.
+    ///   </para>
+    /// </summary>
+    /// <remarks>
+    ///   <i>Items</i> is the default property for TIntegerList. This means you
+    ///   can omit the property name. Thus, instead of <i>MyList.Items[i]</i>,
+    ///   you can write <i>MyList[i]</i>.
+    /// </remarks>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property Items[const &Index: SizeUInt]: TIntProbItem read GetItem write SetItem; default;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   <para>
+    ///     Specifies the array of pointers that make up the <i>Items</i>
+    ///     array.
+    ///   </para>
+    ///   <para>
+    ///     Use List to gain direct access to the <i>Items</i> array.
+    ///   </para>
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property List: TInternalList read FList;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    property Value[const &Index: SizeUInt]: TIntProbValue read GetValue;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    property Probability[const Value: TIntProbValue]: Float read GetProbability write SetProbability;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Does items stored by the list should be disposed when deleted or
+    ///   released.
+    /// </summary>
+    /// <remarks>
+    ///   False by default.
+    /// </remarks>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    property NeedRelease: Boolean read GetReleaseState write SetReleaseState;
+  end;
 
 {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
@@ -3952,7 +5576,6 @@ end;
 function TIntegerList.TEnumerator.GetCurrent: TIntItem;
 begin
   { Return current item from the dynamic array. }
-  //Result := FList.List[FIndex];
   Result := PIntItem(FList.List.List[FIndex])^;
 end;
 
@@ -4007,10 +5630,12 @@ end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
-{$IFDEF SUPPORTS_REGION}{$REGION 'TIntegerList.TIntList implementation'}{$ENDIF}
-procedure TIntegerList.TIntList.Notify(Ptr: Pointer; Action: TListNotification);
+{$IFDEF SUPPORTS_REGION}{$REGION 'TIntegerList.TInternalList implementation'}{$ENDIF}
+procedure TIntegerList.TInternalList.Notify(Ptr: Pointer; Action: TListNotification);
 begin
-  if (Action = lnDeleted) then
+  { If Action is equal to lnDeleted, dispose specified Ptr to prevent memory
+    leakage. }
+  if ((Action = lnDeleted) and (FNeedRelease)) then
     Dispose(Ptr);
 end;
 {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
@@ -4023,17 +5648,14 @@ var
 begin
   { (1) Allocate new pItem in memory and set it's value to Item. }
   New(pItem);
-  pItem^ := Item;
+  PIntItem(pItem)^ := Item;
 
   { (2) Add pointer to specified Item to the FList and returns index position
         which was returned by Add method. }
   Result := FList.Add(pItem);
 
-  { (3) If FList.Count is equal to 1, save FFirst pointer. }
-  if (FList.Count = 1) then
-    FFirst := FList.First;
-
-  { (4) Save last item in FLast. }
+  { (3) Save FFirst and FLast pointers. }
+  FFirst := FList.First;
   FLast := FList.Last;
 end;
 
@@ -4053,37 +5675,46 @@ end;
 
 procedure TIntegerList.BestShuffle;
 var
-  TmpList: TBCList;
+  TmpList: TIntegerList;
   Idx: SizeUInt;
+  SaveNeedRelease: Boolean;
 begin
   { (1) Create temporary list TmpList. }
-  TmpList := TBCList.Create;
+  TmpList := TIntegerList.Create;
   try
-    { (2) Copy all of the entries of the list to TmpList. }
-    TmpList.CopyFrom(FList);
+    { (2) Set NeedRelease flag of TmpList to False. }
+    TmpList.NeedRelease := False;
 
-    { (3) Clear the list. }
+    { (3) Save NeedRelease flag of our list to SaveNeedRelease and set it to
+          False for later operations. }
+    SaveNeedRelease := NeedRelease;
+    NeedRelease := False;
+
+    { (4) Copy all of the entries of the list to TmpList. }
+    TmpList.CopyFrom(Self);
+
+    { (5) Clear the list. }
     Clear;
 
-    { (4.1) While TmpList.Count is greater than 0, ... }
+    { (6) Shuffle the list by randomly adding entries from TmpList. }
+    { (6.1) While TmpList.Count is greater than 0, ... }
     while (TmpList.Count > 0) do
     begin
-      { (4.2) Get random value in range [0..TmpList.Count]. }
+      { (6.2) Get random value in range [0..TmpList.Count - 1]. }
       Idx := Random(TmpList.Count);
 
-      { (4.3) Add entry with random Idx to the list. }
-      FList.Add(TmpList[Idx]);
+      { (6.3) Add entry with random Idx to the list. }
+      Add(TmpList[Idx]);
 
-      { (4.4) Delete added entry from TmpList. }
+      { (6.4) Delete added entry from TmpList. }
       TmpList.Delete(Idx);
     end;
-  finally
-    { (5) Finally release temporary TmpList. }
-    TmpList.Free;
 
-    { (6) Update FFirst and FLast pointers. }
-    FFirst := FList.First;
-    FLast := FList.Last;
+    { (7) Set back saved NeedRelease flag. }
+    NeedRelease := SaveNeedRelease;
+  finally
+    { (8) Finally release temporary TmpList. }
+    TmpList.Free;
   end;
 end;
 
@@ -4138,18 +5769,22 @@ begin
   begin
     { (2) Retrieve Source enumerator and store it in It variable. }
     It := Source.GetEnumerator;
-
-    { (3) Itterate throu all entries of Source list and add them to the list. }
-    while It.MoveNext do
-      Add(It.Current);
-
-    { (4) Update FFirst and FLast pointers. }
-    FFirst := Source.First;
-    FLast := Source.Last;
-
-    { (5) Release enumerator. }
-    It.Free;
+    try
+      { (3) Itterate throu all entries of Source list and add them to the list. }
+      while It.MoveNext do
+        Add(It.Current);
+    finally
+      { (4) Release enumerator. }
+      It.Free;
+    end;
   end;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerList.CopyGrowSettings(Source: TIntegerList);
+begin
+  FList.ListGrowSettings := Source.List.ListGrowSettings;
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -4159,9 +5794,12 @@ begin
   inherited;
 
   { (1) Create the list. }
-  FList := TIntList.Create;
+  FList := TInternalList.Create;
 
-  { (2) Set FFirst and FLast pointers to nil. }
+  { (2) By default, items will not be disposed. }
+  FList.NeedRelease := False;
+
+  { (3) Set FFirst and FLast pointers to nil. }
   FFirst := nil;
   FLast := nil;
 end;
@@ -4169,28 +5807,25 @@ end;
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
 procedure TIntegerList.Delete(Index: SizeUInt);
-var
-  Tmp: PIntItem;
 begin
   { (1) Make sure that specified Index is not out of bound. If is, raise
         error. }
   if (Index >= FList.Count) then
     Error(@SIntegerList_ListIndexError, 'TIntegerList.Delete', Index);
 
-  { (2) Make temporary copy of entry pointer. }
-  Tmp := FList[Index];
-
-  { (3) Delete entry from the list. }
+  { (2) Delete entry from the list. }
   FList.Delete(Index);
 
-  { (4) Update FFirst and FLast pointers. }
-  FFirst := FList.First;
-  FLast := FList.Last;
-
-  { (5) If the class isn't TIntegerList type, then notify that item was
-        deleted. }
-  if (ClassType <> TIntegerList) then
-    Notify(Tmp, lnDeleted);
+  { (3) Update FFirst and FLast pointers. }
+  if (FList.Count > 0) then
+  begin
+    FFirst := FList.First;
+    FLast := FList.Last;
+  end else
+    begin
+      FFirst := nil;
+      FLast := nil;
+    end;
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -4232,6 +5867,17 @@ begin
 
   { (2) Exchange two entries. }
   FList.Exchange(Index1, Index2);
+
+  { (3) Update FFirst and FLast pointers. }
+  FFirst := FList.First;
+  FLast := FList.Last;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerList.Exists(Item: TIntItem): Boolean;
+begin
+  Result := (IndexOf(Item) <> -1);
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -4239,7 +5885,7 @@ end;
 function TIntegerList.Expand: TIntegerList;
 begin
   { (1) Expand the list. }
-  FList := FList.Expand;
+  FList := TInternalList(FList.Expand);
 
   { (2) Update FFirst and FLast pointers. }
   FFirst := FList.First;
@@ -4253,8 +5899,8 @@ end;
 
 function TIntegerList.Extract(Item: TIntItem): PIntItem;
 begin
-  { Call ExtractItem() with from beginning direction. }
-  Result := ExtractItem(Item, TDirection.FromBeginning);
+  { Call ExtractItem() with FromBeginning direction. }
+  Result := ExtractItem(Item, FromBeginning);
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -4273,7 +5919,8 @@ begin
   if (I >= 0) then
   begin
     { (3.2) Store list's entry as a result. }
-    Result := FList[I];
+    {Result := PIntItem(FList[I]);}
+    Result := PIntItem(@Item);
 
     { (3.3) Set nil to list's entry that we found. }
     FList[I] := nil;
@@ -4281,14 +5928,11 @@ begin
     { (3.4) Perform proper removal of the item from the list. }
     Delete(I);
 
-    { (3.5) Update FFirst and FLast pointers. }
-    FFirst := FList.First;
-    FLast := FList.Last;
+    FList.Notify(@Result, lnExtracted);
 
-    { (3.6) If the class isn't TIntegerList type, then notify that item is
-            extracted. }
-    if (ClassType <> TIntegerList) then
-      Notify(Result, lnExtracted);
+    { (3.5) Update FFirst and FLast pointers. }
+    {FFirst := FList.First;
+    FLast := FList.Last;}
   end;
 end;
 
@@ -4323,6 +5967,27 @@ end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+function TIntegerList.GetGrowFactor: Float64;
+begin
+  Result := FList.GrowFactor;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerList.GetGrowLimit: SizeUInt;
+begin
+  Result := FList.GrowLimit;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerList.GetGrowMode: TGrowMode;
+begin
+  Result := FList.GrowMode;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
 function TIntegerList.GetItem(const Index: SizeUInt): TIntItem;
 begin
   { (1) Make sure that Index is in the bounds, if not then raise error. }
@@ -4335,6 +6000,13 @@ end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+function TIntegerList.GetListGrowSettings: TListGrowSettings;
+begin
+  Result := FList.ListGrowSettings;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
 function TIntegerList.GetMemAddr: Pointer;
 begin
   { Return FList.MemAddr property. }
@@ -4343,10 +6015,152 @@ end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+function TIntegerList.GetReleaseState: Boolean;
+begin
+  Result := FList.NeedRelease;
+end;
+
 function TIntegerList.GetReverseEnumerator: TIntegerList.TReverseEnumerator;
 begin
   { Create reverse enumerator for this list. }
   Result := TReverseEnumerator.Create(Self);
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerList.GetShringMode: TShrinkMode;
+begin
+  Result := FList.ShrinkMode;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerList.GetShrinkFactor: Float64;
+begin
+  Result := FList.ShrinkFactor;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerList.GetShrinkLimit: SizeUInt;
+begin
+  Result := FList.ShrinkLimit;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerList.GetShrinkMode: TShrinkMode;
+begin
+  Result := FList.ShrinkMode;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerList.GetValuesAvg: TIntItem;
+var
+  Cnt: SizeUInt;
+begin
+  { (1) Retrieve current amount of entries in the list and store it in Cnt. }
+  Cnt := FList.Count;
+
+  { (2.1) If Cnt is greater than 0: }
+  if (Cnt > 0) then
+    { (2.2) Calculate average of the list entries. }
+    Result := GetValuesSum div TIntItem(Cnt)
+  else
+    { (2.3) Otherwise return 0. }
+    Result := 0;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerList.GetValuesMax: TIntItem;
+var
+  It: TIntegerList.TEnumerator;
+  Cnt: SizeUInt;
+begin
+  { (1) Retrieve current amount of entries in the list and store it in Cnt. }
+  Cnt := FList.Count;
+
+  { (2) If the list is empty, exit with 0 value. }
+  if (Cnt = 0) then
+    Exit(0);
+
+  { (3) Itterate throu the list and if current entry is bigger than previous
+        entry, then store it in Result. }
+  It := GetEnumerator;
+  try
+    if (It.MoveNext) then
+    begin
+      Result := TIntItem(It.Current);
+
+      while It.MoveNext do
+        Result := Max(Result, It.Current);
+    end else
+      Exit(0);
+  finally
+    { (4) Finally release enumerator. }
+    It.Free;
+  end;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerList.GetValuesMin: TIntItem;
+var
+  It: TIntegerList.TEnumerator;
+  Cnt: SizeUInt;
+begin
+  { (1) Retrieve current amount of entries in the list and store it in Cnt. }
+  Cnt := FList.Count;
+
+  { (2) If the list is empty, exit with 0 value. }
+  if (Cnt = 0) then
+    Exit(0);
+
+  { (3) Itterate throu the list and if current entry is smaller than previous
+        entry, then store it in Result. }
+  It := GetEnumerator;
+  try
+    if (It.MoveNext) then
+    begin
+      Result := TIntItem(It.Current);
+
+      while It.MoveNext do
+        Result := Min(Result, It.Current);
+    end else
+      Exit(0);
+  finally
+    { (4) Finally release enumerator. }
+    It.Free;
+  end;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerList.GetValuesSum: TIntItem;
+var
+  It: TIntegerList.TEnumerator;
+  Cnt: SizeUInt;
+begin
+  { (1) Retrieve current amount of entries in the list and store it in Cnt. }
+  Cnt := FList.Count;
+
+  { (2) If the list is empty, exit with 0 value. }
+  if (Cnt = 0) then
+    Exit(0);
+
+  { (3) Itterate throu the list and sume all entries in Result. }
+  It := GetEnumerator;
+  try
+    Result := 0;
+
+    while It.MoveNext do
+      Inc(Result, It.Current);
+  finally
+    { (4) Finally release enumerator. }
+    It.Free;
+  end;
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -4373,12 +6187,11 @@ begin
             Result: }
     for Result := FList.LowIndex to FList.HighIndex do
     begin
-      { (3.2) Cast the pointer P to proper type and compare it with searched Item.
-              If comparison is successful, exit from this function. Return value
-              is set already by for-loop. }
-      if (PIntItem(P)^ = Item) then
+      { (3.2) Cast the double pointer P to proper type and compare it with
+              searched Item. If comparison is successful, exit from this
+              function. Return value is set already by for-loop. }
+      if (PIntItem(Pointer(P)^)^ = Item) then
         Exit;
-
 
       { (3.3) Increment the P pointer. }
       Inc(P);
@@ -4415,7 +6228,7 @@ begin
           { (1.2.3.2) Cast the pointer P to proper type and compare it with
                       searched Item. If comparison is successful, exit from this
                       function. }
-          if (PIntItem(P)^ = Item) then
+          if (PIntItem(Pointer(P)^)^ = Item) then
             Exit;
 
           { (1.2.3.3) Decrement the P pointer. }
@@ -4432,21 +6245,23 @@ end;
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
 procedure TIntegerList.Insert(Index: SizeUInt; Item: TIntItem);
+var
+  pItem: PIntItem;
 begin
   { (1) If Index is greater than FList.Count, Raise out of bounds error. }
   if (Index > FList.Count) then
     Error(@SIntegerList_ListIndexError, 'TIntegerList.Insert', Index);
 
-  { (2) Insert specified Item to the list. }
-  FList.Insert(Index, @Item);
+  { (2) Allocate memory for new pItem and copy its value from Item. }
+  New(pItem);
+  PIntItem(pItem)^ := Item;
 
-  { (3) Update FFirst and FLast pointers. }
+  { (3) Insert specified Item to the list. }
+  FList.Insert(Index, pItem);
+
+  { (4) Update FFirst and FLast pointers. }
   FFirst := FList.First;
   FLast := FList.Last;
-
-  { (4) If this class isn't TIntegerList type, then notify that Item is added. }
-  if (ClassType <> TIntegerList) then
-    Notify(@Item, lnAdded);
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -4486,10 +6301,9 @@ end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
-procedure TIntegerList.Notify(Ptr: Pointer; Action: TListNotification);
+procedure TIntegerList.Pack;
 begin
-  { Do nothing. If user want to handle notification, implementation of this
-    method must be made. }
+  FList.Pack;
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -4506,15 +6320,12 @@ end;
 
 procedure TIntegerList.RemoveDuplicates;
 var
-  I, J: SizeUInt;
+  I, K: Integer;
 begin
-  for J := (FList.Count - 1) downto 0 do
-    for I := 0 to (J - 1) do
-      if (PIntItem(FList[J])^ = PIntItem(FList[I])^) then
-      begin
-        Delete(J);
-        Break;
-      end;
+  for I := 0 to (FList.Count - 1) do { Compare to everything on the right. }
+    for K := (FList.Count - 1) downto (I + 1) do { Reverse loop allows to Remove items safely. }
+      if (PIntItem(FList[K])^ = PIntItem(FList[I])^) then
+        Delete(K);
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -4579,6 +6390,29 @@ end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+procedure TIntegerList.SetGrowFactor(NewFactor: Float64);
+begin
+  FList.GrowFactor := NewFactor;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerList.SetGrowLimit(NewLimit: SizeUInt);
+begin
+  if (NewLimit <> FList.GrowLimit) then
+    FList.GrowLimit := NewLimit;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerList.SetGrowMode(NewMode: TGrowMode);
+begin
+  if (NewMode <> FList.GrowMode) then
+    FList.GrowMode := NewMode;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
 procedure TIntegerList.SetItem(const Index: SizeUInt; Item: TIntItem);
 begin
   { (1) If specified Index is out of bounds, raise out of bounds error. }
@@ -4587,6 +6421,41 @@ begin
 
   { (2) Set new item. }
   FList[Index] := @Item;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerList.SetListGrowSettings(NewSettings: TListGrowSettings);
+begin
+  FList.ListGrowSettings := NewSettings;
+end;
+
+procedure TIntegerList.SetReleaseState(Value: Boolean);
+begin
+  FList.NeedRelease := Value;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerList.SetShrinkFactor(NewFactor: Float64);
+begin
+  FList.ShrinkFactor := NewFactor;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerList.SetShrinkLimit(NewLimit: SizeUInt);
+begin
+  if (NewLimit <> FList.ShrinkLimit) then
+    FList.ShrinkLimit := NewLimit;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerList.SetShrinkMode(NewMode: TShrinkMode);
+begin
+  if (NewMode <> FList.ShrinkMode) then
+    FList.ShrinkMode := NewMode;
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -4616,6 +6485,1115 @@ end;
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
 procedure TIntegerList.SortList(const Compare: TListSortCompareFunc);
+begin
+  { If the list contains at least two items, then ... }
+  if (FList.Count > 1) then
+    { ... perform sorting of the list using QuickSort algorithm. }
+    QuickSort(FList.List, FList.LowIndex, FList.HighIndex, Compare);
+end;
+
+{$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+
+{===============================================================================
+  TIntegerProbabilityList - class implementation
+===============================================================================}
+
+{$IFDEF SUPPORTS_REGION}{$REGION 'TIntegerProbabilityList implementation'}{$ENDIF}
+
+{$IFDEF SUPPORTS_REGION}{$REGION 'TIntegerProbabilityList.TEnumerator'}{$ENDIF}
+constructor TIntegerProbabilityList.TEnumerator.Create(const AList: TIntegerProbabilityList);
+begin
+  { (1) Call inherited Create. }
+  inherited Create;
+
+  { (2) Set current position FIndex to -1. }
+  FIndex := -1;
+
+  { (3) Set FList to specified AList. }
+  FList := AList;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.TEnumerator.GetCurrent: TIntProbItem;
+begin
+  { Return current item from the dynamic array. }
+  Result := PIntProbItem(FList.List.List[FIndex])^;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.TEnumerator.MoveNext: Boolean;
+begin
+  { (1) Increment current position FIndex by 1. }
+  Inc(FIndex);
+
+  { (2) Return True if we didn't reach end of the dynamic array, or False if
+        we are at the end of the dynamic array. }
+  Result := FIndex < FList.Count;
+end;
+{$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+{$IFDEF SUPPORTS_REGION}{$REGION 'TIntegerProbabilityList.TReverseEnumerator'}{$ENDIF}
+constructor TIntegerProbabilityList.TReverseEnumerator.Create(const AList: TIntegerProbabilityList);
+begin
+  { (1) Call inherited Create. }
+  inherited Create;
+
+  { (2) Set current position FIndex to AList.HighIndex + 1. }
+  FIndex := AList.HighIndex + 1;
+
+  { (3) Set FList to specified AList. }
+  FList := AList;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.TReverseEnumerator.GetCurrent: TIntProbItem;
+begin
+  { Return current item from the dynamic array. }
+  Result := PIntProbItem(FList.List.List[FIndex])^;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.TReverseEnumerator.MoveNext: Boolean;
+begin
+  { (1) Decrement current position FIndex by 1. }
+  Dec(FIndex);
+
+  { (2) Return True if we didn't reach end of the dynamic array, or False if
+        we are at the end of the dynamic array. }
+  Result := FIndex > FList.LowIndex;
+end;
+{$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+{$IFDEF SUPPORTS_REGION}{$REGION 'TIntegerProbabilityList.TInternalList implementation'}{$ENDIF}
+procedure TIntegerProbabilityList.TInternalList.Notify(Ptr: Pointer; Action: TListNotification);
+begin
+  { If Action is equal to lnDeleted, dispose specified Ptr to prevent memory
+    leakage. }
+  if ((Action = lnDeleted) and (FNeedRelease)) then
+    Dispose(Ptr);
+end;
+{$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.Add(NewValue: TIntProbValue; const NewProbability: Float = 1.0): SizeUInt;
+var
+  pItem: PIntProbItem;
+begin
+  { (1) Allocate memory for new pItem and set it's values. }
+  New(pItem);
+  PIntProbItem(pItem)^.Value := NewValue;
+  PIntProbItem(pItem)^.Probability := NewProbability;
+
+  { (2) Add pItem as a new entry in the list and store it's new index position
+        in Result. }
+  Result := FList.Add(pItem);
+
+  { (3) Store new FFirst and FLast pointers. }
+  FFirst := FList.First;
+  FLast := FList.Last;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.Assign(Other: TIntegerProbabilityList);
+begin
+  { (1) Assign other list to this list. }
+  FList.Assign(Other.List, laCopy);
+
+  { (2) Save FFirst and FLast pointers. }
+  FFirst := Other.First;
+  FLast := Other.Last;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.BestShuffle;
+var
+  TmpList: TIntegerProbabilityList;
+  Idx: SizeUInt;
+  SaveNeedRelease: Boolean;
+  Item: TIntProbItem;
+begin
+  { (1) Create temporary list TmpList. }
+  TmpList := TIntegerProbabilityList.Create;
+  try
+    { (2) Set NeedRelease flag of TmpList to False. }
+    TmpList.NeedRelease := False;
+
+    { (3) Save NeedRelease flag of our list to SaveNeedRelease and set it to
+          False for later operations. }
+    SaveNeedRelease := NeedRelease;
+    NeedRelease := False;
+
+    { (4) Copy all of the entries of the list to TmpList. }
+    TmpList.CopyFrom(Self);
+
+    { (5) Clear the list. }
+    Clear;
+
+    { (6) Shuffle the list by randomly adding entries from TmpList. }
+    { (6.1) While TmpList.Count is greater than 0, ... }
+    while (TmpList.Count > 0) do
+    begin
+      { (6.2) Get random value in range [0..TmpList.Count - 1]. }
+      Idx := Random(TmpList.Count);
+
+      { (6.3) Add entry with random Idx to the list. }
+      Item := TmpList[Idx];
+      Add(Item.Value, Item.Probability);
+
+      { (6.4) Delete added entry from TmpList. }
+      TmpList.Delete(Idx);
+    end;
+
+    { (7) Set back saved NeedRelease flag. }
+    NeedRelease := SaveNeedRelease;
+  finally
+    { (8) Finally release temporary TmpList. }
+    TmpList.Free;
+  end;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.Clear;
+begin
+  { (1) Clear FList. }
+  FList.Clear;
+
+  { (2) Set FFirst and FLast to nil. }
+  FFirst := nil;
+  FLast := nil;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.CopyFrom(const Source: TIntegerProbabilityList);
+var
+  It: TEnumerator;
+  Item: TIntProbItem;
+begin
+  { (1) If Source.Count is greater than 0, then: }
+  if (Source.Count > 0) then
+  begin
+    { (2) Retrieve Source enumerator and store it in It variable. }
+    It := Source.GetEnumerator;
+    try
+      { (3) Itterate throu all entries of Source list and add each entry to the
+            list. }
+      while It.MoveNext do
+      begin
+        Item := It.Current;
+        Add(Item.Value, Item.Probability);
+      end;
+    finally
+      { (4) Release enumerator. }
+      It.Free;
+    end;
+  end;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.CopyGrowSettings(Source: TIntegerProbabilityList);
+begin
+  FList.ListGrowSettings := Source.List.ListGrowSettings;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+constructor TIntegerProbabilityList.Create;
+begin
+  inherited;
+
+  { (1) Create the list. }
+  FList := TInternalList.Create;
+
+  { (2) By default, items will not be disposed. }
+  FList.NeedRelease := False;
+
+  { (3) Set FFirst and FLast pointers to nil. }
+  FFirst := nil;
+  FLast := nil;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.Delete(Index: SizeUInt);
+begin
+  { (1) Make sure that specified Index isn't out of bounds and if is, then raise
+        error. }
+  if (Index >= FList.Count) then
+    Error(@SIntegerProbabilityList_ListIndexError, 'TIntegerProbabilityList.Delete', Index);
+
+  { (2) Delete entry from the list. }
+  FList.Delete(Index);
+
+  { (3) Update FFirst and FLast pointers. }
+  if (FList.Count > 0) then
+  begin
+    FFirst := FList.First;
+    FLast := FList.Last;
+  end else
+    begin
+      FFirst := nil;
+      FLast := nil;
+    end;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+destructor TIntegerProbabilityList.Destroy;
+begin
+  { Release FList. }
+  FList.Free;
+
+  inherited;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+class procedure TIntegerProbabilityList.Error(Msg: PResStringRec; const Method: String; Data: NativeInt);
+begin
+  { Raise error. }
+  raise EIntegerProbabilityListError.CreateFmt(LoadResString(Msg), [Method, Data]) at ReturnAddress;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+class procedure TIntegerProbabilityList.Error(const Msg, Method: String; Data: NativeInt);
+begin
+  { Raise error. }
+  raise EIntegerProbabilityListError.CreateFmt(Msg, [Method, Data]) at ReturnAddress;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.Exchange(Index1, Index2: SizeUInt);
+begin
+  { (1) Raise list index error if Index1 or Index2 variables are out of
+        bounds. }
+  if (Index1 >= FList.Count) then
+    Error(@SIntegerProbabilityList_ListIndexError, 'TIntegerProbabilityList.Exchange', Index1);
+  if (Index2 >= FList.Count) then
+    Error(@SIntegerProbabilityList_ListIndexError, 'TIntegerProbabilityList.Exchange', Index2);
+
+  { (2) Exchange two entries. }
+  FList.Exchange(Index1, Index2);
+
+  { (3) Update FFirst and FLast pointers. }
+  FFirst := FList.First;
+  FLast := FList.Last;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.Exclude(Value: TIntProbValue);
+var
+  It: TEnumerator;
+begin
+  { (1) Retrieve list's enumerator. }
+  It := GetEnumerator;
+  try
+    { (2.1) Loop throu list's entries and ... }
+    while It.MoveNext do
+      { (2.2) ... if current value of enumerator is equal to specified Value,
+              then ... }
+      if (Value = It.Current.Value) then
+      begin
+        { (2.3) Delete entry with current index position of enumerator. }
+        Delete(It.Index);
+
+        { (2.4) Exit this procedure. }
+        Exit;
+      end;
+  finally
+    { (3) Finally free list's enumerator. }
+    It.Free;
+  end;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.Exists(Item: TIntProbItem): Boolean;
+begin
+  Result := (IndexOf(Item) <> -1);
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.Expand: TIntegerProbabilityList;
+begin
+  { (1) Expand the list. }
+  FList := TInternalList(FList.Expand);
+
+  { (2) Update FFirst and FLast pointers. }
+  FFirst := FList.First;
+  FLast := FList.Last;
+
+  { (3) Return your self. }
+  Result := Self;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.Extract(Item: TIntProbItem): PIntProbItem;
+begin
+  { Call ExtractItem() with FromBeginning direction and return its value in
+    Result. }
+  Result := ExtractItem(Item, FromBeginning);
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.ExtractItem(Item: TIntProbItem; Direction: TDirection): PIntProbItem;
+var
+  I: SizeInt;
+begin
+  { (1) For new set Result variable as nil. }
+  Result := nil;
+
+  { (2) Search for specified Item throu all entries using specified Direction. }
+  I := IndexOfItem(Item, Direction);
+
+  { (3.1) If something was found: }
+  if (I >= 0) then
+  begin
+    { (3.2) Store list's entry as a Result. }
+    Result := PIntProbItem(@Item);
+
+    { (3.3) Set nil to list's entry that we found. }
+    FList[I] := nil;
+
+    { (3.4) Perform proper removal of the item from the list. }
+    Delete(I);
+
+    FList.Notify(@Result, lnExtracted);
+
+    { (3.5) Update FFirst and FLast pointers. }
+    FFirst := FList.First;
+    FLast := FList.Last;
+  end;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.ExtractRandomValue: TIntProbValue;
+var
+  Sample, SampleMax, SampleIn: Float;
+  I, SampleNo: SizeInt;
+begin
+  { (1) For now set Result to 0. }
+  Result := 0;
+
+  { (2) If FList currently holds 0 amount of entries, exit from this function. }
+  if (FList.Count = 0) then
+    Exit;
+
+  { (3) Set SampleMax to 0.0. }
+  SampleMax := 0.0;
+
+  { (4.1) Loop throu all entries of FList: }
+  for I := FList.LowIndex to FList.HighIndex do
+    { (4.2) Calculate SampleMax value. }
+    SampleMax := SampleMax + PIntProbItem(FList[I])^.Probability;
+
+  { (5) Calculate Sample by multiplying random value by SampleMax. }
+  Sample := Random * SampleMax;
+
+  { (6) Set SampleIn to 0.0 and SampleNo to -1. }
+  SampleIn := 0.0;
+  SampleNo := -1;
+
+  { (7.1) Loop throu all entries of FList: }
+  for I := FList.LowIndex to FList.HighIndex do
+  begin
+    { (7.2.1) If Sample is greater or equal to SampleIn and Sample is smaller
+              than current entry's probability value, then ... }
+    if ((Sample >= SampleIn) and (Sample < SampleIn + PIntProbItem(FList[I])^.Probability)) then
+    begin
+      { (7.2.2) ... Set current entry's value to Result and ... }
+      Result := PIntProbItem(FList[I])^.Value;
+
+      { (7.2.3) ... set current value of I to SampleNo. }
+      SampleNo := I;
+
+      { (7.2.4) Break loop. }
+      Break;
+    end;
+
+    { (7.3) Increment SampleIn by current entry's probability value. }
+    SampleIn := SampleIn + PIntProbItem(FList[I])^.Probability;
+  end;
+
+  { (8) If SampleNo isn't equal to -1, then remove entry with SampleNo
+        position. }
+  if (SampleNo <> -1) then
+    Delete(SampleNo);
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.First: PIntProbItem;
+begin
+  { Return cached FFirst pointer. }
+  Result := FFirst;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.GetCapacity: SizeUInt;
+begin
+  Result := FList.Capacity;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.GetCount: SizeUInt;
+begin
+  Result := FList.Count;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.GetEnumerator: TIntegerProbabilityList.TEnumerator;
+begin
+  Result := TEnumerator.Create(Self);
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.GetGrowFactor: Float64;
+begin
+  Result := FList.GrowFactor;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.GetGrowLimit: SizeUInt;
+begin
+  Result := FList.GrowLimit;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.GetGrowMode: TGrowMode;
+begin
+  Result := FList.GrowMode;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.GetItem(const Index: SizeUInt): TIntProbItem;
+begin
+  { (1) Make sure that specified Index is in the bounds, if not then raise
+        error. }
+  if (Index >= FList.Count) then
+    Error(SIntegerProbabilityList_ListIndexError, 'TIntegerProbabilityList.GetItem', Index);
+
+  { (2) Return entry with specified Index position in the list. }
+  Result := PIntProbItem(FList[Index])^;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.GetListGrowSettings: TListGrowSettings;
+begin
+  Result := FList.ListGrowSettings;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.GetMemAddr: Pointer;
+begin
+  { Return FList.MemAddr property. }
+  Result := FList.MemAddr;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.GetProbability(const Value: TIntProbValue): Float;
+var
+  It: TEnumerator;
+begin
+  { (1) For now set Result to 0.0. }
+  Result := 0.0;
+
+  { (2) Retrieve list enumerator. }
+  It := GetEnumerator;
+  try
+    { (3) Itterate thou all entries if the list. }
+    while It.MoveNext do
+      { (4) If value of current entry is equal to specified Value, store
+            entry's probability value to Result and exit this function. }
+      if (Value = It.Current.Value) then
+      begin
+        Result := It.Current.Probability;
+        Exit;
+      end;
+  finally
+    { (5) Finally release enumerator. }
+    It.Free;
+  end;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.GetRandomValue: TIntProbValue;
+var
+  Sample, SampleMax, SampleIn: Float;
+  I: SizeInt;
+begin
+  { (1) For now set Result to 0. }
+  Result := 0;
+
+  { (2) If FList current amount of entries is equal to 0, exit this function. }
+  if (FList.Count = 0) then
+    Exit;
+
+  { (3) Set SampleMax to 0.0. }
+  SampleMax := 0.0;
+
+  { (4.1) Loop throu FList all entries and ... }
+  for I := FList.LowIndex to FList.HighIndex do
+    { (4.2) ... calculate SampleMax value. }
+    SampleMax := SampleMax + PIntProbItem(FList[I])^.Probability;
+
+  { (5) Calculate random Sample value. }
+  Sample := Random * SampleMax;
+
+  { (6) Set SampleIn to 0. }
+  SampleIn := 0;
+
+  { (7.1) Loop throu FList all entries and ... }
+  for I := FList.LowIndex to FList.HighIndex do
+  begin
+    { (7.2) ... if Sample is greater or equal to SampleIn and Sample is smaller
+            than SampleIn + FList[I].Probability, then exit and return Value of
+            FList[I]. }
+    if ((Sample >= SampleIn) and (Sample < SampleIn + PIntProbItem(FList[I])^.Probability)) then
+      Exit(PIntProbItem(FList[I])^.Value);
+
+    { (7.3) Calculate SampleIn. }
+    SampleIn := SampleIn + PIntProbItem(FList[I])^.Probability;
+  end;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.GetReleaseState: Boolean;
+begin
+  Result := FList.NeedRelease;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.GetReverseEnumerator: TIntegerProbabilityList.TReverseEnumerator;
+begin
+  { Create reverse enumerator for this list. }
+  Result := TReverseEnumerator.Create(Self);
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.GetShringMode: TShrinkMode;
+begin
+  Result := FList.ShrinkMode;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.GetShrinkFactor: Float64;
+begin
+  Result := FList.ShrinkFactor;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.GetShrinkLimit: SizeUInt;
+begin
+  Result := FList.ShrinkLimit;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.GetShrinkMode: TShrinkMode;
+begin
+  Result := FList.ShrinkMode;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.GetValue(const Index: SizeUInt): TIntProbValue;
+begin
+  if (Index >= FList.Count) then
+    Exit(0);
+
+  Result := PIntProbItem(FList[Index])^.Value;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.HighIndex: SizeInt;
+begin
+  { Return FList.HighIndex. }
+  Result := FList.HighIndex;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.Include(Value: TIntProbValue; NewProbability: Float);
+var
+  It: TEnumerator;
+begin
+  { (1) Retrieve list's enumerator and store it in It variable. }
+  It := GetEnumerator;
+  try
+    { (2.1) Loop throu enumerator entries and search for same value of entry as
+            Value. }
+    while It.MoveNext do
+      if (Value = It.Current.Value) then
+      begin
+        { (2.2) If found, store NewProbability value in entry that was found. }
+        PIntProbItem(FList[It.Index])^.Probability := NewProbability;
+
+        { (2.3) Exit this procedure. }
+        Exit;
+      end;
+  finally
+    { (3) Finally release enumerator. }
+    It.Free;
+  end;
+
+  { (4) If we reach hehe, that mean that nothing was found above and we need to
+        add new entry with specified Value and NewProbability. }
+  Add(Value, NewProbability);
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.IndexOf(Item: TIntProbItem): SizeInt;
+var
+  P: PPointer;
+begin
+  { (1) If FList.Count is greater than 0, then: }
+  if (FList.Count > 0) then
+  begin
+    { (2) Store pointer of the FList.List in P variable. }
+    P := Pointer(FList.List);
+
+    { (3.1) Itterate Result from FList.LowIndex to FList.HighIndex. }
+    for Result := FList.LowIndex to FList.HighIndex do
+    begin
+      { (3.2) Cast the double pointer P to proper type and compare it with
+              searched entry. If comparison is successful, exit from this
+              function. Return value is set already by for-loop. }
+      if ((PIntProbItem(Pointer(P)^)^.Value = Item.Value) and (PIntProbItem(Pointer(P)^)^.Probability = Item.Probability)) then
+        Exit;
+
+      { (3.3) Increment the P double pointer. }
+      Inc(P);
+    end;
+  end;
+
+  { (4) If we reach this point, we didn't found specified Item so return -1. }
+  Result := -1;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.IndexOfItem(Item: TIntProbItem; Direction: TDirection): SizeInt;
+var
+  P: PPointer;
+begin
+  { (1) If specified Direction is equal to FromBeginning, call
+          IndexOf(Item). }
+  if (Direction = FromBeginning) then
+    Result := IndexOf(Item)
+  else
+    begin
+      { (2.1) Otherwise if FList.Count is greater than 0, then: }
+      if (FList.Count > 0) then
+      begin
+        { (2.2) Retrieve pointer to last item of the dynamic array and store it
+                in P variable. }
+        P := Pointer(@FList.List[FList.Count - 1]);
+
+        { (2.3.1) Itterate Result from FList.HighIndex downto FList.LowIndex. }
+        for Result := FList.HighIndex downto FList.LowIndex do
+        begin
+          { (2.3.2) Cast the double pointer P to proper type and compare it with
+                   searched entry. If comparison was successful, exit from this
+                   function. }
+          if ((PIntProbItem(Pointer(P)^)^.Value = Item.Value) and (PIntProbItem(Pointer(P)^)^.Probability = Item.Probability)) then
+            Exit;
+
+          { (2.3.3) Decrement the P double pointer. }
+          Dec(P);
+        end;
+      end;
+
+      { (2.4) If we reach this point, we didn't found specified entry so return
+              -1. }
+      Result := -1;
+    end;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.Insert(Index: SizeUInt; NewValue: TIntProbValue; const NewProbability: Float = 1.0);
+var
+  pItem: PIntProbItem;
+begin
+  { (1) If specified Index is greater than FList.Count, then raise out of bounds
+        error. }
+  if (Index > FList.Count) then
+    Error(@SIntegerProbabilityList_ListIndexError, 'TIntegerProbabilityList.Insert', Index);
+
+  { (2) Allocate memory for new pItem and store its value from specified
+        parameters. }
+  New(pItem);
+  PIntProbItem(pItem)^.Value := NewValue;
+  PIntProbItem(pItem)^.Probability := NewProbability;
+
+  { (3) Insert new entry to the list. }
+  FList.Insert(Index, pItem);
+
+  { (4) Update FFirst and FLast pointers. }
+  FFirst := FList.First;
+  FLast := FList.Last;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.Last: PIntProbItem;
+begin
+  { Return cached FLast pointer. }
+  Result := FLast;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.LowIndex: SizeInt;
+begin
+  { Return FList.LowIndex. }
+  Result := FList.LowIndex;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.Move(CurIndex, NewIndex: SizeUInt);
+begin
+  { (1) If CurIndex isn't equal to NewIndex: }
+  if (CurIndex <> NewIndex) then
+  begin
+    { (2.1) Check that CurIndex and NewIndex aren't out of bounds. Raise error
+            if needed. }
+    if (CurIndex >= FList.Count) then
+      Error(@SIntegerProbabilityList_ListIndexError, 'TIntegerProbabilityList.Move', CurIndex);
+    if (NewIndex >= FList.Count) then
+      Error(@SIntegerProbabilityList_ListIndexError, 'TIntegerProbabilityList.Move', NewIndex);
+
+    { (2.2) Move entries in the list. }
+    FList.Move(CurIndex, NewIndex);
+  end;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.NormalizeProbabilities;
+var
+  Idx: SizeUInt;
+  Total: Float;
+begin
+  Total := 0.0;
+
+  for Idx := FList.LowIndex to FList.HighIndex do
+    Total := Total + PIntProbItem(FList[Idx])^.Probability;
+
+  if (Total <= 0) then
+    Exit;
+
+  for Idx := FList.LowIndex to FList.HighIndex do
+    PIntProbItem(FList[Idx])^.Probability := PIntProbItem(FList[Idx])^.Probability / Total;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.Pack;
+begin
+  FList.Pack;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.Remove(Item: TIntProbItem): SizeInt;
+begin
+  { Search for first specified Item using FromBeginning direction. If found,
+    delete it and return its position where it was in the list or -1 if not
+    found. }
+  Result := RemoveItem(Item, FromBeginning);
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.RemoveDuplicates;
+var
+  I, K: Integer;
+begin
+  for I := 0 to (FList.Count - 1) do { Compare to everything on the right. }
+    for K := (FList.Count - 1) downto (I + 1) do { Reverse loop allows to Remove items safely. }
+      if ((PIntProbItem(FList[K])^.Value = PIntProbItem(FList[I])^.Value) and
+          (PIntProbItem(FList[K])^.Probability = PIntProbItem(FList[I])^.Probability)) then
+        Delete(K);
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.RemoveItem(Item: TIntProbItem; Direction: TDirection): SizeInt;
+begin
+  { (1) Search for the first specified Item in the list using specified
+        Direction of search and store its position in Result when found or -1
+        when not found. }
+  Result := IndexOfItem(Item, Direction);
+
+  { (2) If Result is greater or equal to 0, call Delete(Result). }
+  if (Result >= 0) then
+    Delete(Result);
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.SameAs(const Other: TIntegerProbabilityList): Boolean;
+var
+  Idx: SizeUInt;
+begin
+  { (1) If both lists are the same or if both list have 0 entries, then they are
+        the same so return True. }
+  if ((Self = Other) or ((FList.Count = 0) and (Other.Count = 0))) then
+    Exit(True);
+
+  { (2) If entries amount of both lists aren't the same, lists aren't equal so
+        exit and return False. }
+  if (FList.Count <> Other.Count) then
+    Exit(False);
+
+  { (3) Validate entries one by one. }
+  for Idx := LowIndex to HighIndex do
+    if ((PIntProbItem(FList[Idx])^.Value <> PIntProbItem(Other.List[Idx])^.Value) and
+        (PIntProbItem(FList[Idx])^.Probability <> PIntProbItem(Other.List[Idx])^.Probability)) then
+      Exit(False);
+
+  { (4) If we reach this point, that mean that both list are the same, so return
+        True. }
+  Result := True;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.ScaleProbability(Value: TIntProbValue; Scale: Float);
+var
+  Idx: SizeUInt;
+begin
+  { (1) If FList.Count is equal to 0, exit this procedure. }
+  if (FList.Count = 0) then
+    Exit;
+
+  { (2.1) Loop throu all entries of the list: }
+  for Idx := LowIndex to HighIndex do
+    { (2.2) If entry value is equal to specified Value, then this mean that
+            we have our entry, so ... }
+    if (Value = PIntProbItem(FList[Idx])^.Value) then
+    begin
+      { (2.3) ... Scale entry probability value by specified Scale factor. }
+      PIntProbItem(FList[Idx])^.Probability := PIntProbItem(FList[Idx])^.Probability * Scale;
+
+      { (2.4) Exit this procedure. }
+      Exit;
+    end;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.ScaleProbabilityExcept(Value: TIntProbValue;
+  Scale: Float);
+var
+  Idx: SizeUInt;
+begin
+  { (1) If FList.Count is equal to 0, exit this procedure. }
+  if (FList.Count = 0) then
+    Exit;
+
+  { (2.1) Loop throu all entries of the list: }
+  for Idx := LowIndex to HighIndex do
+    { (2.2) If entry value isn't equal to specified Value, then ... }
+    if (Value <> PIntProbItem(FList[Idx])^.Value) then
+      { (2.3) ... Scale entry probability value by specified Scale factor. }
+      PIntProbItem(FList[Idx])^.Probability := PIntProbItem(FList[Idx])^.Probability * Scale;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.SetCapacity(NewCapacity: SizeUInt);
+begin
+  { (1) If NewCapacity is smaller than FList.Count, raise list capacity error. }
+  if (NewCapacity < FList.Count) then
+    Error(@SIntegerProbabilityList_ListCapacityError, 'TIntegerProbabilityList.SetCapacity', NewCapacity);
+
+  { (2) Set new value for FList.Capacity. }
+  FList.Capacity := NewCapacity;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.SetCount(NewCount: SizeUInt);
+begin
+  { (1) Set NewCount to FList.Count property. }
+  FList.Count := NewCount;
+
+  { (2) Update FFirst and FLast pointers. }
+  FFirst := FList.First;
+  FLast := FList.Last;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.SetGrowFactor(NewFactor: Float64);
+begin
+  FList.GrowFactor := NewFactor;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.SetGrowLimit(NewLimit: SizeUInt);
+begin
+  if (NewLimit <> FList.GrowLimit) then
+    FList.GrowLimit := NewLimit;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.SetGrowMode(NewMode: TGrowMode);
+begin
+  if (NewMode <> FList.GrowMode) then
+    FList.GrowMode := NewMode;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.SetItem(const Index: SizeUInt; Item: TIntProbItem);
+begin
+  { (1) If specified Index is out of bounds, raise out of bounds error. }
+  if (Index >= FList.Count) then
+    Error(@SIntegerProbabilityList_ListIndexError, 'TIntegerProbabilityList.SetItem', Index);
+
+  { (2) Set new item. }
+  FList[Index] := @Item;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.SetListGrowSettings(NewSettings: TListGrowSettings);
+begin
+  FList.ListGrowSettings := NewSettings;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.SetProbability(const Value: TIntProbValue; const NewProbability: Float);
+var
+  It: TEnumerator;
+begin
+  { (1) Retrieve list's enumerator and store it in It variable. }
+  It := GetEnumerator;
+  try
+    { (2.1) Loop throu enumerator entries and search for same value of entry as
+            Value. }
+    while It.MoveNext do
+      if (Value = It.Current.Value) then
+      begin
+        { (2.2) If found, store NewProbability value in entry that was found. }
+        PIntProbItem(FList[It.Index])^.Probability := NewProbability;
+
+        { (2.3) Exit this procedure. }
+        Exit;
+      end;
+  finally
+    { (3) Finally release enumerator. }
+    It.Free;
+  end;
+
+  { (4) If we reach hehe, that mean that nothing was found above and we need to
+        add new entry with specified Value and NewProbability. }
+  Add(Value, NewProbability);
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.SetReleaseState(Value: Boolean);
+begin
+  FList.NeedRelease := Value;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.SetShrinkFactor(NewFactor: Float64);
+begin
+  FList.ShrinkFactor := NewFactor;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.SetShrinkLimit(NewLimit: SizeUInt);
+begin
+  if (NewLimit <> FList.ShrinkLimit) then
+    FList.ShrinkLimit := NewLimit;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.SetShrinkMode(NewMode: TShrinkMode);
+begin
+  if (NewMode <> FList.ShrinkMode) then
+    FList.ShrinkMode := NewMode;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.Shuffle;
+var
+  I: SizeUInt;
+begin
+  for I := FList.HighIndex downto (FList.LowIndex + 1) do
+    Exchange(I, SizeUInt(Random(I + 1)));
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.Sort(Compare: TListSortCompare);
+begin
+  { If the list contains at least two items, then ... }
+  if (Count > 1) then
+    { ... perform sorting of the list using QuickSort algorithm. }
+    QuickSort(FList.List, FList.LowIndex, FList.HighIndex,
+      function(Item1, Item2: Pointer): Integer
+      begin
+        Result := Compare(Item1, Item2);
+      end);
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+procedure TIntegerProbabilityList.SortList(const Compare: TListSortCompareFunc);
 begin
   { If the list contains at least two items, then ... }
   if (FList.Count > 1) then

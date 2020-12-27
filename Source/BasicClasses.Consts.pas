@@ -25,6 +25,10 @@ resourcestring
   SIntegerList_ListIndexError = '%s: List index %d out of bounds!';
   SIntegerList_ListCapacityError = '%s: List capacity %d out of bounds!';
 
+  {TIntegerProbabilityList }
+  SIntegerProbabilityList_ListIndexError = '%s: List index %d out of bounds!';
+  SIntegerProbabilityList_ListCapacityError = '%s: List capacity %d out of bounds!';
+
 implementation
 
 end.
