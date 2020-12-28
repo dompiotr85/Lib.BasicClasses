@@ -7,6 +7,7 @@ uses
   BasicClasses;
 
 type
+  { TBasicClasses_Test - class definition }
   [TestFixture]
   TBasicClasses_Test = class
   public
@@ -14,6 +15,7 @@ type
     procedure Setup;
     [TearDown]
     procedure TearDown;
+
     { Test methods }
     [TestCase('TCustomObject', '')]
     procedure Test_TCustomObject_InstanceString;
@@ -25,6 +27,8 @@ implementation
 
 uses
   System.SysUtils;
+
+{ TBasicClasses_Test - class implementation }
 
 procedure TBasicClasses_Test.Setup;
 begin
@@ -40,11 +44,15 @@ procedure TBasicClasses_Test.Test_TCustomObject_InstanceString;
 var
   MyObject: TCustomObject;
 begin
+  { (1) Create MyObject. }
   MyObject := TCustomObject.Create;
-
-  Assert.AreEqual('TCustomObject', Copy(MyObject.InstanceString, 1, 13));
-
-  MyObject.Free;
+  try
+    { (2) Test MyObject.InstanceString return string. }
+    Assert.AreEqual('TCustomObject', Copy(MyObject.InstanceString, 1, 13));
+  finally
+    { (3) Finally release MyObject. }
+    MyObject.Free;
+  end;
 end;
 
 procedure TBasicClasses_Test.Test_TCustomRefCountedObject;

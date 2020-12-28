@@ -15,7 +15,7 @@
  Copyright (c) 2018-2020, Piotr Domañski
 
  Last change:
-   27-12-2020
+   28-12-2020
 
  Changelog:
    For detailed changelog and history please refer to this git repository:
@@ -1174,6 +1174,15 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
+    ///   Randomly shuffles the list.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure BestShuffle;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
     ///   Clears all items stored in the list and sets its parameters to the
     ///   default values.
     /// </summary>
@@ -1553,6 +1562,15 @@ type
     /// </summary>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     procedure Pack;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Randomly shuffles the list.
+    /// </summary>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    procedure Shuffle;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -2375,7 +2393,7 @@ type
     ///   list.
     /// </summary>
     /// <param name="Item">
-    ///   Pointer to the item that need to be extracted.
+    ///   The item that need to be extracted.
     /// </param>
     /// <param name="Direction">
     ///   Direction of search loop.
@@ -2694,7 +2712,7 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Randomly shuffles list.
+    ///   Randomly shuffles the list.
     /// </summary>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     procedure Shuffle;
@@ -2703,7 +2721,7 @@ type
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Randomly shuffles list.
+    ///   Randomly shuffles the list.
     /// </summary>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     procedure BestShuffle;
@@ -2728,6 +2746,18 @@ type
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     function ChainToString: String;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Returns user friendly text representation of integer list e.g. "[21, 14, 7, 3, 1]".
+    /// </summary>
+    /// <returns>
+    ///   Returns user friendly text representation of integer list.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function ChainToUserFriendlyString: String; inline;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -3612,7 +3642,28 @@ type
     ///   Returns pointer to the extracted item or nil if nothing was found.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function Extract(Item: TIntProbItem): PIntProbItem; inline;
+    function Extract(Item: TIntProbItem): PIntProbItem; overload; inline;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Performs extraction operation for specified <i>Item's value</i>.
+    ///   In other words, removes a item with specified item''s value from the
+    ///   list. Call Extract to remove an item from the list. After the item is
+    ///   removed, all the objects that follow it are moved up in index position
+    ///   and Count is decremented. To remove the reference to an item without
+    //    deleting the entry from the Items array and changing the Count, set
+    ///   the Items property for Index to <i>nil</i>.
+    /// </summary>
+    /// <param name="Value">
+    ///   The item's value of the item that need to be extracted.
+    /// </param>
+    /// <returns>
+    ///   Returns pointer to the extracted item or nil if nothing was found.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function Extract(Value: TIntProbValue): PIntProbItem; overload; inline;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -3626,7 +3677,7 @@ type
     ///   list.
     /// </summary>
     /// <param name="Item">
-    ///   Pointer to the item that need to be extracted.
+    ///   The item that need to be extracted.
     /// </param>
     /// <param name="Direction">
     ///   Direction of search loop.
@@ -3634,13 +3685,35 @@ type
     /// <returns>
     ///   Returns pointer to the extracted item or nil if nothing was found.
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function ExtractItem(Item: TIntProbItem; Direction: TDirection): PIntProbItem;
+    function ExtractItem(Item: TIntProbItem; Direction: TDirection): PIntProbItem; overload;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
-    ///   Searches for the first entry in the Items array with a specified value
+    ///   Removes and returns a list entry, looping through the list items in
+    ///   the specified direction. This function is identical to Extract, only
+    ///   that it allows you to specify in which Direction to search the list's
+    ///   value, which allows you to increase the performance of this operation
+    ///   if you know whether Value is towards the beginning or towards the end
+    ///   of the list.
+    /// </summary>
+    /// <param name="Value">
+    ///   The item's value of the item that need to be extracted.
+    /// </param>
+    /// <param name="Direction">
+    ///   Direction of search loop.
+    /// </param>
+    /// <returns>
+    ///   Returns pointer to the extracted item or nil if nothing was found.
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function ExtractItem(Value: TIntProbValue; Direction: TDirection): PIntProbItem; overload;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Searches for the first entry in the Items array with a specified item
     ///   and returns True if entry was found, otherwise returns False.
     /// </summary>
     /// <param name="Item">
@@ -3650,7 +3723,24 @@ type
     ///   Returns True if first entry was found, otherwise returns False.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function Exists(Item: TIntProbItem): Boolean; inline;
+    function Exists(Item: TIntProbItem): Boolean; overload; inline;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Searches for the first entry in the Items array with a specified
+    ///   item's value and returns True if entry was found, otherwise returns
+    ///   False.
+    /// </summary>
+    /// <param name="Value">
+    ///   The item's value that will be searched for.
+    /// </param>
+    /// <returns>
+    ///   Returns True if first entry was found, otherwise returns False.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function Exists(Value: TIntProbValue): Boolean; overload; inline;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -3823,7 +3913,7 @@ type
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
     ///   Returns the index of the first entry in the Items array with a
-    ///   specified value. Call IndexOf to get the index for entry in the Items
+    ///   specified item. Call IndexOf to get the index for entry in the Items
     ///   array. Specify the item as the Item parameter. The first item in the
     ///   array has index 0, the second item has index 1, and so on. If an item
     ///   is not in the list, IndexOf returns -1. If an entry appears more than
@@ -3834,10 +3924,32 @@ type
     /// </param>
     /// <returns>
     ///   Returns the index of the first entry in the Items array with a
+    ///   specified item or -1 if nothing was found.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function IndexOf(Item: TIntProbItem): SizeInt; overload;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Returns the index of the first entry in the Items array with a
+    ///   specified value. Call IndexOf to get the index for entry in the Items
+    ///   array. Specify the value as the Value parameter. The first item in the
+    ///   array has index 0, the second item has index 1, and so on. If the
+    ///   value is not in the list, IndexOf returns -1. If an entry appears more
+    ///   than once in the array, IndexOf returns the index of the first
+    ///   appearance.
+    /// </summary>
+    /// <param name="Value">
+    ///   The value that will be searched for.
+    /// </param>
+    /// <returns>
+    ///   Returns the index of the first entry in the Items array with a
     ///   specified value or -1 if nothing was found.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function IndexOf(Item: TIntProbItem): SizeInt;
+    function IndexOf(Value: TIntProbValue): SizeInt; overload;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -3860,7 +3972,31 @@ type
     ///   was found.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function IndexOfItem(Item: TIntProbItem; Direction: TDirection): SizeInt;
+    function IndexOfItem(Item: TIntProbItem; Direction: TDirection): SizeInt; overload;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Returns the item's index. Call IndexOfItem to determine the location
+    ///   of an item with specified Value in the TIntegerProbabilityList list,
+    ///   using a linear search. If the value is not found in item array, -1 is
+    ///   returned. To increase the performance of this operation, if you know
+    ///   whether Item with specified value is towards the beginning or towards
+    ///   the end of the list you can use Direction parameter.
+    /// </summary>
+    /// <param name="Value">
+    ///   The value that will be searched for.
+    /// </param>
+    /// <param name="Direction">
+    ///   Direction of search loop.
+    /// </param>
+    /// <returns>
+    ///   Returns index position of the item which have specified Value that was
+    ///   found or -1 when nothing was found.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function IndexOfItem(Value: TIntProbValue; Direction: TDirection): SizeInt; overload;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -3946,7 +4082,29 @@ type
     ///   was found.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function Remove(Item: TIntProbItem): SizeInt; inline;
+    function Remove(Item: TIntProbItem): SizeInt; overload; inline;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Deletes the first reference to the Item parameter from the Items
+    ///   array. Call Remove to remove a specific item from the Items array
+    ///   when its index is unknown. The value returned is the index of the
+    ///   item in the Items array before it was removed. After an item is
+    ///   removed, all the items that follow it are moved up in index position
+    ///   and the Count is reduced by one. If the Items array contains more
+    ///   than one copy of the entry, only the first copy is deleted.
+    /// </summary>
+    /// <param name="Item">
+    ///   The item that will be removed from the list.
+    /// </param>
+    /// <returns>
+    ///   Returns index position of removed item from the list or -1 if nothing
+    ///   was found.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function Remove(Value: TIntProbValue): SizeInt; overload; inline;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -3970,7 +4128,31 @@ type
     ///   was found.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function RemoveItem(Item: TIntProbItem; Direction: TDirection): SizeInt;
+    function RemoveItem(Item: TIntProbItem; Direction: TDirection): SizeInt; overload;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Removes the first occurrence of value, looping through the list items
+    ///   in the specified direction. In other words, it removes the first or
+    ///   last occurrence of Value depending on the specified Direction.
+    ///   RemoveItem is identical to Remove, only that it allows you to specify
+    ///   in which Direction to search the list, so that you can remove the
+    ///   last occurrence instead of the first one.
+    /// </summary>
+    /// <param name="Item">
+    ///   The item that will be searched for.
+    /// </param>
+    /// <param name="Direction">
+    ///   Direction of search loop.
+    /// </param>
+    /// <returns>
+    ///   Returns index position of removed item from the list or -1 if nothing
+    ///   was found.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function RemoveItem(Value: TIntProbValue; Direction: TDirection): SizeInt; overload;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -4081,6 +4263,19 @@ type
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     function SameAs(const Other: TIntegerProbabilityList): Boolean;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+    {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+    /// <summary>
+    ///   Returns user friendly text representation of integer probability list
+    ///   e.g. "[[21, 1.0], [14, 0.5], [7, 0.25], [3, 0.75], [1, 1.0]]".
+    /// </summary>
+    /// <returns>
+    ///   Returns user friendly text representation of integer probability list.
+    /// </returns>
+    {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+    function ChainToUserFriendlyString: String;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -4937,6 +5132,42 @@ end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+procedure TBCList.BestShuffle;
+var
+  TmpList: TBCList;
+  Idx: SizeUInt;
+begin
+  { (1) Create temporary list TmpList. }
+  TmpList := TBCList.Create;
+  try
+    { (2) Copy all of the entries of the list to TmpList. }
+    TmpList.CopyFrom(Self);
+
+    { (3) Clear the list. }
+    Clear;
+
+    { (4) Shuffle the list by randomly adding entries from TmpList. }
+
+    { (4.1) While TmpList.Count is greater than 0, ... }
+    while (TmpList.Count > 0) do
+    begin
+      { (4.2) Get random value in range [0..TmpList.Count - 1]. }
+      Idx := Random(TmpList.Count);
+
+      { (4.3) Add entry with random Idx to the list. }
+      Add(TmpList[Idx]);
+
+      { (4.4) Delete added entry from TmpList. }
+      TmpList.Delete(Idx);
+    end;
+  finally
+    { (5) Finally release temporary TmpList. }
+    TmpList.Free;
+  end;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
 procedure TBCList.Clear;
 begin
   { (1) Set count to 0. }
@@ -5529,6 +5760,16 @@ end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+procedure TBCList.Shuffle;
+var
+  I: SizeUInt;
+begin
+  for I := HighIndex downto (LowIndex + 1) do
+    Exchange(I, SizeUInt(Random(I + 1)));
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
 procedure TBCList.Sort(Compare: TListSortCompare);
 begin
   { If the list contains at least two items, then ... }
@@ -5666,7 +5907,10 @@ begin
   { (1) Assign other list to this list. }
   FList.Assign(Other.List, laCopy);
 
-  { (2) Save FFirst and FLast pointers. }
+  { (2) Set NeedRelease flag the same like in Other list. }
+  FList.NeedRelease := Other.List.NeedRelease;
+
+  { (3) Save FFirst and FLast pointers. }
   FFirst := Other.First;
   FLast := Other.Last;
 end;
@@ -5744,6 +5988,13 @@ begin
 
   { (4) Release enumerator. }
   It.Free;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerList.ChainToUserFriendlyString: String;
+begin
+  Result := '[' + ChainToString + ']';
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -6609,7 +6860,10 @@ begin
   { (1) Assign other list to this list. }
   FList.Assign(Other.List, laCopy);
 
-  { (2) Save FFirst and FLast pointers. }
+  { (2) Set NeedRelease flag the same like Other list. }
+  FList.NeedRelease := Other.List.NeedRelease;
+
+  { (3) Save FFirst and FLast pointers. }
   FFirst := Other.First;
   FLast := Other.Last;
 end;
@@ -6660,6 +6914,42 @@ begin
   finally
     { (8) Finally release temporary TmpList. }
     TmpList.Free;
+  end;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.ChainToUserFriendlyString: String;
+var
+  It: TEnumerator;
+  FS: TFormatSettings;
+begin
+  { (1) Set Result to ''. }
+  Result := '[';
+
+  { (2) Prepare format fettings. }
+  FS := TFormatSettings.Create;
+  FS.DecimalSeparator := '.';
+
+  { (3) Retrieve list's enumerator. }
+  It := GetEnumerator;
+  try
+    { (3.1) Itterate throu the list using enumerator and: }
+    while It.MoveNext do
+    begin
+      { (3.2) Append current entry of enumerator as string. }
+      Result := Result + '[' + IntToStr(It.Current.Value) + ', ' + FloatToStrF(It.Current.Probability, ffFixed, 7, 4, FS) + ']';
+
+      { (3.3) If we didn't read end of the list, append ',' character to the
+              Result string. }
+      if (It.Index < FList.Count - 1) then
+        Result := Result + ', ';
+    end;
+
+    Result := Result + ']';
+  finally
+    { (4) Release enumerator. }
+    It.Free;
   end;
 end;
 
@@ -6824,6 +7114,13 @@ end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+function TIntegerProbabilityList.Exists(Value: TIntProbValue): Boolean;
+begin
+  Result := (IndexOf(Value) <> -1);
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
 function TIntegerProbabilityList.Exists(Item: TIntProbItem): Boolean;
 begin
   Result := (IndexOf(Item) <> -1);
@@ -6855,6 +7152,15 @@ end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+function TIntegerProbabilityList.Extract(Value: TIntProbValue): PIntProbItem;
+begin
+  { Call ExtractItem() with FromBeginning direction and return its value in
+    Result. }
+  Result := ExtractItem(Value, FromBeginning);
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
 function TIntegerProbabilityList.ExtractItem(Item: TIntProbItem; Direction: TDirection): PIntProbItem;
 var
   I: SizeInt;
@@ -6870,6 +7176,38 @@ begin
   begin
     { (3.2) Store list's entry as a Result. }
     Result := PIntProbItem(@Item);
+
+    { (3.3) Set nil to list's entry that we found. }
+    FList[I] := nil;
+
+    { (3.4) Perform proper removal of the item from the list. }
+    Delete(I);
+
+    FList.Notify(@Result, lnExtracted);
+
+    { (3.5) Update FFirst and FLast pointers. }
+    FFirst := FList.First;
+    FLast := FList.Last;
+  end;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.ExtractItem(Value: TIntProbValue; Direction: TDirection): PIntProbItem;
+var
+  I: SizeInt;
+begin
+  { (1) For new set Result variable as nil. }
+  Result := nil;
+
+  { (2) Search for specified Item throu all entries using specified Direction. }
+  I := IndexOfItem(Value, Direction);
+
+  { (3.1) If something was found: }
+  if (I >= 0) then
+  begin
+    { (3.2) Store list's entry as a Result. }
+    Result := PIntProbItem(FList[I]);
 
     { (3.3) Set nil to list's entry that we found. }
     FList[I] := nil;
@@ -7211,6 +7549,75 @@ end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+function TIntegerProbabilityList.IndexOf(Value: TIntProbValue): SizeInt;
+var
+  P: PPointer;
+begin
+  { (1) If FList.Count is greater than 0, then: }
+  if (FList.Count > 0) then
+  begin
+    { (2) Store pointer of the FList.List in P variable. }
+    P := Pointer(FList.List);
+
+    { (3.1) Itterate Result from FList.LowIndex to FList.HighIndex. }
+    for Result := FList.LowIndex to FList.HighIndex do
+    begin
+      { (3.2) Cast the double pointer P to proper type and compare it with
+              searched entry. If comparison is successful, exit from this
+              function. Return value is set already by for-loop. }
+      if (PIntProbItem(Pointer(P)^)^.Value = Value) then
+        Exit;
+
+      { (3.3) Increment the P double pointer. }
+      Inc(P);
+    end;
+  end;
+
+  { (4) If we reach this point, we didn't found specified Item so return -1. }
+  Result := -1;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.IndexOfItem(Value: TIntProbValue; Direction: TDirection): SizeInt;
+var
+  P: PPointer;
+begin
+  { (1) If specified Direction is equal to FromBeginning, call
+          IndexOf(Item). }
+  if (Direction = FromBeginning) then
+    Result := IndexOf(Value)
+  else
+    begin
+      { (2.1) Otherwise if FList.Count is greater than 0, then: }
+      if (FList.Count > 0) then
+      begin
+        { (2.2) Retrieve pointer to last item of the dynamic array and store it
+                in P variable. }
+        P := Pointer(@FList.List[FList.Count - 1]);
+
+        { (2.3.1) Itterate Result from FList.HighIndex downto FList.LowIndex. }
+        for Result := FList.HighIndex downto FList.LowIndex do
+        begin
+          { (2.3.2) Cast the double pointer P to proper type and compare it with
+                   searched entry. If comparison was successful, exit from this
+                   function. }
+          if (PIntProbItem(Pointer(P)^)^.Value = Value) then
+            Exit;
+
+          { (2.3.3) Decrement the P double pointer. }
+          Dec(P);
+        end;
+      end;
+
+      { (2.4) If we reach this point, we didn't found specified entry so return
+              -1. }
+      Result := -1;
+    end;
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
 function TIntegerProbabilityList.IndexOfItem(Item: TIntProbItem; Direction: TDirection): SizeInt;
 var
   P: PPointer;
@@ -7346,6 +7753,16 @@ end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+function TIntegerProbabilityList.Remove(Value: TIntProbValue): SizeInt;
+begin
+  { Search for first specified item's value using FromBeginning direction. If
+    found, delete it's item and return its position where it was in the list or
+    -1 if not found. }
+  Result := RemoveItem(Value, FromBeginning);
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
 procedure TIntegerProbabilityList.RemoveDuplicates;
 var
   I, K: Integer;
@@ -7354,7 +7771,7 @@ begin
     for K := (FList.Count - 1) downto (I + 1) do { Reverse loop allows to Remove items safely. }
       if ((PIntProbItem(FList[K])^.Value = PIntProbItem(FList[I])^.Value) and
           (PIntProbItem(FList[K])^.Probability = PIntProbItem(FList[I])^.Probability)) then
-        Delete(K);
+        Delete(SizeUInt(K));
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -7368,7 +7785,21 @@ begin
 
   { (2) If Result is greater or equal to 0, call Delete(Result). }
   if (Result >= 0) then
-    Delete(Result);
+    Delete(SizeUInt(Result));
+end;
+
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+function TIntegerProbabilityList.RemoveItem(Value: TIntProbValue; Direction: TDirection): SizeInt;
+begin
+  { (1) Search for the first specified item's value in the list using specified
+        Direction of search and store its position in Result when found or -1
+        when not found. }
+  Result := IndexOfItem(Value, Direction);
+
+  { (2) If Result is greater or equal to 0, call Delete(Result). }
+  if (Result >= 0) then
+    Delete(SizeUInt(Result));
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
