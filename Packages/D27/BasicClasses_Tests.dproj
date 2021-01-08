@@ -129,8 +129,9 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="..\..\Tests\BasicClassesTests.pas"/>
-        <DCCReference Include="..\..\Tests\BasicClassesListsTests.pas"/>
+        <DCCReference Include="..\..\Tests\BasicClasses_TestCase.pas"/>
+        <DCCReference Include="..\..\Tests\BasicClasses_Lists_TestCase.pas"/>
+        <DCCReference Include="..\..\Tests\BasicClasses_Streams_TestCase.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

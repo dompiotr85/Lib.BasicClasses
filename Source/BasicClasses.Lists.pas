@@ -12,10 +12,10 @@
 
  Version 0.1.3
 
- Copyright (c) 2018-2020, Piotr Domañski
+ Copyright (c) 2018-2021, Piotr Domañski
 
  Last change:
-   28-12-2020
+   08-01-2021
 
  Changelog:
    For detailed changelog and history please refer to this git repository:
@@ -48,11 +48,15 @@ uses
   TypeDefinitions,
   BasicClasses;
 
-{===============================================================================
-  TCustomList - class declaration
-===============================================================================}
+{$IFDEF FPC}
+type
+  TListSortCompareFunc = function (Item1, Item2: Pointer): Integer;
+{$ENDIF !FPC}
 
-{$IFDEF SUPPORTS_REGION}{$REGION 'TCustomList declaration'}{$ENDIF}
+{- TCustomList - class definition - - - - - - - - - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+{$IFDEF SUPPORTS_REGION}{$REGION 'TCustomList definition'}{$ENDIF}
 type
   {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
   /// <summary>
@@ -459,11 +463,10 @@ type
   end;
 {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
-{===============================================================================
-  TCustomMultiList - class declaration
-===============================================================================}
+{- TCustomMultiList - class definition  - - - - - - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
-{$IFDEF SUPPORTS_REGION}{$REGION 'TCustomMultiList declaration'}{$ENDIF}
+{$IFDEF SUPPORTS_REGION}{$REGION 'TCustomMultiList definition'}{$ENDIF}
 type
   {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
   /// <summary>
@@ -831,19 +834,18 @@ type
   end;
 {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
-{===============================================================================
-  TBCList - class declaration
-===============================================================================}
+{- TBCList - class definition - - - - - - - - - - - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
-{$IFDEF SUPPORTS_REGION}{$REGION 'TBCList declaration'}{$ENDIF}
+{$IFDEF SUPPORTS_REGION}{$REGION 'TBCList definition'}{$ENDIF}
 
 type
   {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
   /// <summary>
-  ///   TBCList exception class.
+  ///   Dynamic array of pointers.
   /// </summary>
   {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-  EBCListError = class(Exception);
+  TPointerArray = array of Pointer;
 
   {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -997,7 +999,7 @@ type
     ///   Dynamic list of pointers.
     /// </summary>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    FList: TPointerList;
+    FList: TPointerArray;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -1134,7 +1136,7 @@ type
 
   public
     type
-      TDirection = System.Types.TDirection;
+      TDirection = {$IFDEF HAS_UNITSCOPE}System.{$ENDIF}Types.TDirection;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -1320,7 +1322,7 @@ type
     /// <returns>
     ///   Returns pointer to the extracted item or nil if nothing was found.
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function ExtractItem(Item: Pointer; Direction: TDirection): Pointer;
+    function ExtractItem(Item: Pointer; Direction: TBCList.TDirection): Pointer;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -1367,7 +1369,7 @@ type
     ///   calling Free() method.
     /// </remarks>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function GetEnumerator: TBCList.TEnumerator; inline;
+    function GetEnumerator: TBCList.TEnumerator; {$IFNDEF FPC}inline;{$ENDIF}
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -1386,7 +1388,7 @@ type
     ///   by calling its Free() method.
     /// </remarks>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function GetReverseEnumerator: TBCList.TReverseEnumerator; inline;
+    function GetReverseEnumerator: TBCList.TReverseEnumerator; {$IFNDEF FPC}inline;{$ENDIF}
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -1431,7 +1433,7 @@ type
     ///   was found.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function IndexOfItem(Item: Pointer; Direction: TDirection): SizeInt;
+    function IndexOfItem(Item: Pointer; Direction: TBCList.TDirection): SizeInt;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -1547,7 +1549,7 @@ type
     ///   was found.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function RemoveItem(Item: Pointer; Direction: TDirection): SizeInt;
+    function RemoveItem(Item: Pointer; Direction: TBCList.TDirection): SizeInt;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -1823,25 +1825,16 @@ type
     ///   </para>
     /// </summary>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    property List: TPointerList read FList;
+    property List: TPointerArray read FList;
   end;
 
 {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
-{===============================================================================
-  TIntegerList - class declaration
-===============================================================================}
+{- TIntegerList - class definition  - - - - - - - - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
-{$IFDEF SUPPORTS_REGION}{$REGION 'TIntegerList declaration'}{$ENDIF}
-
+{$IFDEF SUPPORTS_REGION}{$REGION 'TIntegerList definition'}{$ENDIF}
 type
-  {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
-  /// <summary>
-  ///   TIntegerList exception class.
-  /// </summary>
-  {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-  EIntegerListError = class(Exception);
-
   {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
   /// <summary>
   ///   Pointer to <see cref="BasicClasses|TIntItem" />.
@@ -2224,7 +2217,7 @@ type
 
   public
     type
-      TDirection = System.Types.TDirection;
+      TDirection = {$IFDEF HAS_UNITSCOPE}System.{$ENDIF}Types.TDirection;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -2401,7 +2394,7 @@ type
     /// <returns>
     ///   Returns pointer to the extracted item or nil if nothing was found.
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function ExtractItem(Item: TIntItem; Direction: TDirection): PIntItem;
+    function ExtractItem(Item: TIntItem; Direction: TIntegerList.TDirection): PIntItem;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -2432,7 +2425,7 @@ type
     ///   nil will be returned.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function First: PIntItem; inline;
+    function First: PIntItem; {$IFNDEF FPC}inline;{$ENDIF}
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -2465,7 +2458,7 @@ type
     ///   calling Free() method.
     /// </remarks>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function GetEnumerator: TIntegerList.TEnumerator; inline;
+    function GetEnumerator: TIntegerList.TEnumerator; {$IFNDEF FPC}inline;{$ENDIF}
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -2485,7 +2478,7 @@ type
     ///   by calling its Free() method.
     /// </remarks>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function GetReverseEnumerator: TIntegerList.TReverseEnumerator; inline;
+    function GetReverseEnumerator: TIntegerList.TReverseEnumerator; {$IFNDEF FPC}inline;{$ENDIF}
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -2529,7 +2522,7 @@ type
     ///   was found.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function IndexOfItem(Item: TIntItem; Direction: TDirection): SizeInt;
+    function IndexOfItem(Item: TIntItem; Direction: TIntegerList.TDirection): SizeInt;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -2639,7 +2632,7 @@ type
     ///   was found.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function RemoveItem(Item: TIntItem; Direction: TDirection): SizeInt;
+    function RemoveItem(Item: TIntItem; Direction: TIntegerList.TDirection): SizeInt;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -3034,22 +3027,11 @@ type
 
 {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
-{===============================================================================
-  TIntegerProbabilityList - class declaration
-===============================================================================}
+{- TIntegerProbabilityList - class definition - - - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
 {$IFDEF SUPPORTS_REGION}{$REGION 'TIntegerProbabilityList'}{$ENDIF}
-
 type
-  {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
-  /// <summary>
-  ///   TIntegerProbabilityList exception class.
-  /// </summary>
-  {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-  EIntegerProbabilityListError = class(Exception);
-
-  {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
-
   {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
   /// <summary>
   ///   Pointer to <see cref="BasicClasses|TIntProbItem" />.
@@ -3066,7 +3048,12 @@ type
   ///   set this up.
   /// </summary>
   {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-  TIntProbValue = {$IFDEF BC_IntegerProbabilityListUsesStdInt}StdInt{$ELSE}Integer{$ENDIF};
+{$IFDEF BC_IntegerProbabilityListUsesStdInt}
+  TIntProbValue = StdInt;
+{$ELSE !BC_IntegerProbabilityListUsesStdInt}
+  TIntProbValue = Integer;
+{$ENDIF !BC_IntegerProbabilityListUsesStdInt}
+(*  TIntProbValue = {$IFDEF BC_IntegerProbabilityListUsesStdInt}StdInt{$ELSE}Integer{$ENDIF};*)
 
   {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -3103,7 +3090,7 @@ type
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     TIntProbItem = record
       Value: TIntProbValue;
-      Probability: Float;
+      Probability: {$IFDEF FPC}Single{$ELSE}Float{$ENDIF};
     end;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -3460,7 +3447,7 @@ type
     ///   Returns probability value for specified Value.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function GetProbability(const Value: TIntProbValue): Float;
+    function GetProbability(const Value: TIntProbValue): {$IFDEF FPC}Single{$ELSE}Float{$ENDIF};
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -3475,16 +3462,17 @@ type
     ///   New probability value.
     /// </param>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    procedure SetProbability(const Value: TIntProbValue; const NewProbability: Float);
+    procedure SetProbability(const Value: TIntProbValue; const NewProbability: {$IFDEF FPC}Single{$ELSE}Float{$ENDIF});
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
   public
     type
-      TDirection = System.Types.TDirection;
+      TDirection = {$IFDEF HAS_UNITSCOPE}System.{$ENDIF}Types.TDirection;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+  public
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
     ///   Default constructor.
@@ -3503,7 +3491,6 @@ type
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
-
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
     ///   Adds new entry to the end of the list and returns its new index
@@ -3519,7 +3506,7 @@ type
     ///   Returns index position of newly added entry.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function Add(NewValue: TIntProbValue; const NewProbability: Float = 1.0): SizeUInt;
+    function Add(NewValue: TIntProbValue; const NewProbability: {$IFDEF FPC}Single{$ELSE}Float{$ENDIF} = 1.0): SizeUInt;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -3755,7 +3742,7 @@ type
     ///   nil will be returned.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function First: PIntProbItem; inline;
+    function First: PIntProbItem; {$IFNDEF FPC}inline;{$ENDIF}
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -3785,7 +3772,7 @@ type
     ///   New probability value.
     /// </param>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    procedure Include(Value: TIntProbValue; NewProbability: Float = 1.0);
+    procedure Include(Value: TIntProbValue; NewProbability: {$IFDEF FPC}Single{$ELSE}Float{$ENDIF} = 1.0);
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -3815,7 +3802,7 @@ type
     ///   scaled by.
     /// </param>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    procedure ScaleProbability(Value: TIntProbValue; Scale: Float);
+    procedure ScaleProbability(Value: TIntProbValue; Scale: {$IFDEF FPC}Single{$ELSE}Float{$ENDIF});
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -3832,7 +3819,7 @@ type
     ///   scaled by.
     /// </param>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    procedure ScaleProbabilityExcept(Value: TIntProbValue; Scale: Float);
+    procedure ScaleProbabilityExcept(Value: TIntProbValue; Scale: {$IFDEF FPC}Single{$ELSE}Float{$ENDIF});
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -3885,7 +3872,7 @@ type
     ///   calling Free() method.
     /// </remarks>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function GetEnumerator: TIntegerProbabilityList.TEnumerator; inline;
+    function GetEnumerator: TIntegerProbabilityList.TEnumerator; {$IFNDEF FPC}inline;{$ENDIF}
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -3906,7 +3893,7 @@ type
     ///   by calling its Free() method.
     /// </remarks>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function GetReverseEnumerator: TIntegerProbabilityList.TReverseEnumerator; inline;
+    function GetReverseEnumerator: TIntegerProbabilityList.TReverseEnumerator; {$IFNDEF FPC}inline;{$ENDIF}
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -4019,7 +4006,7 @@ type
     ///   The new Item that will be inserted into the list.
     /// </param>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    procedure Insert(Index: SizeUInt; NewValue: TIntProbValue; const NewProbability: Float = 1.0);
+    procedure Insert(Index: SizeUInt; NewValue: TIntProbValue; const NewProbability: {$IFDEF FPC}Single{$ELSE}Float{$ENDIF} = 1.0);
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -4128,7 +4115,7 @@ type
     ///   was found.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function RemoveItem(Item: TIntProbItem; Direction: TDirection): SizeInt; overload;
+    function RemoveItem(Item: TIntProbItem; Direction: TIntegerProbabilityList.TDirection): SizeInt; overload;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -4152,7 +4139,7 @@ type
     ///   was found.
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-    function RemoveItem(Value: TIntProbValue; Direction: TDirection): SizeInt; overload;
+    function RemoveItem(Value: TIntProbValue; Direction: TIntegerProbabilityList.TDirection): SizeInt; overload;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -4489,7 +4476,7 @@ type
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
-    property Probability[const Value: TIntProbValue]: Float read GetProbability write SetProbability;
+    property Probability[const Value: TIntProbValue]: {$IFDEF FPC}Single{$ELSE}Float{$ENDIF} read GetProbability write SetProbability;
 
     {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -4507,9 +4494,8 @@ type
 
 {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
-{===============================================================================
-  General routines definition
-===============================================================================}
+{- General routines definition - - - - - - - - - - - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
 {$IFDEF SUPPORTS_REGION}{$REGION 'General routines definition'}{$ENDIF}
 
@@ -4518,7 +4504,7 @@ type
 ///   Performs sorting of SortList array using QuickSort algorithm.
 /// </summary>
 {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-procedure QuickSort(SortList: TPointerList; L, R: Integer; const SCompare: TListSortCompareFunc);
+procedure QuickSort(SortList: TPointerArray; L, R: Integer; const SCompare: TListSortCompareFunc);
 
 {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
@@ -4528,16 +4514,14 @@ uses
 {$IF (DEFINED(Windows) AND DEFINED(PurePascal))}
   {$IFDEF HAS_UNITSCOPE}Winapi.Windows{$ELSE}Windows{$ENDIF},
 {$IFEND}
-  {$IFDEF HAS_UNITSCOPE}System.SyncObjs{$ELSE}SyncObjs{$ENDIF},
   {$IFDEF HAS_UNITSCOPE}System.Math{$ELSE}Math{$ENDIF},
   BasicClasses.Consts;
 
-{===============================================================================
-  General routines implementation
-===============================================================================}
+{- General routines implementation - - - - - - - - - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
 {$IFDEF SUPPORTS_REGION}{$REGION 'General routines implementation'}{$ENDIF}
-procedure QuickSort(SortList: TPointerList; L, R: Integer; const SCompare: TListSortCompareFunc);
+procedure QuickSort(SortList: TPointerArray; L, R: Integer; const SCompare: TListSortCompareFunc);
 var
   I, J: Integer;
   P, T: Pointer;
@@ -4600,9 +4584,8 @@ begin
 end;
 {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
-{===============================================================================
-  TCustomList - class implementation
-===============================================================================}
+{- TCustomList - class implementation  - - - - - - - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
 {$IFDEF SUPPORTS_REGION}{$REGION 'TCustomList implementation'}{$ENDIF}
 const
@@ -4699,9 +4682,8 @@ begin
 end;
 {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
-{===============================================================================
-  TCustomMultiList - class implementation
-===============================================================================}
+{- TCustomMultiList - class implementation - - - - - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
 {$IFDEF SUPPORTS_REGION}{$REGION 'TCustomMultiList implementation'}{$ENDIF}
 function TCustomMultiList.CheckIndex(Index, ListIndex: SizeUInt): Boolean;
@@ -4734,8 +4716,7 @@ begin
       FListGrowSettings[I] := Source.ListGrowSettings[I];
   end else
     { ... else raise error about list count mismatch. }
-    raise EBCIncompatibleClass.CreateFmt(
-      SCustomMultiList_ListCountMismatch, ['TCustomMultiList.CopyGrowSettings', Self.ListCount, Source.ListCount]);
+    raise ECustomMultiList.CreateFmt(SCustomMultiList_ListCountMismatch, ['TCustomMultiList.CopyGrowSettings', Self.ListCount, Source.ListCount]);
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -4786,7 +4767,7 @@ begin
     Result := FListGrowSettings[Index]
   else
     { Otherwise raise Index Out of Bounds error. }
-    raise EBCIndexOutOfBounds.CreateFmt(SCustomMultiList_IndexOutOfBounds, ['SCustomMultiList.GetListGrowSettings', Index]);
+    raise ECustomMultiList.CreateFmt(SCustomMultiList_IndexOutOfBounds, ['SCustomMultiList.GetListGrowSettings', Index]);
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -4799,7 +4780,7 @@ begin
     Result := Addr(FListGrowSettings[Index])
   else
     { Otherwise raise Index Out of Bounds error. }
-    raise EBCIndexOutOfBounds.CreateFmt(SCustomMultiList_IndexOutOfBounds, ['TCustomMultiList.GetListGrowSettingsPtr', Index]);
+    raise ECustomMultiList.CreateFmt(SCustomMultiList_IndexOutOfBounds, ['TCustomMultiList.GetListGrowSettingsPtr', Index]);
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -4854,7 +4835,7 @@ begin
     end;
   end else
     { Raise Index Out of Bounds error. }
-    EBCIndexOutOfBounds.CreateFmt(SCustomMultiList_IndexOutOfBounds, ['TCustomMultiList.Grow', Index]);
+    ECustomMultiList.CreateFmt(SCustomMultiList_IndexOutOfBounds, ['TCustomMultiList.Grow', Index]);
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -4881,7 +4862,7 @@ var
 begin
   { (1) if Value is other than length of FListGrowSettings and Value is greater
         or equal to 0, then: }
-  if ((Value <> Length(FListGrowSettings)) and (Value >= 0)) then
+  if (Value <> Length(FListGrowSettings)) then
   begin
     { (2) Store current length of FListGrowSettings in OldCount. }
     OldCount := Length(FListGrowSettings);
@@ -4908,7 +4889,7 @@ begin
     FListGrowSettings[Index] := Value
   else
     { Otherwise raise Index Out of Bounds error. }
-    raise EBCIndexOutOfBounds.CreateFmt(SCustomMultiList_IndexOutOfBounds, ['TCustomMultiList.SetListGrowSettings', Index]);
+    raise ECustomMultiList.CreateFmt(SCustomMultiList_IndexOutOfBounds, ['TCustomMultiList.SetListGrowSettings', Index]);
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -4936,13 +4917,12 @@ begin
       end;
   end else
     { (1.2) Otherwise raise Index Out of Bounds error. }
-    EBCIndexOutOfBounds.CreateFmt(SCustomMultiList_IndexOutOfBounds, ['TCustomMultiList.Shrink', Index]);
+    ECustomMultiList.CreateFmt(SCustomMultiList_IndexOutOfBounds, ['TCustomMultiList.Shrink', Index]);
 end;
 {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
-{===============================================================================
-  TBCList - class implementation
-===============================================================================}
+{- TBCList - class implementation  - - - - - - - - - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
 {$IFDEF SUPPORTS_REGION}{$REGION 'TBCList implementation'}{$ENDIF}
 
@@ -5152,7 +5132,7 @@ begin
     while (TmpList.Count > 0) do
     begin
       { (4.2) Get random value in range [0..TmpList.Count - 1]. }
-      Idx := Random(TmpList.Count);
+      Idx := SizeUInt(Random(Integer(TmpList.Count)));
 
       { (4.3) Add entry with random Idx to the list. }
       Add(TmpList[Idx]);
@@ -5222,7 +5202,7 @@ var
 begin
   { (1) If Index is greater or equal to FCount, raise list index error. }
   if (Index >= FCount) then
-    Error(@SBCList_ListIndexError, 'TBCList.Delete', Index);
+    Error(@SBCList_ListIndexOutOfBounds, 'TBCList.Delete', Index);
 
   { (2) Store the item in temporary Temp variable. }
   Temp := FList[Index];
@@ -5259,7 +5239,11 @@ end;
 class procedure TBCList.Error(Msg: PResStringRec; const Method: String; Data: NativeInt);
 begin
   { Raise error. }
+{$IFDEF FPC}
+  raise EBCListError.CreateFmt(LoadResString(Msg), [Method, Data]) at @TBCList.Error;
+{$ELSE !FPC}
   raise EBCListError.CreateFmt(LoadResString(Msg), [Method, Data]) at ReturnAddress;
+{$ENDIF !FPC}
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -5267,7 +5251,11 @@ end;
 class procedure TBCList.Error(const Msg, Method: String; Data: NativeInt);
 begin
   { Raise error. }
+{$IFDEF FPC}
+  raise EBCListError.CreateFmt(Msg, [Method, Data]) at @TBCList.Error;
+{$ELSE !FPC}
   raise EBCListError.CreateFmt(Msg, [Method, Data]) at ReturnAddress;
+{$ENDIF !FPC}
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -5279,9 +5267,9 @@ begin
   { (1) Raise list index error if Index1 and Index2 variables are out of
         bounds. }
   if (Index1 >= FCount) then
-    Error(@SBCList_ListIndexError, 'TBCList.Exchange', Index1);
+    Error(@SBCList_ListIndexOutOfBounds, 'TBCList.Exchange', Index1);
   if (Index2 >= FCount) then
-    Error(@SBCList_ListIndexError, 'TBCList.Exchange', Index2);
+    Error(@SBCList_ListIndexOutOfBounds, 'TBCList.Exchange', Index2);
 
   { (2) Make simple position exchange of two items with help of temporary Temp
         variable. }
@@ -5381,7 +5369,7 @@ begin
   { (1.1) If specified Index is greater or equal than FCount value, then ... }
   if (Index >= FCount) then
     { (1.2) ... raise list index out of bound error. }
-    Error(@SBCList_ListIndexError, 'TBCList.GetItem', Index);
+    Error(@SBCList_ListIndexOutOfBounds, 'TBCList.GetItem', Index);
 
   { (2) Return item with Index position from the dynamic array. }
   Result := FList[Index];
@@ -5425,7 +5413,8 @@ begin
   if (FCount > 0) then
   begin
     { (2) Store pointer to the dynamic array FList in P variable. }
-    P := Pointer(FList);
+    //P := Pointer(FList);
+    P := PPointer(FList);
 
     { (3.1) Itterate from 0 to (FCount - 1) and save that value in Result: }
     for Result := 0 to (FCount - 1) do
@@ -5452,7 +5441,7 @@ var
 begin
   { (1.1) If specified Direction is equal to FromBeginning, call
           IndexOf(Item). }
-  if (Direction = FromBeginning) then
+  if (Direction = TBCList.TDirection.FromBeginning) then
     Result := IndexOf(Item)
   else
     begin
@@ -5489,7 +5478,7 @@ procedure TBCList.Insert(Index: SizeUInt; Item: Pointer);
 begin
   { (1) Raise list index error if Index is greater than FCount. }
   if (Index > FCount) then
-    Error(@SBCList_ListIndexError, 'TBCList.Insert', Index);
+    Error(@SBCList_ListIndexOutOfBounds, 'TBCList.Insert', Index);
 
   { (2) If FCount is equal to FCapacity, grow the capacity. }
   if (FCount = FCapacity) then
@@ -5524,7 +5513,7 @@ begin
   else
     begin
       { (1.2) Otherwise raise list index error and return nil. }
-      Error(@SBCList_ListIndexError, 'TBCList.Last', 0);
+      Error(@SBCList_ListIndexOutOfBounds, 'TBCList.Last', 0);
       Result := nil;
     end;
 end;
@@ -5551,7 +5540,7 @@ begin
     { (2.1) If NewIndex is greater or equal to FCount, then raise list index
             error. }
     if (NewIndex >= FCount) then
-      Error(@SBCList_ListIndexError, 'TBCList.Move', NewIndex);
+      Error(@SBCList_ListIndexOutOfBounds, 'TBCList.Move', NewIndex);
 
     { (2.2) Retrieve item from CurIndex position of the dynamic array and store
             it in Temp variable. }
@@ -5662,7 +5651,7 @@ procedure TBCList.SetCapacity(NewCapacity: SizeUInt);
 begin
   { (1) If NewCapacity is smaller than FCount, raise list capacity error. }
   if (NewCapacity < FCount) then
-    Error(@SBCList_ListCapacityError, 'TBCList.SetCapacity', NewCapacity);
+    Error(@SBCList_ListCapacityOutOfBounds, 'TBCList.SetCapacity', NewCapacity);
 
   { (2.1) If NewCapacity isn't equal to FCapacity, ... }
   if (NewCapacity <> FCapacity) then
@@ -5729,7 +5718,7 @@ var
 begin
   { (1) If specified Index is out of bounds, raise out of bounds error. }
   if (Index >= FCount) then
-    Error(@SBCList_ListIndexError, 'TBCList.SetItem', Index);
+    Error(@SBCList_ListIndexOutOfBounds, 'TBCList.SetItem', Index);
 
   { (2) Validate that new Item is different than stored one and execute further
         code only if validation was True. }
@@ -5765,7 +5754,7 @@ var
   I: SizeUInt;
 begin
   for I := HighIndex downto (LowIndex + 1) do
-    Exchange(I, SizeUInt(Random(I + 1)));
+    Exchange(I, SizeUInt(Random(Integer(I) + 1)));
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -5775,11 +5764,15 @@ begin
   { If the list contains at least two items, then ... }
   if (Count > 1) then
     { ... perform sorting of the list using QuickSort algorithm. }
+{$IFDEF FPC}
+    QuickSort(FList, 0, Count - 1, Compare);
+{$ELSE !FPC}
     QuickSort(FList, 0, Count - 1,
-      function(Item1, Item2: Pointer): Integer
+      function (Item1, Item2: Pointer): Integer
       begin
         Result := Compare(Item1, Item2);
       end);
+{$ENDIF !FPC}
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -5793,9 +5786,8 @@ begin
 end;
 {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
-{===============================================================================
-  TIntegerList - class implementation
-===============================================================================}
+{- TIntegerList - class implementation - - - - - - - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
 {$IFDEF SUPPORTS_REGION}{$REGION 'TIntegerList implementation'}{$ENDIF}
 
@@ -5877,7 +5869,7 @@ begin
   { If Action is equal to lnDeleted, dispose specified Ptr to prevent memory
     leakage. }
   if ((Action = lnDeleted) and (FNeedRelease)) then
-    Dispose(Ptr);
+    Dispose(PIntItem(Ptr));
 end;
 {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
@@ -5945,7 +5937,7 @@ begin
     while (TmpList.Count > 0) do
     begin
       { (6.2) Get random value in range [0..TmpList.Count - 1]. }
-      Idx := Random(TmpList.Count);
+      Idx := SizeUInt(Random(Integer(TmpList.Count)));
 
       { (6.3) Add entry with random Idx to the list. }
       Add(TmpList[Idx]);
@@ -6062,7 +6054,7 @@ begin
   { (1) Make sure that specified Index is not out of bound. If is, raise
         error. }
   if (Index >= FList.Count) then
-    Error(@SIntegerList_ListIndexError, 'TIntegerList.Delete', Index);
+    Error(@SIntegerList_ListIndexOutOfBounds, 'TIntegerList.Delete', Index);
 
   { (2) Delete entry from the list. }
   FList.Delete(Index);
@@ -6094,7 +6086,11 @@ end;
 class procedure TIntegerList.Error(Msg: PResStringRec; const Method: String; Data: NativeInt);
 begin
   { Raise error. }
+{$IFDEF FPC}
+  raise EIntegerListError.CreateFmt(LoadResString(Msg), [Method, Data]) at @TIntegerList.Error;
+{$ELSE !FPC}
   raise EIntegerListError.CreateFmt(LoadResString(Msg), [Method, Data]) at ReturnAddress;
+{$ENDIF !FPC}
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -6102,7 +6098,11 @@ end;
 class procedure TIntegerList.Error(const Msg, Method: String; Data: NativeInt);
 begin
   { Raise error. }
+{$IFDEF FPC}
+  raise EIntegerListError.CreateFmt(Msg, [Method, Data]) at @TIntegerList.Error;
+{$ELSE !FPC}
   raise EIntegerListError.CreateFmt(Msg, [Method, Data]) at ReturnAddress;
+{$ENDIF !FPC}
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -6112,9 +6112,9 @@ begin
   { (1) Raise list index error if Index1 and Index2 variables are out of
         bounds. }
   if (Index1 >= FList.Count) then
-    Error(@SIntegerList_ListIndexError, 'TIntegerList.Exchange', Index1);
+    Error(@SIntegerList_ListIndexOutOfBounds, 'TIntegerList.Exchange', Index1);
   if (Index2 >= FList.Count) then
-    Error(@SIntegerList_ListIndexError, 'TIntegerList.Exchange', Index2);
+    Error(@SIntegerList_ListIndexOutOfBounds, 'TIntegerList.Exchange', Index2);
 
   { (2) Exchange two entries. }
   FList.Exchange(Index1, Index2);
@@ -6151,7 +6151,7 @@ end;
 function TIntegerList.Extract(Item: TIntItem): PIntItem;
 begin
   { Call ExtractItem() with FromBeginning direction. }
-  Result := ExtractItem(Item, FromBeginning);
+  Result := ExtractItem(Item, TIntegerList.TDirection.FromBeginning);
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -6243,7 +6243,7 @@ function TIntegerList.GetItem(const Index: SizeUInt): TIntItem;
 begin
   { (1) Make sure that Index is in the bounds, if not then raise error. }
   if (Index >= FList.Count) then
-    Error(SIntegerList_ListIndexError, 'TIntegerList.GetItem', Index);
+    Error(SIntegerList_ListIndexOutOfBounds, 'TIntegerList.GetItem', Index);
 
   { (2) Return entry with Index position in the list. }
   Result := PIntItem(FList[Index])^;
@@ -6455,13 +6455,13 @@ end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
-function TIntegerList.IndexOfItem(Item: TIntItem; Direction: TDirection): SizeInt;
+function TIntegerList.IndexOfItem(Item: TIntItem; Direction: TIntegerList.TDirection): SizeInt;
 var
   P: PPointer;
 begin
   { (1.1) If specified Direction is equal to FromBeginning, call
           IndexOf(Item). }
-  if (Direction = FromBeginning) then
+  if (Direction = TIntegerList.TDirection.FromBeginning) then
     Result := IndexOf(Item)
   else
     begin
@@ -6501,7 +6501,7 @@ var
 begin
   { (1) If Index is greater than FList.Count, Raise out of bounds error. }
   if (Index > FList.Count) then
-    Error(@SIntegerList_ListIndexError, 'TIntegerList.Insert', Index);
+    Error(@SIntegerList_ListIndexOutOfBounds, 'TIntegerList.Insert', Index);
 
   { (2) Allocate memory for new pItem and copy its value from Item. }
   New(pItem);
@@ -6541,9 +6541,9 @@ begin
     { (2.1) Check that CurIndex and NewIndex aren't out of bounds. Raise error
             if needed. }
     if (CurIndex >= FList.Count) then
-      Error(@SIntegerList_ListIndexError, 'TIntegerList.Move', CurIndex);
+      Error(@SIntegerList_ListIndexOutOfBounds, 'TIntegerList.Move', CurIndex);
     if (NewIndex >= FList.Count) then
-      Error(@SIntegerList_ListIndexError, 'TIntegerList.Move', NewIndex);
+      Error(@SIntegerList_ListIndexOutOfBounds, 'TIntegerList.Move', NewIndex);
 
     { (2.2) Move entries in the list. }
     FList.Move(CurIndex, NewIndex);
@@ -6564,7 +6564,7 @@ begin
   { Search for first specified Item using FromBeginning direction. If found,
     delete it and return its position where it was in the list or -1 if not
     found. }
-  Result := RemoveItem(Item, FromBeginning);
+  Result := RemoveItem(Item, TIntegerList.TDirection.FromBeginning);
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -6622,7 +6622,7 @@ procedure TIntegerList.SetCapacity(NewCapacity: SizeUInt);
 begin
   { (1) If NewCapacity is smaller than FList.Count, raise list capacity error. }
   if (NewCapacity < FList.Count) then
-    Error(@SIntegerList_ListCapacityError, 'TIntegerList.SetCapacity', NewCapacity);
+    Error(@SIntegerList_ListCapacityOutOfBounds, 'TIntegerList.SetCapacity', NewCapacity);
 
   FList.Capacity := NewCapacity;
 end;
@@ -6668,7 +6668,7 @@ procedure TIntegerList.SetItem(const Index: SizeUInt; Item: TIntItem);
 begin
   { (1) If specified Index is out of bounds, raise out of bounds error. }
   if (Index >= FList.Count) then
-    Error(@SIntegerList_ListIndexError, 'TIntegerList.SetItem', Index);
+    Error(@SIntegerList_ListIndexOutOfBounds, 'TIntegerList.SetItem', Index);
 
   { (2) Set new item. }
   FList[Index] := @Item;
@@ -6716,7 +6716,7 @@ var
   I: SizeUInt;
 begin
   for I := FList.HighIndex downto (FList.LowIndex + 1) do
-    Exchange(I, SizeUInt(Random(I + 1)));
+    Exchange(I, SizeUInt(Random(Integer(I) + 1)));
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -6726,11 +6726,15 @@ begin
   { If the list contains at least two items, then ... }
   if (Count > 1) then
     { ... perform sorting of the list using QuickSort algorithm. }
+{$IFDEF FPC}
+    QuickSort(FList.List, FList.LowIndex, FList.HighIndex, Compare);
+{$ELSE !FPC}
     QuickSort(FList.List, FList.LowIndex, FList.HighIndex,
       function(Item1, Item2: Pointer): Integer
       begin
         Result := Compare(Item1, Item2);
       end);
+{$ENDIF !FPC}
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -6745,9 +6749,8 @@ end;
 
 {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
-{===============================================================================
-  TIntegerProbabilityList - class implementation
-===============================================================================}
+{- TIntegerProbabilityList - class implementation  - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
 {$IFDEF SUPPORTS_REGION}{$REGION 'TIntegerProbabilityList implementation'}{$ENDIF}
 
@@ -6829,13 +6832,13 @@ begin
   { If Action is equal to lnDeleted, dispose specified Ptr to prevent memory
     leakage. }
   if ((Action = lnDeleted) and (FNeedRelease)) then
-    Dispose(Ptr);
+    Dispose(PIntProbItem(Ptr));
 end;
 {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
-function TIntegerProbabilityList.Add(NewValue: TIntProbValue; const NewProbability: Float = 1.0): SizeUInt;
+function TIntegerProbabilityList.Add(NewValue: TIntProbValue; const NewProbability: {$IFDEF FPC}Single{$ELSE}Float{$ENDIF} = 1.0): SizeUInt;
 var
   pItem: PIntProbItem;
 begin
@@ -6899,7 +6902,7 @@ begin
     while (TmpList.Count > 0) do
     begin
       { (6.2) Get random value in range [0..TmpList.Count - 1]. }
-      Idx := Random(TmpList.Count);
+      Idx := Random(Integer(TmpList.Count));
 
       { (6.3) Add entry with random Idx to the list. }
       Item := TmpList[Idx];
@@ -6928,7 +6931,11 @@ begin
   Result := '[';
 
   { (2) Prepare format fettings. }
+{$IFDEF FPC}
+  FS := DefaultFormatSettings;
+{$ELSE !FPC}
   FS := TFormatSettings.Create;
+{$ENDIF !FPC}
   FS.DecimalSeparator := '.';
 
   { (3) Retrieve list's enumerator. }
@@ -7023,7 +7030,7 @@ begin
   { (1) Make sure that specified Index isn't out of bounds and if is, then raise
         error. }
   if (Index >= FList.Count) then
-    Error(@SIntegerProbabilityList_ListIndexError, 'TIntegerProbabilityList.Delete', Index);
+    Error(@SIntegerProbabilityList_ListIndexOutOfBounds, 'TIntegerProbabilityList.Delete', Index);
 
   { (2) Delete entry from the list. }
   FList.Delete(Index);
@@ -7055,7 +7062,11 @@ end;
 class procedure TIntegerProbabilityList.Error(Msg: PResStringRec; const Method: String; Data: NativeInt);
 begin
   { Raise error. }
+{$IFDEF FPC}
+  raise EIntegerProbabilityListError.CreateFmt(LoadResString(Msg), [Method, Data]) at @TIntegerProbabilityList.Error;
+{$ELSE !FPC}
   raise EIntegerProbabilityListError.CreateFmt(LoadResString(Msg), [Method, Data]) at ReturnAddress;
+{$ENDIF !FPC}
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -7063,7 +7074,11 @@ end;
 class procedure TIntegerProbabilityList.Error(const Msg, Method: String; Data: NativeInt);
 begin
   { Raise error. }
+{$IFDEF FPC}
+  raise EIntegerProbabilityListError.CreateFmt(Msg, [Method, Data]) at @TIntegerProbabilityList.Error;
+{$ELSE !FPC}
   raise EIntegerProbabilityListError.CreateFmt(Msg, [Method, Data]) at ReturnAddress;
+{$ENDIF !FPC}
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -7073,9 +7088,9 @@ begin
   { (1) Raise list index error if Index1 or Index2 variables are out of
         bounds. }
   if (Index1 >= FList.Count) then
-    Error(@SIntegerProbabilityList_ListIndexError, 'TIntegerProbabilityList.Exchange', Index1);
+    Error(@SIntegerProbabilityList_ListIndexOutOfBounds, 'TIntegerProbabilityList.Exchange', Index1);
   if (Index2 >= FList.Count) then
-    Error(@SIntegerProbabilityList_ListIndexError, 'TIntegerProbabilityList.Exchange', Index2);
+    Error(@SIntegerProbabilityList_ListIndexOutOfBounds, 'TIntegerProbabilityList.Exchange', Index2);
 
   { (2) Exchange two entries. }
   FList.Exchange(Index1, Index2);
@@ -7147,7 +7162,7 @@ function TIntegerProbabilityList.Extract(Item: TIntProbItem): PIntProbItem;
 begin
   { Call ExtractItem() with FromBeginning direction and return its value in
     Result. }
-  Result := ExtractItem(Item, FromBeginning);
+  Result := ExtractItem(Item, TIntegerProbabilityList.TDirection.FromBeginning);
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -7156,12 +7171,12 @@ function TIntegerProbabilityList.Extract(Value: TIntProbValue): PIntProbItem;
 begin
   { Call ExtractItem() with FromBeginning direction and return its value in
     Result. }
-  Result := ExtractItem(Value, FromBeginning);
+  Result := ExtractItem(Value, TIntegerProbabilityList.TDirection.FromBeginning);
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
-function TIntegerProbabilityList.ExtractItem(Item: TIntProbItem; Direction: TDirection): PIntProbItem;
+function TIntegerProbabilityList.ExtractItem(Item: TIntProbItem; Direction: TIntegerProbabilityList.TDirection): PIntProbItem;
 var
   I: SizeInt;
 begin
@@ -7336,7 +7351,7 @@ begin
   { (1) Make sure that specified Index is in the bounds, if not then raise
         error. }
   if (Index >= FList.Count) then
-    Error(SIntegerProbabilityList_ListIndexError, 'TIntegerProbabilityList.GetItem', Index);
+    Error(SIntegerProbabilityList_ListIndexOutOfBounds, 'TIntegerProbabilityList.GetItem', Index);
 
   { (2) Return entry with specified Index position in the list. }
   Result := PIntProbItem(FList[Index])^;
@@ -7359,7 +7374,7 @@ end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
-function TIntegerProbabilityList.GetProbability(const Value: TIntProbValue): Float;
+function TIntegerProbabilityList.GetProbability(const Value: TIntProbValue): {$IFDEF FPC}Single{$ELSE}Float{$ENDIF};
 var
   It: TEnumerator;
 begin
@@ -7489,7 +7504,7 @@ end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
-procedure TIntegerProbabilityList.Include(Value: TIntProbValue; NewProbability: Float);
+procedure TIntegerProbabilityList.Include(Value: TIntProbValue; NewProbability: {$IFDEF FPC}Single{$ELSE}Float{$ENDIF});
 var
   It: TEnumerator;
 begin
@@ -7585,7 +7600,7 @@ var
 begin
   { (1) If specified Direction is equal to FromBeginning, call
           IndexOf(Item). }
-  if (Direction = FromBeginning) then
+  if (Direction = TIntegerProbabilityList.TDirection.FromBeginning) then
     Result := IndexOf(Value)
   else
     begin
@@ -7624,7 +7639,7 @@ var
 begin
   { (1) If specified Direction is equal to FromBeginning, call
           IndexOf(Item). }
-  if (Direction = FromBeginning) then
+  if (Direction = TIntegerProbabilityList.TDirection.FromBeginning) then
     Result := IndexOf(Item)
   else
     begin
@@ -7657,14 +7672,14 @@ end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
-procedure TIntegerProbabilityList.Insert(Index: SizeUInt; NewValue: TIntProbValue; const NewProbability: Float = 1.0);
+procedure TIntegerProbabilityList.Insert(Index: SizeUInt; NewValue: TIntProbValue; const NewProbability: {$IFDEF FPC}Single{$ELSE}Float{$ENDIF} = 1.0);
 var
   pItem: PIntProbItem;
 begin
   { (1) If specified Index is greater than FList.Count, then raise out of bounds
         error. }
   if (Index > FList.Count) then
-    Error(@SIntegerProbabilityList_ListIndexError, 'TIntegerProbabilityList.Insert', Index);
+    Error(@SIntegerProbabilityList_ListIndexOutOfBounds, 'TIntegerProbabilityList.Insert', Index);
 
   { (2) Allocate memory for new pItem and store its value from specified
         parameters. }
@@ -7706,9 +7721,9 @@ begin
     { (2.1) Check that CurIndex and NewIndex aren't out of bounds. Raise error
             if needed. }
     if (CurIndex >= FList.Count) then
-      Error(@SIntegerProbabilityList_ListIndexError, 'TIntegerProbabilityList.Move', CurIndex);
+      Error(@SIntegerProbabilityList_ListIndexOutOfBounds, 'TIntegerProbabilityList.Move', CurIndex);
     if (NewIndex >= FList.Count) then
-      Error(@SIntegerProbabilityList_ListIndexError, 'TIntegerProbabilityList.Move', NewIndex);
+      Error(@SIntegerProbabilityList_ListIndexOutOfBounds, 'TIntegerProbabilityList.Move', NewIndex);
 
     { (2.2) Move entries in the list. }
     FList.Move(CurIndex, NewIndex);
@@ -7748,7 +7763,7 @@ begin
   { Search for first specified Item using FromBeginning direction. If found,
     delete it and return its position where it was in the list or -1 if not
     found. }
-  Result := RemoveItem(Item, FromBeginning);
+  Result := RemoveItem(Item, TIntegerProbabilityList.TDirection.FromBeginning);
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -7758,7 +7773,7 @@ begin
   { Search for first specified item's value using FromBeginning direction. If
     found, delete it's item and return its position where it was in the list or
     -1 if not found. }
-  Result := RemoveItem(Value, FromBeginning);
+  Result := RemoveItem(Value, TIntegerProbabilityList.TDirection.FromBeginning);
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -7831,7 +7846,7 @@ end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
-procedure TIntegerProbabilityList.ScaleProbability(Value: TIntProbValue; Scale: Float);
+procedure TIntegerProbabilityList.ScaleProbability(Value: TIntProbValue; Scale: {$IFDEF FPC}Single{$ELSE}Float{$ENDIF});
 var
   Idx: SizeUInt;
 begin
@@ -7855,8 +7870,7 @@ end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
-procedure TIntegerProbabilityList.ScaleProbabilityExcept(Value: TIntProbValue;
-  Scale: Float);
+procedure TIntegerProbabilityList.ScaleProbabilityExcept(Value: TIntProbValue; Scale: {$IFDEF FPC}Single{$ELSE}Float{$ENDIF});
 var
   Idx: SizeUInt;
 begin
@@ -7878,7 +7892,7 @@ procedure TIntegerProbabilityList.SetCapacity(NewCapacity: SizeUInt);
 begin
   { (1) If NewCapacity is smaller than FList.Count, raise list capacity error. }
   if (NewCapacity < FList.Count) then
-    Error(@SIntegerProbabilityList_ListCapacityError, 'TIntegerProbabilityList.SetCapacity', NewCapacity);
+    Error(@SIntegerProbabilityList_ListCapacityOutOfBounds, 'TIntegerProbabilityList.SetCapacity', NewCapacity);
 
   { (2) Set new value for FList.Capacity. }
   FList.Capacity := NewCapacity;
@@ -7925,7 +7939,7 @@ procedure TIntegerProbabilityList.SetItem(const Index: SizeUInt; Item: TIntProbI
 begin
   { (1) If specified Index is out of bounds, raise out of bounds error. }
   if (Index >= FList.Count) then
-    Error(@SIntegerProbabilityList_ListIndexError, 'TIntegerProbabilityList.SetItem', Index);
+    Error(@SIntegerProbabilityList_ListIndexOutOfBounds, 'TIntegerProbabilityList.SetItem', Index);
 
   { (2) Set new item. }
   FList[Index] := @Item;
@@ -7940,7 +7954,7 @@ end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
-procedure TIntegerProbabilityList.SetProbability(const Value: TIntProbValue; const NewProbability: Float);
+procedure TIntegerProbabilityList.SetProbability(const Value: TIntProbValue; const NewProbability: {$IFDEF FPC}Single{$ELSE}Float{$ENDIF});
 var
   It: TEnumerator;
 begin
@@ -8005,7 +8019,7 @@ var
   I: SizeUInt;
 begin
   for I := FList.HighIndex downto (FList.LowIndex + 1) do
-    Exchange(I, SizeUInt(Random(I + 1)));
+    Exchange(I, SizeUInt(Random(Integer(I) + 1)));
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -8015,11 +8029,15 @@ begin
   { If the list contains at least two items, then ... }
   if (Count > 1) then
     { ... perform sorting of the list using QuickSort algorithm. }
+{$IFDEF FPC}
+    QuickSort(FList.List, FList.LowIndex, FList.HighIndex, Compare);
+{$ELSE !FPC}
     QuickSort(FList.List, FList.LowIndex, FList.HighIndex,
       function(Item1, Item2: Pointer): Integer
       begin
         Result := Compare(Item1, Item2);
       end);
+{$ENDIF !FPC}
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }

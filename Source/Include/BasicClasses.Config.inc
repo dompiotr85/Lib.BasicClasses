@@ -36,7 +36,7 @@
 
 {$IFDEF BC_PurePascal}
  {$DEFINE PurePascal}
-{$ENDIF ~BC_PurePascal}
+{$ENDIF !BC_PurePascal}
 
 {$IF DEFINED(CPUX86_64) OR DEFINED(CPUX64)}
  {$DEFINE x64}
@@ -48,14 +48,13 @@
 
 {$IF DEFINED(WINDOWS) OR DEFINED(MSWINDOWS)}
  {$DEFINE Windows}
+{$ELSEIF DEFINED(LINUX) AND DEFINED(FPC)}
+ {$DEFINE Linux}
 {$ELSE}
  {$MESSAGE FATAL 'Unsupported operating system!'}
 {$IFEND}
 
-{ Delphi compiler directives. }
-{$DEFINE DELPHI}
-{$ALIGN ON}
 {$H+}
 
-{$ENDIF ~BC_CONFIG_INC}
+{$ENDIF !BC_CONFIG_INC}
 

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="4">
+    <PathDelim Value="\"/>
+    <Name Value="Lib_BasicClasses"/>
+    <Author Value="Piotr Domański"/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <PathDelim Value="\"/>
+      <SearchPaths>
+        <IncludeFiles Value="..\..\Source\Include"/>
+        <OtherUnitFiles Value="..\..\Source"/>
+        <UnitOutputDirectory Value="..\..\Lib\FPC\$(TargetCPU)-$(TargetOS)"/>
+      </SearchPaths>
+    </CompilerOptions>
+    <Description Value="A collection of basic classes such as lists, enumerators and containers that help you with
+your software development."/>
+    <License Value="MPL-2.0"/>
+    <Version Minor="1" Release="3"/>
+    <Files Count="5">
+      <Item1>
+        <Filename Value="..\..\Source\BasicClasses.pas"/>
+        <UnitName Value="BasicClasses"/>
+      </Item1>
+      <Item2>
+        <Filename Value="..\..\Source\BasicClasses.Consts.pas"/>
+        <UnitName Value="BasicClasses.Consts"/>
+      </Item2>
+      <Item3>
+        <Filename Value="..\..\Source\BasicClasses.Lists.pas"/>
+        <UnitName Value="BasicClasses.Lists"/>
+      </Item3>
+      <Item4>
+        <Filename Value="..\..\Source\Include\BasicClasses.Config.inc"/>
+        <Type Value="Include"/>
+      </Item4>
+      <Item5>
+        <Filename Value="..\..\Source\BasicClasses.Streams.pas"/>
+        <UnitName Value="BasicClasses.Streams"/>
+      </Item5>
+    </Files>
+    <RequiredPkgs Count="3">
+      <Item1>
+        <PackageName Value="Lib_StringRectification"/>
+        <MinVersion Minor="1" Release="2" Valid="True"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="Lib_TypeDefinitions"/>
+        <MinVersion Minor="1" Release="5" Valid="True"/>
+      </Item2>
+      <Item3>
+        <PackageName Value="FCL"/>
+      </Item3>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+      <UseFileFilters Value="True"/>
+    </PublishOptions>
+  </Package>
+</CONFIG>

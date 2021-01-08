@@ -11,10 +11,10 @@
 
  Version 0.1.3
 
- Copyright (c) 2018-2020, Piotr Domañski
+ Copyright (c) 2018-2021, Piotr Domañski
 
  Last change:
-   08-12-2020
+   01-01-2021
 
  Changelog:
    For detailed changelog and history please refer to this git repository:
@@ -44,10 +44,10 @@ uses
   {$IFDEF HAS_UNITSCOPE}System.SysUtils{$ELSE}SysUtils{$ENDIF},
   TypeDefinitions;
 
-{===============================================================================
-  Event and callback types
-===============================================================================}
+{- Event and callback types  - - - - - - - - - - - - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+{$IFDEF SUPPORTS_REGION}{$REGION 'Event and callback types'}{$ENDIF}
 type
   {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
   /// <summary>
@@ -348,10 +348,12 @@ type
   /// </param>
   {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
   TOpenCallback = procedure (Sender: TObject; Values: array of const);
+{$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
-{===============================================================================
-  General functions
-===============================================================================}
+{- General routines definition  - - - - - - - - - - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+{$IFDEF SUPPORTS_REGION}{$REGION 'General routines'}{$ENDIF}
 
 {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
 /// <summary>
@@ -365,11 +367,12 @@ type
 /// </returns>
 {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 function GetInstanceString(Instance: TObject): String;
+{$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
-{===============================================================================
-  Library exceptions
-===============================================================================}
+{- Library exceptions  - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+{$IFDEF SUPPORTS_REGION}{$REGION 'Library exceptions'}{$ENDIF}
 type
   {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
   /// <summary>
@@ -382,24 +385,53 @@ type
 
   {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
   /// <summary>
-  ///   BasicClasses index out of bounds exception.
+  ///   TCustomMultiList exception class.
   /// </summary>
   {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-  EBCIndexOutOfBounds = class(EBCException);
+  ECustomMultiList = class(EBCException);
 
   {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
   {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
   /// <summary>
-  ///   BasicClasses incompatible class exception.
+  ///   TBCList exception class.
   /// </summary>
   {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
-  EBCIncompatibleClass = class(EBCException);
+  EBCListError = class(EBCException);
 
-{===============================================================================
-  TCustomObject - class declaration
-===============================================================================}
+  {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+  {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+  /// <summary>
+  ///   TIntegerList exception class.
+  /// </summary>
+  {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+  EIntegerListError = class(EBCException);
+
+  {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+  {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+  /// <summary>
+  ///   TIntegerProbabilityList exception class.
+  /// </summary>
+  {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+  EIntegerProbabilityListError = class(EBCException);
+
+  {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+  {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
+  /// <summary>
+  ///   TCustomStreamer exception class.
+  /// </summary>
+  {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+  ECustomStreamerError = class(EBCException);
+
+{$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
+
+{- TCustomObject - class definition - - - - - - - - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
+{$IFDEF SUPPORTS_REGION}{$REGION 'TCustomObject - class definition'}{$ENDIF}
 type
   {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
   /// <summary>
@@ -542,6 +574,8 @@ type
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     procedure RaiseError(const Msg: String); overload; virtual;
 
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
   public
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
@@ -574,11 +608,12 @@ type
 
     property UserData: PtrInt read FUserIntData write FUserIntData;
   end;
+{$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
-{===============================================================================
-  TCustomRefCountedObject - class declaration
-===============================================================================}
+{- TCustomRefCountedObject - class definition - - - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+{$IFDEF SUPPORTS_REGION}{$REGION 'TCustomRefCountedObject - class definition'}{$ENDIF}
 type
   {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
   /// <summary>
@@ -604,6 +639,9 @@ type
     /// </returns>
     {$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
     function GetRefCount: Int32;
+
+    {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
+
   public
     {$IFDEF SUPPORTS_REGION}{$REGION 'Documentation'}{$ENDIF}
     /// <summary>
@@ -660,18 +698,19 @@ type
 
     property FreeOnRelease: Boolean read fFreeOnRelease write fFreeOnRelease;
   end;
+{$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
 implementation
 
-{$IF (DEFINED(Windows) AND DEFINED(PurePascal))}
+{$IF NOT DEFINED(FPC) AND DEFINED(Windows) AND Defined(PurePascal)}
 uses
-  {$IFDEF HAS_UNITSCOPE}WinAPI.Windows{$ELSE}Windows{$ENDIF};
+  {$IFDEF HAS_UNITSCOPE}Winapi.{$ENDIF}Windows;
 {$IFEND}
 
-{===============================================================================
-  General functions
-===============================================================================}
+{- General routines implementation - - - - - - - - - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+{$IFDEF SUPPORTS_REGION}{$REGION 'General routines implementation'}{$ENDIF}
 function GetInstanceString(Instance: TObject): String;
 begin
   if (Assigned(Instance)) then
@@ -679,14 +718,19 @@ begin
   else
     Result := 'TObject(nil)'; // Return some sensible string, not just nothing.
 end;
+{$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
-{===============================================================================
-  TCustomObject - class implementation
-===============================================================================}
+{- TCustomObject - class implementation  - - - - - - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+{$IFDEF SUPPORTS_REGION}{$REGION 'TCustomObject - class implementation'}{$ENDIF}
 procedure TCustomObject.RaiseError(ExceptionClass: ExceptClass; const Method, Msg: String; const Args: array of const);
 begin
+{$IFDEF FPC}
+  raise ExceptionClass.CreateFmt(Format('%s.%s: %s', [InstanceString, Method, Msg]), Args) at @TCustomObject.RaiseError;
+{$ELSE}
   raise ExceptionClass.CreateFmt(Format('%s.%s: %s', [InstanceString, Method, Msg]), Args) at ReturnAddress;
+{$ENDIF}
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -714,7 +758,11 @@ end;
 
 procedure TCustomObject.RaiseError(ExceptionClass: ExceptClass; const Msg: String; const Args: array of const);
 begin
+{$IFDEF FPC}
+  raise ExceptionClass.CreateFmt(Format('%s: %s', [InstanceString, Msg]), Args) at @TCustomObject.RaiseError;
+{$ELSE}
   raise ExceptionClass.CreateFmt(Format('%s: %s', [InstanceString, Msg]), Args) at ReturnAddress;
+{$ENDIF}
 end;
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
@@ -754,30 +802,31 @@ Function TCustomObject.InstanceString: String;
 begin
   Result := GetInstanceString(Self);
 end;
+{$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
-{===============================================================================
-  TCustomRefCountedObject - class implementation
-===============================================================================}
+{- TCustomRefCountedObject - class implementation  - - - - - - - - - - - - - - }
+{- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
+{$IFDEF SUPPORTS_REGION}{$REGION 'TCustomRefCountedObject - class implementation'}{$ENDIF}
 {$IFNDEF PurePascal}
 function InterlockedExchangeAdd(var A: Int32; B: Int32): Int32; register; assembler;
 asm
  {$IFDEF x64}
   {$IFDEF Windows}
-        XCHG    RCX,  RDX
-  LOCK  XADD    dword ptr [RDX], ECX
-        MOV     EAX,  ECX
-  {$ELSE}
-        XCHG    RDI,  RSI
-  LOCK  XADD    dword ptr [RSI], EDI
-        MOV     EAX,  EDI
-  {$ENDIF}
- {$ELSE}
-        XCHG    EAX,  EDX
-  LOCK  XADD    dword ptr [EDX], EAX
- {$ENDIF}
+        XCHG      RCX,  RDX
+  LOCK  XADD      dword ptr [RDX], ECX
+        MOV       EAX,  ECX
+  {$ELSE !Windows}
+        XCHG      RDI,  RSI
+  LOCK  XADD      dword ptr [RSI], EDI
+        MOV       EAX,  EDI
+  {$ENDIF !Windows}
+ {$ELSE !x64}
+        XCHG       EAX,  EDX
+  LOCK  XADD       dword ptr [EDX], EAX
+ {$ENDIF !x64}
 end;
-{$ENDIF}
+{$ENDIF !PurePascal}
 
 {- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - }
 
@@ -819,5 +868,6 @@ begin
   Acquire;
   Result := Self;
 end;
+{$IFDEF SUPPORTS_REGION}{$ENDREGION}{$ENDIF}
 
 end.

@@ -32,11 +32,14 @@ package Lib_BasicClasses;
 
 requires
   rtl,
-  Lib_TypeDefinitions;
+  Lib_TypeDefinitions,
+  Lib_StringRectification;
 
 contains
   BasicClasses.Consts in '..\..\Source\BasicClasses.Consts.pas',
   BasicClasses in '..\..\Source\BasicClasses.pas',
-  BasicClasses.Lists in '..\..\Source\BasicClasses.Lists.pas';
+  BasicClasses.Lists in '..\..\Source\BasicClasses.Lists.pas',
+  BasicClasses.Streams in '..\..\Source\BasicClasses.Streams.pas';
 
 end.
+

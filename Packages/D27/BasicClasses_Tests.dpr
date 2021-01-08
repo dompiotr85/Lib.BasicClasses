@@ -12,8 +12,9 @@ uses
   DUnitX.Loggers.Console,
   {$ENDIF }
   DUnitX.TestFramework,
-  BasicClassesTests in '..\..\Tests\BasicClassesTests.pas',
-  BasicClassesListsTests in '..\..\Tests\BasicClassesListsTests.pas';
+  BasicClasses_TestCase in '..\..\Tests\BasicClasses_TestCase.pas',
+  BasicClasses_Lists_TestCase in '..\..\Tests\BasicClasses_Lists_TestCase.pas',
+  BasicClasses_Streams_TestCase in '..\..\Tests\BasicClasses_Streams_TestCase.pas';
 
 {$IFNDEF TESTINSIGHT}
 var

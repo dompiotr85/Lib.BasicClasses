@@ -1,4 +1,4 @@
-unit BasicClassesListsTests;
+unit BasicClasses_Lists_TestCase;
 
 interface
 
@@ -16,9 +16,9 @@ type
     procedure Notify(Ptr: Pointer; Action: TListNotification); override;
   end;
 
-  { TBasicClasses_TBCList_Test - class definition }
+  { TBasicClasses_TBCList_TestCase - class definition }
   [TestFixture]
-  TBasicClasses_TBCList_Test = class
+  TBasicClasses_TBCList_TestCase = class
   private
     List: TMyBCList;
   public
@@ -54,9 +54,9 @@ type
     procedure Test_Assign;
   end;
 
-  { TBasicClasses_TIntegerList_Test - class definition }
+  { TBasicClasses_TIntegerList_TestCase - class definition }
   [TestFixture]
-  TBasicClasses_TIntegerList_Test = class
+  TBasicClasses_TIntegerList_TestCase = class
   private
     List: TIntegerList;
   public
@@ -104,9 +104,9 @@ type
     procedure Test_Exists;
   end;
 
-  { TBasicClasses_TIntegerProbabilityList_Test - class definition }
+  { TBasicClasses_TIntegerProbabilityList_TestCase - class definition }
   [TestFixture]
-  TBasicClasses_TIntegerProbabilityList_Test = class
+  TBasicClasses_TIntegerProbabilityList_TestCase = class
   private
     List: TIntegerProbabilityList;
   public
@@ -171,15 +171,15 @@ begin
     Dispose(Ptr);
 end;
 
-{ TBasicClasses_TBCList_Test - class implementation }
+{ TBasicClasses_TBCList_TestCase - class implementation }
 
-procedure TBasicClasses_TBCList_Test.Setup;
+procedure TBasicClasses_TBCList_TestCase.Setup;
 begin
   { Create List. }
   List := TMyBCList.Create;
 end;
 
-procedure TBasicClasses_TBCList_Test.TearDown;
+procedure TBasicClasses_TBCList_TestCase.TearDown;
 begin
   { (1) Clear List. }
   List.Clear;
@@ -189,7 +189,7 @@ begin
   List := nil;
 end;
 
-procedure TBasicClasses_TBCList_Test.Test_AddItems;
+procedure TBasicClasses_TBCList_TestCase.Test_AddItems;
 var
   pItem: PInteger;
   I, Idx: SizeUInt;
@@ -330,7 +330,7 @@ begin
   end;
 end;
 
-procedure TBasicClasses_TBCList_Test.Test_Assign;
+procedure TBasicClasses_TBCList_TestCase.Test_Assign;
 var
   List2: TBCList;
   Idx: SizeUInt;
@@ -359,13 +359,13 @@ begin
   end;
 end;
 
-procedure TBasicClasses_TBCList_Test.Test_Creation;
+procedure TBasicClasses_TBCList_TestCase.Test_Creation;
 begin
   Assert.AreEqual(Cardinal(0), Cardinal(List.Capacity), 'List.Capacity isn''t 0!');
   Assert.AreEqual(Cardinal(0), Cardinal(List.Count), 'List.Count isn''t 0!');
 end;
 
-procedure TBasicClasses_TBCList_Test.Test_Exchange;
+procedure TBasicClasses_TBCList_TestCase.Test_Exchange;
 var
   pItem: PInteger;
   I: SizeUInt;
@@ -389,7 +389,7 @@ begin
   Assert.AreEqual(Integer(1), PInteger(List[99])^, 'PInteger(List[99])^ isn''t equal to 1!');
 end;
 
-procedure TBasicClasses_TBCList_Test.Test_Extract;
+procedure TBasicClasses_TBCList_TestCase.Test_Extract;
 var
   pItem: PInteger;
   I: SizeUInt;
@@ -438,7 +438,7 @@ begin
   end;
 end;
 
-procedure TBasicClasses_TBCList_Test.Test_FirstAndLast;
+procedure TBasicClasses_TBCList_TestCase.Test_FirstAndLast;
 var
   pItem: PInteger;
   I: SizeUInt;
@@ -472,7 +472,7 @@ begin
   Assert.AreEqual(Integer(99), PInteger(List.Last)^, 'List.Last^ isn''t equal to 99!');
 end;
 
-procedure TBasicClasses_TBCList_Test.Test_IndexOf;
+procedure TBasicClasses_TBCList_TestCase.Test_IndexOf;
 var
   pItem: PInteger;
   I: SizeUInt;
@@ -503,7 +503,7 @@ begin
   end;
 end;
 
-procedure TBasicClasses_TBCList_Test.Test_Insert;
+procedure TBasicClasses_TBCList_TestCase.Test_Insert;
 var
   pItem: PInteger;
   I, Idx: SizeUInt;
@@ -525,7 +525,7 @@ begin
     Assert.AreEqual(Cardinal(I - 1), Cardinal(Idx), 'List.Add(pItem) returned invalid value!');
 
     { (1.6) Validate that entry with Idx position (index) is valid. }
-    Assert.AreEqual(Cardinal(I), PCardinal(List[Idx])^, 'List[Idx] item value is invalid!');
+    Assert.AreEqual(Cardinal(I), Cardinal(PInteger(List[Idx])^), 'List[Idx] item value is invalid!');
   end;
 
   { (2.1) Prepare our list by inserting 100 items to position (index) 50: }
@@ -551,7 +551,7 @@ begin
   Assert.AreEqual(Integer(100), PInteger(List[50])^, 'PInteger(List[50])^ isn''t equal to 100!');
 end;
 
-procedure TBasicClasses_TBCList_Test.Test_Move;
+procedure TBasicClasses_TBCList_TestCase.Test_Move;
 var
   pItem: PInteger;
   I, Idx: SizeUInt;
@@ -583,7 +583,7 @@ begin
   Assert.AreEqual(Integer(11), PInteger(List[90])^, 'List[90] isn''t equal to 11!');
 end;
 
-procedure TBasicClasses_TBCList_Test.Test_RemoveItems;
+procedure TBasicClasses_TBCList_TestCase.Test_RemoveItems;
 var
   pItem: PInteger;
   I, Idx: SizeUInt;
@@ -717,13 +717,13 @@ begin
   Result := PInteger(Item1)^ - PInteger(Item2)^;
 end;
 
-procedure TBasicClasses_TBCList_Test.Test_Sort;
+procedure TBasicClasses_TBCList_TestCase.Test_Sort;
 var
   pItem: PInteger;
   Idx: SizeUInt;
 begin
   { (1) Fill our list with random values. }
-  for Idx := 0 to 200 do
+  for Idx := 1 to 200 do
   begin
     New(pItem);
     PInteger(pItem)^ := Integer(Random(200));
@@ -741,7 +741,7 @@ begin
     Assert.IsTrue(PInteger(List[Idx])^ <= PInteger(List[Idx + 1])^, 'PInteger(List[' + Idx.ToString + '])^ <= PInteger(List[' + SizeUInt(Idx + 1).ToString + '] condition failed!');
 end;
 
-procedure TBasicClasses_TBCList_Test.Test_Enumerator;
+procedure TBasicClasses_TBCList_TestCase.Test_Enumerator;
 var
   pItem: PInteger;
   Idx: Integer;
@@ -790,9 +790,9 @@ begin
   end;
 end;
 
-{ TBasicClasses_TIntegerList_Test }
+{ TBasicClasses_TIntegerList_TestCase - class implementation }
 
-procedure TBasicClasses_TIntegerList_Test.Setup;
+procedure TBasicClasses_TIntegerList_TestCase.Setup;
 begin
   { (1) Create List. }
   List := TIntegerList.Create;
@@ -801,7 +801,7 @@ begin
   List.NeedRelease := True;
 end;
 
-procedure TBasicClasses_TIntegerList_Test.TearDown;
+procedure TBasicClasses_TIntegerList_TestCase.TearDown;
 begin
   { (1) Clear List. }
   List.Clear;
@@ -811,7 +811,7 @@ begin
   List := nil;
 end;
 
-procedure TBasicClasses_TIntegerList_Test.Test_AddItems;
+procedure TBasicClasses_TIntegerList_TestCase.Test_AddItems;
 var
   I, Idx: SizeUInt;
 begin
@@ -832,13 +832,13 @@ begin
 
     { (2.4) Depending on amount already added, check List.Capacity values. }
     if (I = 32) then
-      Assert.AreEqual(32, Cardinal(List.Capacity), 'List.Capacity isn''t equal to 32!');
+      Assert.AreEqual(Cardinal(32), Cardinal(List.Capacity), 'List.Capacity isn''t equal to 32!');
     if (I = 33) then
-      Assert.AreEqual(64, Cardinal(List.Capacity), 'List.Capacity isn''t equal to 64!');
+      Assert.AreEqual(Cardinal(64), Cardinal(List.Capacity), 'List.Capacity isn''t equal to 64!');
     if (I = 64) then
-      Assert.AreEqual(64, Cardinal(List.Capacity), 'List.Capacity isn''t equal to 64!');
+      Assert.AreEqual(Cardinal(64), Cardinal(List.Capacity), 'List.Capacity isn''t equal to 64!');
     if (I = 65) then
-      Assert.AreEqual(128, Cardinal(List.Capacity), 'List.Capacity isn''t equal to 128!');
+      Assert.AreEqual(Cardinal(128), Cardinal(List.Capacity), 'List.Capacity isn''t equal to 128!');
   end;
 
   { (3) Clear the list. }
@@ -863,7 +863,7 @@ begin
     if (I > 32) then
       Assert.AreEqual(Cardinal(I), Cardinal(List.Capacity), 'List.Capacity isn''t equal to ' + I.ToString + '!')
     else
-      Assert.AreEqual(32, Cardinal(List.Capacity), 'List.Capacity isn''t equal to 32!');
+      Assert.AreEqual(Cardinal(32), Cardinal(List.Capacity), 'List.Capacity isn''t equal to 32!');
   end;
 
   { (6) Clear the list. }
@@ -927,7 +927,7 @@ begin
   end;
 end;
 
-procedure TBasicClasses_TIntegerList_Test.Test_Assign;
+procedure TBasicClasses_TIntegerList_TestCase.Test_Assign;
 var
   NewList: TIntegerList;
   Idx: SizeUInt;
@@ -956,7 +956,7 @@ begin
   end;
 end;
 
-procedure TBasicClasses_TIntegerList_Test.Test_ChainToString;
+procedure TBasicClasses_TIntegerList_TestCase.Test_ChainToString;
 const
   ValidString: String = '1, 2, 3, 4, 5, 6, 7, 8, 9, 10';
 var
@@ -970,7 +970,7 @@ begin
   Assert.AreEqual(ValidString, List.ChainToString, 'List.ChainToString returned invalid value!');
 end;
 
-procedure TBasicClasses_TIntegerList_Test.Test_CopyFrom;
+procedure TBasicClasses_TIntegerList_TestCase.Test_CopyFrom;
 var
   NewList: TIntegerList;
   Idx: SizeUInt;
@@ -993,22 +993,20 @@ begin
 
     { (6) Itterate throu the list and compare it with the source. }
     for Idx := NewList.LowIndex to NewList.HighIndex do
-    begin
       Assert.AreEqual(List[Idx], NewList[Idx], 'List[Idx] isn''t equal to NewList[Idx]!');
-    end;
   finally
     { (7) Finally release NewList. }
     NewList.Free;
   end;
 end;
 
-procedure TBasicClasses_TIntegerList_Test.Test_Creation;
+procedure TBasicClasses_TIntegerList_TestCase.Test_Creation;
 begin
-  Assert.AreEqual(Cardinal(0), Cardinal(List.Capacity), 'List.Capacity isn''t 0!');
-  Assert.AreEqual(Cardinal(0), Cardinal(List.Count), 'List.Count isn''t 0!');
+  Assert.AreEqual(Cardinal(0), Cardinal(List.Capacity), 'List.Capacity isn''t equal to 0!');
+  Assert.AreEqual(Cardinal(0), Cardinal(List.Count), 'List.Count isn''t equal to 0!');
 end;
 
-procedure TBasicClasses_TIntegerList_Test.Test_Enumerator;
+procedure TBasicClasses_TIntegerList_TestCase.Test_Enumerator;
 var
   Idx: Integer;
   It: TIntegerList.TEnumerator;
@@ -1047,7 +1045,7 @@ begin
   end;
 end;
 
-procedure TBasicClasses_TIntegerList_Test.Test_Exchange;
+procedure TBasicClasses_TIntegerList_TestCase.Test_Exchange;
 var
   Idx: SizeUInt;
   I: SizeUInt;
@@ -1069,7 +1067,7 @@ begin
   Assert.AreEqual(Integer(1), Integer(List[99]), 'Integer(List[99]) isn''t equal to 1!');
 end;
 
-procedure TBasicClasses_TIntegerList_Test.Test_Exists;
+procedure TBasicClasses_TIntegerList_TestCase.Test_Exists;
 var
   Idx: SizeUInt;
 begin
@@ -1081,7 +1079,7 @@ begin
   Assert.IsTrue(List.Exists(TIntItem(39)), 'List.Exists(TIntItem(39)) doesn''t exists!');
 end;
 
-procedure TBasicClasses_TIntegerList_Test.Test_Extract;
+procedure TBasicClasses_TIntegerList_TestCase.Test_Extract;
 var
   Item: TIntItem;
   pItem: PIntItem;
@@ -1129,7 +1127,7 @@ begin
   end;
 end;
 
-procedure TBasicClasses_TIntegerList_Test.Test_FirstAndLast;
+procedure TBasicClasses_TIntegerList_TestCase.Test_FirstAndLast;
 var
   I: SizeUInt;
 begin
@@ -1151,7 +1149,7 @@ begin
   Assert.AreEqual(Integer(99), Integer(PIntItem(List.Last)^), 'List.Last^ isn''t equal to 99!');
 end;
 
-procedure TBasicClasses_TIntegerList_Test.Test_IndexOf;
+procedure TBasicClasses_TIntegerList_TestCase.Test_IndexOf;
 var
   Item: TIntItem;
   I: SizeUInt;
@@ -1171,7 +1169,7 @@ begin
   Assert.AreEqual(Cardinal(36), Cardinal(List.IndexOfItem(Item, FromEnd)), 'List.IndexOfItem(Item, FromEnd) didn''t return 36!');
 end;
 
-procedure TBasicClasses_TIntegerList_Test.Test_Insert;
+procedure TBasicClasses_TIntegerList_TestCase.Test_Insert;
 var
   I, Idx: SizeUInt;
 begin
@@ -1196,7 +1194,7 @@ begin
   Assert.AreEqual(Integer(100), Integer(List[50]), 'List[50]) isn''t equal to 100!');
 end;
 
-procedure TBasicClasses_TIntegerList_Test.Test_Move;
+procedure TBasicClasses_TIntegerList_TestCase.Test_Move;
 var
   I, Idx: SizeUInt;
 begin
@@ -1219,7 +1217,7 @@ begin
   Assert.AreEqual(Integer(11), Integer(List[90]), 'List[90] isn''t equal to 11!');
 end;
 
-procedure TBasicClasses_TIntegerList_Test.Test_RemoveDuplicates;
+procedure TBasicClasses_TIntegerList_TestCase.Test_RemoveDuplicates;
 var
   Idx: SizeUInt;
 begin
@@ -1242,7 +1240,7 @@ begin
   Assert.AreEqual(Integer(3), Integer(List.Count), 'List.Count isn''t equal to 3!');
 end;
 
-procedure TBasicClasses_TIntegerList_Test.Test_RemoveItems;
+procedure TBasicClasses_TIntegerList_TestCase.Test_RemoveItems;
 var
   Item: TIntItem;
   I, Idx: SizeUInt;
@@ -1383,7 +1381,7 @@ begin
   end;
 end;
 
-procedure TBasicClasses_TIntegerList_Test.Test_SameAs;
+procedure TBasicClasses_TIntegerList_TestCase.Test_SameAs;
 var
   List2: TIntegerList;
   Idx: SizeUInt;
@@ -1423,7 +1421,7 @@ begin
   Result := PIntItem(Item1)^ - PIntItem(Item2)^;
 end;
 
-procedure TBasicClasses_TIntegerList_Test.Test_Sort;
+procedure TBasicClasses_TIntegerList_TestCase.Test_Sort;
 var
   Idx: SizeUInt;
 begin
@@ -1439,7 +1437,7 @@ begin
     Assert.IsTrue(Integer(List[Idx]) <= Integer(List[Idx + 1]), 'List[' + Idx.ToString + '] <= List[' + SizeUInt(Idx + 1).ToString + '] condition failed!');
 end;
 
-procedure TBasicClasses_TIntegerList_Test.Test_Values;
+procedure TBasicClasses_TIntegerList_TestCase.Test_Values;
 var
   Idx: SizeUInt;
 begin
@@ -1460,9 +1458,9 @@ begin
   Assert.AreEqual(Integer(50), Integer(List.ValuesAvg), 'List.ValuesAvg isn''t equal to 50!');
 end;
 
-{ TBasicClasses_TIntegerProbabilityList_Test - class implementation }
+{ TBasicClasses_TIntegerProbabilityList_TestCase - class implementation }
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Setup;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Setup;
 begin
   { (1) Create the List. }
   List := TIntegerProbabilityList.Create;
@@ -1471,7 +1469,7 @@ begin
   List.NeedRelease := True;
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.TearDown;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.TearDown;
 begin
   { (1) Clear the List. }
   List.Clear;
@@ -1481,7 +1479,7 @@ begin
   List := nil;
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_AddItems;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_AddItems;
 var
   I, Idx: SizeUInt;
 begin
@@ -1533,7 +1531,7 @@ begin
     if (I > 32) then
       Assert.AreEqual(Cardinal(I), Cardinal(List.Capacity), 'List.Capacity isn''t equal to ' + I.ToString + '!')
     else
-      Assert.AreEqual(32, Cardinal(List.Capacity), 'List.Capacity isn''t equal to 32!');
+      Assert.AreEqual(Cardinal(32), Cardinal(List.Capacity), 'List.Capacity isn''t equal to 32!');
   end;
 
   { (6) Clear the list. }
@@ -1597,7 +1595,7 @@ begin
   end;
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_Assign;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_Assign;
 var
   NewList: TIntegerProbabilityList;
   Idx: SizeUInt;
@@ -1625,7 +1623,7 @@ begin
   end;
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_CopyFrom;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_CopyFrom;
 var
   NewList: TIntegerProbabilityList;
   Idx: SizeUInt;
@@ -1654,13 +1652,13 @@ begin
   end;
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_Creation;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_Creation;
 begin
   Assert.AreEqual(Cardinal(0), Cardinal(List.Capacity), 'List.Capacity isn''t 0!');
   Assert.AreEqual(Cardinal(0), Cardinal(List.Count), 'List.Count isn''t 0!');
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_Enumerator;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_Enumerator;
 var
   Idx: Integer;
   It: TIntegerProbabilityList.TEnumerator;
@@ -1701,7 +1699,7 @@ begin
   end;
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_Exchange;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_Exchange;
 var
   Idx, I: SizeUInt;
 begin
@@ -1725,7 +1723,7 @@ begin
   Assert.AreEqual(Integer(1), Integer(List[99].Value), 'Integer(List[99].Value) isn''t equal to 1!');
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_Exists;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_Exists;
 var
   Idx: SizeUInt;
   Item: TIntegerProbabilityList.TIntProbItem;
@@ -1741,7 +1739,7 @@ begin
   Assert.IsTrue(List.Exists(Item), 'List.Exists(Item) doesn''t exists!');
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_Extract;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_Extract;
 var
   Item: TIntegerProbabilityList.TIntProbItem;
   pItem: TIntegerProbabilityList.PIntProbItem;
@@ -1808,7 +1806,7 @@ begin
     Assert.AreEqual(Cardinal(96), Cardinal(List.Count), 'List.Count isn''t equal to 96!');
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_FirstAndLast;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_FirstAndLast;
 var
   I: SizeUInt;
 begin
@@ -1831,7 +1829,7 @@ begin
   Assert.AreEqual(Integer(99), Integer(TIntProbValue(List.Last^.Value)), 'List.Last^ isn''t equal to 99!');
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_IndexOf;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_IndexOf;
 var
   Item: TIntegerProbabilityList.TIntProbItem;
   I: SizeUInt;
@@ -1851,7 +1849,7 @@ begin
   Assert.AreEqual(Cardinal(36), Cardinal(List.IndexOfItem(Item.Value, FromEnd)), 'List.IndexOfItem(Item.Value, FromEnd) didn''t returned 36!');
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_Insert;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_Insert;
 var
   I, Idx: SizeUInt;
 begin
@@ -1877,7 +1875,7 @@ begin
   Assert.AreEqual(Integer(100), Integer(List[50].Value), 'List[50].Value isn''t equal to 100!');
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_Move;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_Move;
 var
   I, Idx: SizeUInt;
 begin
@@ -1901,7 +1899,7 @@ begin
   Assert.AreEqual(Integer(11), Integer(List[90].Value), 'List[90].Value isn''t equal to 11!');
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_NormalizeProbabilities;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_NormalizeProbabilities;
 begin
   { (1) Prepare our list by adding 10 items. }
   List.Add(TIntProbValue(1), 0.25);
@@ -1931,7 +1929,7 @@ begin
   Assert.AreEqual(0.286, List[9].Probability, 0.001, 'List[9].Probability isn''t equal to 0.286!');
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_RandomValue;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_RandomValue;
 var
   Idx: SizeUInt;
 begin
@@ -1960,7 +1958,7 @@ begin
   Assert.IsTrue(List.Count = 0, 'List.Count didn''t return 0!');
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_RemoveDuplicates;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_RemoveDuplicates;
 var
   Idx: SizeUInt;
 begin
@@ -1983,7 +1981,7 @@ begin
   Assert.AreEqual(Integer(3), Integer(List.Count), 'List.Count isn''t equal to 3!');
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_RemoveItems;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_RemoveItems;
 var
   Item: TIntegerProbabilityList.TIntProbItem;
   I, Idx: SizeUInt;
@@ -2126,7 +2124,7 @@ begin
   end;
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_SameAs;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_SameAs;
 var
   List2: TIntegerProbabilityList;
   Idx: SizeUInt;
@@ -2161,7 +2159,7 @@ begin
   end;
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_ScaleProbability;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_ScaleProbability;
 begin
   { (1) Prepare our list by adding 10 items. }
   List.Add(TIntProbValue(1), 0.5);
@@ -2197,7 +2195,7 @@ begin
   Assert.AreEqual(0.5,   List[9].Probability, 0.001, 'List[0].Probability isn''t equal to 0.5!');
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_SetProbability;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_SetProbability;
 var
   Idx: SizeUInt;
 begin
@@ -2227,7 +2225,7 @@ begin
   Result := TIntegerProbabilityList.PIntProbItem(Item1)^.Value - TIntegerProbabilityList.PIntProbItem(Item2)^.Value;
 end;
 
-procedure TBasicClasses_TIntegerProbabilityList_Test.Test_Sort;
+procedure TBasicClasses_TIntegerProbabilityList_TestCase.Test_Sort;
 var
   Idx: SizeUInt;
 begin
@@ -2247,8 +2245,8 @@ begin
 end;
 
 initialization
-  TDUnitX.RegisterTestFixture(TBasicClasses_TBCList_Test, 'TBCList Test');
-  TDUnitX.RegisterTestFixture(TBasicClasses_TIntegerList_Test, 'TIntegerList Test');
-  TDUnitX.RegisterTestFixture(TBasicClasses_TIntegerProbabilityList_Test, 'TIntegerProbabilityList Test');
+  TDUnitX.RegisterTestFixture(TBasicClasses_TBCList_TestCase, 'TBCList Test');
+  TDUnitX.RegisterTestFixture(TBasicClasses_TIntegerList_TestCase, 'TIntegerList Test');
+  TDUnitX.RegisterTestFixture(TBasicClasses_TIntegerProbabilityList_TestCase, 'TIntegerProbabilityList Test');
 
 end.

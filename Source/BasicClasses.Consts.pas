@@ -18,16 +18,19 @@ resourcestring
   SCustomMultiList_IndexOutOfBounds = '%s: List index %d out of bounds!';
 
   { TBCList }
-  SBCList_ListIndexError = '%s: List index %d out of bounds!';
-  SBCList_ListCapacityError = '%s: List capacity %d out of bounds!';
+  SBCList_ListIndexOutOfBounds = '%s: List index %d out of bounds!';
+  SBCList_ListCapacityOutOfBounds = '%s: List capacity %d out of bounds!';
 
   { TIntegerList }
-  SIntegerList_ListIndexError = '%s: List index %d out of bounds!';
-  SIntegerList_ListCapacityError = '%s: List capacity %d out of bounds!';
+  SIntegerList_ListIndexOutOfBounds = '%s: List index %d out of bounds!';
+  SIntegerList_ListCapacityOutOfBounds = '%s: List capacity %d out of bounds!';
 
-  {TIntegerProbabilityList }
-  SIntegerProbabilityList_ListIndexError = '%s: List index %d out of bounds!';
-  SIntegerProbabilityList_ListCapacityError = '%s: List capacity %d out of bounds!';
+  { TIntegerProbabilityList }
+  SIntegerProbabilityList_ListIndexOutOfBounds = '%s: List index %d out of bounds!';
+  SIntegerProbabilityList_ListCapacityOutOfBounds = '%s: List capacity %d out of bounds!';
+
+  { TCustomStreamer }
+  SCustomStreamer_IndexOutOfBounds = '%s: Index (%d) out of bounds.';
 
 implementation
 

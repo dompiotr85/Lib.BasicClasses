@@ -1,4 +1,4 @@
-unit BasicClassesTests;
+unit BasicClasses_TestCase;
 
 interface
 
@@ -9,7 +9,7 @@ uses
 type
   { TBasicClasses_Test - class definition }
   [TestFixture]
-  TBasicClasses_Test = class
+  TBasicClasses_TestCase = class
   public
     [Setup]
     procedure Setup;
@@ -30,17 +30,17 @@ uses
 
 { TBasicClasses_Test - class implementation }
 
-procedure TBasicClasses_Test.Setup;
+procedure TBasicClasses_TestCase.Setup;
 begin
   { Do nothing }
 end;
 
-procedure TBasicClasses_Test.TearDown;
+procedure TBasicClasses_TestCase.TearDown;
 begin
   { Do nothing }
 end;
 
-procedure TBasicClasses_Test.Test_TCustomObject_InstanceString;
+procedure TBasicClasses_TestCase.Test_TCustomObject_InstanceString;
 var
   MyObject: TCustomObject;
 begin
@@ -55,7 +55,7 @@ begin
   end;
 end;
 
-procedure TBasicClasses_Test.Test_TCustomRefCountedObject;
+procedure TBasicClasses_TestCase.Test_TCustomRefCountedObject;
 var
   RefCountedObj, RefCountedObj2: TCustomRefCountedObject;
   Tmp: Int32;
@@ -63,22 +63,22 @@ begin
   RefCountedObj := TCustomRefCountedObject.Create;
   RefCountedObj.FreeOnRelease := True;
 
-  Assert.AreEqual(0, RefCountedObj.RefCount, 'RefCountedObj.RefCount isn''t equal 0!');
+  Assert.AreEqual(0, RefCountedObj.RefCount, 'RefCountedObj.RefCount isn''t equal to 0!');
 
   RefCountedObj.Acquire;
-  Assert.AreEqual(1, RefCountedObj.RefCount, 'RefCountedObj.RefCount isn''t equal 1!');
+  Assert.AreEqual(1, RefCountedObj.RefCount, 'RefCountedObj.RefCount isn''t equal to 1!');
 
   RefCountedObj2 := RefCountedObj.RetrieveRefCountedObjectCopy;
-  Assert.AreEqual(2, RefCountedObj.RefCount, 'RefCountedObj.RefCount isn''t equal 2!');
-  Assert.AreEqual(2, RefCountedObj.RefCount, 'RefCountedObj2.RefCount isn''t equal 2!');
+  Assert.AreEqual(2, RefCountedObj.RefCount, 'RefCountedObj.RefCount isn''t equal to 2!');
+  Assert.AreEqual(2, RefCountedObj2.RefCount, 'RefCountedObj2.RefCount isn''t equal to 2!');
 
   RefCountedObj2.Release;
 
   Tmp := RefCountedObj.Release;
-  Assert.AreEqual(0, Tmp, 'RefCountedObj.Release isn''t equal 0!');
+  Assert.AreEqual(0, Tmp, 'RefCountedObj.Release isn''t equal to 0!');
 end;
 
 initialization
-  TDUnitX.RegisterTestFixture(TBasicClasses_Test);
+  TDUnitX.RegisterTestFixture(TBasicClasses_TestCase);
 
 end.
